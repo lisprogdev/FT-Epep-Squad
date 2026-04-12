@@ -1,0 +1,201 @@
+/* FT Epep Squad — design tokens & base typography */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Orbitron:wght@400;600;700&family=Rajdhani:wght@400;600;700&display=swap");
+
+:root {
+  /* Warna */
+  --color-bg-primary: #0f0f0f;
+  --color-bg-secondary: #1a1a1a;
+  --color-brand: #d4af37;
+  --color-brand-glow: #ffd700;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a0a0a0;
+
+  /* Tipografi — ganti stack jika ingin prioritas Orbitron vs Rajdhani / Inter vs Montserrat */
+  --font-heading: "Orbitron", "Rajdhani", system-ui, sans-serif;
+  --font-body: "Inter", "Montserrat", system-ui, sans-serif;
+
+  /* Kursor — satu tempat untuk ganti gaya global */
+  --cursor-default: default;
+  --cursor-pointer: pointer;
+  --cursor-text: text;
+  --cursor-not-allowed: not-allowed;
+  --cursor-grab: grab;
+  --cursor-grabbing: grabbing;
+
+  /* Scrollbar */
+  --scrollbar-size: 10px;
+  --scrollbar-track: var(--color-bg-secondary);
+  --scrollbar-thumb: color-mix(in srgb, var(--color-brand) 55%, #2a2a2a);
+  --scrollbar-thumb-hover: var(--color-brand);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* Scrollbar — WebKit / Blink (Chrome, Edge, Safari) */
+*::-webkit-scrollbar {
+  width: var(--scrollbar-size);
+  height: var(--scrollbar-size);
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 999px;
+  border: 2px solid var(--scrollbar-track);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
+}
+
+*::-webkit-scrollbar-corner {
+  background: var(--scrollbar-track);
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  cursor: var(--cursor-default);
+}
+
+a[href],
+button,
+[role="button"],
+summary,
+label[for],
+select,
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+input[type="file"],
+.btn-accent {
+  cursor: var(--cursor-pointer);
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="submit"]):not([type="button"]):not([type="reset"]),
+textarea {
+  cursor: var(--cursor-text);
+}
+
+:disabled,
+[disabled],
+[aria-disabled="true"] {
+  cursor: var(--cursor-not-allowed);
+}
+
+/* Hilangkan panah atas/bawah pada input angka */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+h1,
+h2,
+h3,
+.font-heading,
+.team-name {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+}
+
+h1 {
+  font-size: clamp(1.75rem, 4vw + 1rem, 2.75rem);
+}
+
+h2 {
+  font-size: clamp(1.35rem, 2vw + 0.75rem, 2rem);
+}
+
+h3 {
+  font-size: clamp(1.125rem, 1vw + 0.75rem, 1.5rem);
+}
+
+p,
+ul,
+ol,
+td,
+th {
+  font-family: var(--font-body);
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.bg-surface {
+  background-color: var(--color-bg-secondary);
+}
+
+.text-brand {
+  color: var(--color-brand);
+}
+
+.border-brand {
+  border-color: var(--color-brand);
+}
+
+/* Tombol / link aksen emas */
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-bg-primary);
+  background-color: var(--color-brand);
+  border: 1px solid var(--color-brand);
+  border-radius: 0.375rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.btn-accent:hover,
+.btn-accent:focus-visible {
+  background-color: var(--color-brand-glow);
+  border-color: var(--color-brand-glow);
+  box-shadow: 0 0 0 1px var(--color-brand-glow), 0 0 24px color-mix(in srgb, var(--color-brand-glow) 35%, transparent);
+}
+
+.btn-accent:focus-visible {
+  outline: 2px solid var(--color-brand-glow);
+  outline-offset: 2px;
+}
