@@ -12,8 +12,8 @@
   }
 
   function initHeroTilt() {
-    var card = document.querySelector(".hero__visual-card");
-    var zone = document.querySelector(".hero__visual-shell");
+    var card = document.querySelector("#hero-visual-card");
+    var zone = document.querySelector("#hero-visual-zone");
     if (!card || !zone || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     var max = 9;
@@ -42,7 +42,7 @@
   }
 
   function initHeroScroll() {
-    var link = document.querySelector('.hero__scroll[href^="#"]');
+    var link = document.querySelector('[data-hero-scroll][href^="#"]');
     if (!link) return;
     link.addEventListener("click", function (e) {
       var id = link.getAttribute("href");
@@ -57,7 +57,7 @@
   function initPageHashLinks() {
     document
       .querySelectorAll(
-        '.cara__link[href^="#"], .mengapa__inline[href^="#"], .faq__link[href^="#"], .site-footer__a[href^="#"], .site-footer__pill[href^="#"]'
+        '[data-inpage-link][href^="#"]'
       )
       .forEach(function (a) {
       a.addEventListener("click", function (e) {

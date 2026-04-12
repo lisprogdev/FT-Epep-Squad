@@ -17,9 +17,10 @@
     var backdrop = $("#siderbar-backdrop");
     var toggle = $("#siderbar-toggle");
     if (!bar || !backdrop || !toggle) return;
-    bar.classList.add("is-open");
-    backdrop.classList.add("is-visible");
+    bar.dataset.open = "true";
     backdrop.removeAttribute("hidden");
+    backdrop.setAttribute("aria-hidden", "false");
+    backdrop.dataset.visible = "true";
     toggle.setAttribute("aria-expanded", "true");
     document.body.classList.add("siderbar-open");
   }
@@ -29,18 +30,27 @@
     var backdrop = $("#siderbar-backdrop");
     var toggle = $("#siderbar-toggle");
     if (!bar || !backdrop || !toggle) return;
-    bar.classList.remove("is-open");
-    backdrop.classList.remove("is-visible");
+    delete bar.dataset.open;
+    backdrop.setAttribute("hidden", "");
+    backdrop.setAttribute("aria-hidden", "true");
+    delete backdrop.dataset.visible;
     toggle.setAttribute("aria-expanded", "false");
     document.body.classList.remove("siderbar-open");
-    backdrop.setAttribute("hidden", "");
+  }
+
+  function activeIdFromHref(href) {
+    if (!href) return "";
+    if (href.charAt(0) === "#") return href.slice(1);
+    if (/tools\.html/i.test(href)) return "tools";
+    return "";
   }
 
   function setActiveById(id) {
-    $$(".siderbar__link[data-siderbar-link]").forEach(function (a) {
+    $$("[data-siderbar-link]").forEach(function (a) {
       var href = a.getAttribute("href") || "";
-      var match = href.replace(/^#/, "");
-      a.classList.toggle("is-active", match === id);
+      var match = activeIdFromHref(href);
+      if (match === id) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
     });
   }
 
@@ -69,7 +79,7 @@
   }
 
   function initNavClicks() {
-    $$(".siderbar__link[data-siderbar-link]").forEach(function (a) {
+    $$("[data-siderbar-link]").forEach(function (a) {
       a.addEventListener("click", function (e) {
         var href = a.getAttribute("href");
         if (!href || href.charAt(0) !== "#") return;
@@ -90,7 +100,11 @@
     }).filter(Boolean);
 
     if (!sections.length) {
-      setActiveById("beranda");
+      if (/tools\.html$/i.test(window.location.pathname || "")) {
+        setActiveById("tools");
+      } else {
+        setActiveById("beranda");
+      }
       return;
     }
 
@@ -123,7 +137,6 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
-    document.body.classList.add("has-siderbar");
     initToggle();
     initNavClicks();
     initScrollSpy();

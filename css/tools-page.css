@@ -1,0 +1,132 @@
+/* pages/tools.html — lapisan hero + animasi (sisanya Tailwind di markup) */
+
+.tools-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  background-color: var(--color-bg-primary);
+  background-image:
+    linear-gradient(125deg, color-mix(in srgb, var(--color-bg-primary) 55%, transparent) 0%, transparent 50%),
+    linear-gradient(315deg, color-mix(in srgb, var(--color-brand) 18%, var(--color-bg-primary)) 0%, transparent 42%),
+    url("https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1920&q=78");
+  background-size: cover, cover, cover;
+  background-position: center, center, center 28%;
+  animation: tools-hero-bg-drift 24s ease-in-out infinite alternate;
+}
+
+.tools-hero__gradient {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-bg-primary) 25%, transparent) 0%,
+    color-mix(in srgb, var(--color-bg-primary) 55%, transparent) 38%,
+    var(--color-bg-primary) 92%,
+    var(--color-bg-primary) 100%
+  );
+}
+
+.tools-hero__mesh {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.4;
+  background:
+    radial-gradient(ellipse 90% 70% at 10% 0%, color-mix(in srgb, var(--color-brand) 20%, transparent), transparent 52%),
+    radial-gradient(ellipse 70% 50% at 95% 20%, color-mix(in srgb, var(--color-brand-glow) 12%, transparent), transparent 48%),
+    linear-gradient(color-mix(in srgb, var(--color-brand) 12%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-brand) 8%, transparent) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+  mask-image: radial-gradient(ellipse 85% 75% at 50% 35%, black 0%, transparent 72%);
+  pointer-events: none;
+}
+
+.tools-hero__glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(72px);
+  pointer-events: none;
+  opacity: 0.38;
+  z-index: -1;
+}
+
+.tools-hero__glow--1 {
+  width: min(48vw, 22rem);
+  height: min(48vw, 22rem);
+  top: -8%;
+  right: -5%;
+  background: radial-gradient(circle, var(--color-brand-glow), transparent 68%);
+  animation: tools-hero-glow-pulse 10s ease-in-out infinite;
+}
+
+.tools-hero__glow--2 {
+  width: min(36vw, 16rem);
+  height: min(36vw, 16rem);
+  bottom: 10%;
+  left: -6%;
+  background: radial-gradient(circle, var(--color-brand), transparent 70%);
+  animation: tools-hero-glow-pulse 12s ease-in-out infinite reverse;
+}
+
+.tools-hero__crumb-shine {
+  animation: tools-hero-crumb-shine 5s ease-in-out infinite;
+}
+
+.tools-hero__title-shimmer {
+  animation: tools-hero-title-shimmer 7s linear infinite;
+}
+
+@keyframes tools-hero-bg-drift {
+  0% {
+    transform: scale(1.04) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.1) translate3d(-1.2%, 0.8%, 0);
+  }
+}
+
+@keyframes tools-hero-glow-pulse {
+  0%,
+  100% {
+    opacity: 0.32;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.48;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes tools-hero-title-shimmer {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes tools-hero-crumb-shine {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tools-hero__bg,
+  .tools-hero__glow--1,
+  .tools-hero__glow--2,
+  .tools-hero__title-shimmer,
+  .tools-hero__crumb-shine {
+    animation: none !important;
+  }
+
+  .tools-hero__title-shimmer {
+    background-position: center;
+  }
+}
