@@ -2,7 +2,7 @@
   "use strict";
 
   /** Urutan section di halaman (scroll spy). */
-  var SECTION_IDS = ["beranda", "fitur", "cara-penggunaan", "mengapa-kami", "kontak"];
+  var SECTION_IDS = ["beranda", "fitur", "cara-penggunaan", "tools", "mengapa-kami", "faq", "kontak"];
 
   function $(sel, root) {
     return (root || document).querySelector(sel);

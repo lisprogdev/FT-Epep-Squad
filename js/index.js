@@ -57,7 +57,7 @@
   function initPageHashLinks() {
     document
       .querySelectorAll(
-        '.cara__link[href^="#"], .mengapa__inline[href^="#"], .site-footer__a[href^="#"], .site-footer__pill[href^="#"]'
+        '.cara__link[href^="#"], .mengapa__inline[href^="#"], .faq__link[href^="#"], .site-footer__a[href^="#"], .site-footer__pill[href^="#"]'
       )
       .forEach(function (a) {
       a.addEventListener("click", function (e) {

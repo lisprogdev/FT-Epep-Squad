@@ -314,10 +314,6 @@ body.siderbar-open {
   color: var(--color-text-secondary);
 }
 
-body.has-siderbar main {
-  padding-bottom: calc(5.25rem + env(safe-area-inset-bottom, 0px));
-}
-
 @media (prefers-reduced-motion: reduce) {
   .siderbar,
   .siderbar-backdrop {
