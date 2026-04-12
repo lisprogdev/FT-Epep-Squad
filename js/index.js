@@ -55,7 +55,11 @@
   }
 
   function initPageHashLinks() {
-    document.querySelectorAll('.cara__link[href^="#"], .mengapa__inline[href^="#"]').forEach(function (a) {
+    document
+      .querySelectorAll(
+        '.cara__link[href^="#"], .mengapa__inline[href^="#"], .site-footer__a[href^="#"], .site-footer__pill[href^="#"]'
+      )
+      .forEach(function (a) {
       a.addEventListener("click", function (e) {
         var id = a.getAttribute("href");
         if (!id || id.length < 2) return;
