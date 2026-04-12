@@ -26,24 +26,27 @@
 
 .siderbar-toggle {
   position: fixed;
-  top: 1rem;
-  right: 1rem;
+  top: auto;
+  bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  right: calc(1rem + env(safe-area-inset-right, 0px));
   left: auto;
   z-index: calc(var(--siderbar-z) + 2);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.85rem;
-  height: 2.85rem;
+  width: 3.15rem;
+  height: 3.15rem;
   padding: 0;
-  border: 1px solid color-mix(in srgb, var(--color-brand) 35%, transparent);
-  border-radius: 0.75rem;
-  background: color-mix(in srgb, var(--color-bg-secondary) 75%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-brand) 38%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-bg-secondary) 78%, transparent);
   color: var(--color-brand-glow);
   cursor: var(--cursor-pointer, pointer);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 8px 32px color-mix(in srgb, black 45%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    0 10px 36px color-mix(in srgb, black 48%, transparent),
+    0 0 0 1px color-mix(in srgb, white 6%, transparent) inset;
   transition:
     border-color 0.2s ease,
     color 0.2s ease,
@@ -312,8 +315,7 @@ body.siderbar-open {
 }
 
 body.has-siderbar main {
-  padding-right: calc(2.85rem + 1.5rem);
-  padding-top: env(safe-area-inset-top, 0);
+  padding-bottom: calc(5.25rem + env(safe-area-inset-bottom, 0px));
 }
 
 @media (prefers-reduced-motion: reduce) {
