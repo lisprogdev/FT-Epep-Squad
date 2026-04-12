@@ -71,8 +71,68 @@
     />
     <link rel="stylesheet" href="root.css" />
     <link rel="stylesheet" href="css/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="css/siderbar.css" />
   </head>
   <body class="min-h-screen antialiased">
+    <div class="siderbar-backdrop" id="siderbar-backdrop" hidden aria-hidden="true"></div>
+    <button
+      type="button"
+      class="siderbar-toggle"
+      id="siderbar-toggle"
+      aria-controls="siderbar"
+      aria-expanded="false"
+      aria-label="Buka menu navigasi"
+    >
+      <span class="siderbar-toggle__icons" aria-hidden="true">
+        <i class="fa-solid fa-bars siderbar-toggle__fa siderbar-toggle__fa--bars"></i>
+        <i class="fa-solid fa-xmark siderbar-toggle__fa siderbar-toggle__fa--x"></i>
+      </span>
+    </button>
+    <aside class="siderbar" id="siderbar" aria-label="Menu navigasi">
+      <div class="siderbar__glow" aria-hidden="true"></div>
+      <div class="siderbar__head">
+        <a href="#beranda" class="siderbar__logo" aria-label="FT Epep Squad — Beranda">
+          <img
+            class="siderbar__logo-img"
+            src="img/element/Logo.png"
+            width="80"
+            height="80"
+            alt=""
+            decoding="async"
+          />
+        </a>
+        <div class="siderbar__brand-text">
+          <span class="siderbar__brand-title">Epep Squad</span>
+          <span class="siderbar__brand-sub">EO · Fast tournament</span>
+        </div>
+      </div>
+      <nav class="siderbar__nav" aria-label="Utama">
+        <a href="#beranda" class="siderbar__link is-active" data-siderbar-link>
+          <span class="siderbar__ico" aria-hidden="true"><i class="fa-solid fa-house"></i></span>
+          <span>Beranda</span>
+        </a>
+        <a href="#cara-penggunaan" class="siderbar__link" data-siderbar-link>
+          <span class="siderbar__ico" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span>
+          <span>Cara penggunaan</span>
+        </a>
+        <a href="#mengapa-kami" class="siderbar__link" data-siderbar-link>
+          <span class="siderbar__ico" aria-hidden="true"><i class="fa-solid fa-circle-question"></i></span>
+          <span>Mengapa kami</span>
+        </a>
+        <a href="#kontak" class="siderbar__link" data-siderbar-link>
+          <span class="siderbar__ico" aria-hidden="true"><i class="fa-solid fa-envelope"></i></span>
+          <span>Kontak</span>
+        </a>
+      </nav>
+      <p class="siderbar__foot">Fast tournament · FF</p>
+    </aside>
+
     <main>
       <section class="hero" id="beranda" aria-labelledby="hero-title">
         <div class="hero__bg" aria-hidden="true"></div>
@@ -88,7 +148,6 @@
         <div class="hero__inner">
           <div class="hero__panel" data-aos="fade-up" data-aos-duration="900">
             <span class="hero__panel-shine" aria-hidden="true"></span>
-            <span class="hero__panel-edge" aria-hidden="true"></span>
             <div class="hero__copy">
               <p class="hero__badge" data-aos="fade-down" data-aos-delay="0">
                 <svg class="icon icon--md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -113,13 +172,13 @@
                 supaya klasemen matchday lebih cepat, konsisten, dan minim salah hitung manual.
               </p>
               <div class="hero__actions" data-aos="fade-up" data-aos-delay="220">
-                <a class="hero__btn hero__btn--primary" href="#selanjutnya">
+                <a class="hero__btn hero__btn--primary" href="#fitur">
                   <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
-                  Cara kerja &amp; format
+                  Fitur-fitur kami
                 </a>
-                <a class="hero__btn hero__btn--ghost" href="#daftar">
+                <a class="hero__btn hero__btn--ghost" href="#kontak">
                   <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                   </svg>
@@ -169,7 +228,7 @@
                   <div class="hero__orbit" aria-hidden="true"></div>
                   <img
                     class="hero__logo"
-                    src="img/favicon/web-app-manifest-512x512.png"
+                    src="img/element/Logo.png"
                     width="512"
                     height="512"
                     alt="Logo FT Epep Squad — alat bantu EO fast tournament Free Fire"
@@ -183,7 +242,7 @@
           </div>
         </div>
 
-        <a class="hero__scroll" href="#selanjutnya">
+        <a class="hero__scroll" href="#fitur">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
           </svg>
@@ -192,84 +251,244 @@
         </a>
       </section>
 
-      <section
-        id="selanjutnya"
-        class="min-h-[40vh] border-t border-white/10 bg-surface px-6 py-16 text-secondary"
-        aria-label="Penjelasan untuk Event Organizer"
-        data-aos="fade-up"
-      >
-        <div class="mx-auto max-w-2xl text-center">
-          <h2 class="font-heading mb-4 flex flex-wrap items-center justify-center gap-2 text-lg tracking-wide text-white">
-            <svg class="icon icon--lg text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2-1.75 2H5.5c-.963 0-1.75-.906-1.75-2v-4.15m16.5 0a2.25 2.25 0 01-2.25-2.25V6.75A2.25 2.25 0 0018 4.5H6A2.25 2.25 0 003.75 6.75v5.15a2.25 2.25 0 002.25 2.25h13.5a2.25 2.25 0 002.25-2.25zM9 12h.008v.008H9V12zm3 0h.008v.008H12V12zm3 0h.008v.008H15V12z" />
-            </svg>
-            Khusus Event Organizer (EO)
-          </h2>
-          <p class="mb-4 text-sm leading-relaxed">
-            FT Epep Squad dirancang untuk EO yang menggelar <strong class="text-white">fast tournament Free Fire</strong>
-            dengan skema tim tetap: <strong class="text-white">12 tim</strong> atau <strong class="text-white">15 tim</strong>,
-            mode <strong class="text-white">squad</strong> dan <strong class="text-white">class squad</strong>.
-            Di luar format itu, halaman ini tidak mengklaim mencakup kebutuhan turnamen lainnya.
+      <section id="fitur" class="fitur" aria-labelledby="fitur-title">
+        <div class="fitur__bg" aria-hidden="true"></div>
+        <div class="fitur__inner">
+          <p class="fitur__eyebrow" data-aos="fade-down">Fast tournament · Free Fire</p>
+          <h2 id="fitur-title" class="fitur__title" data-aos="fade-up">Fitur-fitur kami</h2>
+          <p class="fitur__lead" data-aos="fade-up" data-aos-delay="80">
+            Dirangkum untuk EO: format tim tetap, mode kompetisi yang kamu pakai, dan alur menuju hitung poin yang lebih
+            ringan di matchday.
           </p>
-          <p class="mb-6 text-sm leading-relaxed">
-            Inti manfaatnya: <strong class="text-brand">hitung poin otomatis</strong> berdasarkan input hasil match
-            (sesuai logika fast tournament yang kamu standarkan), mengurangi pekerjaan spreadsheet manual antar babak
-            sehingga pengumuman klasemen bisa lebih cepat dan rapi untuk peserta.
-          </p>
-          <p class="text-xs leading-relaxed opacity-80">
-            Integrasi form input hasil, ekspor leaderboard, dan aturan poin detail dapat kamu tambahkan di versi
-            berikutnya—struktur halaman ini sudah mengarah ke narasi produk EO-first.
-          </p>
-
-          <div class="eo-features" data-aos="fade-up" data-aos-delay="120">
-            <div class="eo-features__item">
-              <svg class="icon icon--md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zM14 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z" />
-              </svg>
-              <div>
-                <h3>Bracket 12 &amp; 15</h3>
-                <p>Skema tim tetap untuk fast tournament—mudah dipetakan ke babak dan slot match.</p>
-              </div>
-            </div>
-            <div class="eo-features__item">
-              <svg class="icon icon--md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
-              </svg>
-              <div>
-                <h3>Squad &amp; class squad</h3>
-                <p>Mode FF yang kamu kelola—narasi produk tetap di jalur kompetisi tim.</p>
-              </div>
-            </div>
-            <div class="eo-features__item">
-              <svg class="icon icon--md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
-              </svg>
-              <div>
-                <h3>Poin &amp; klasemen</h3>
-                <p>Visual ke arah hitung poin otomatis &amp; ringkasan hasil untuk pengumuman cepat.</p>
-              </div>
-            </div>
+          <div class="fitur__grid">
+            <article class="fitur-card" data-aos="fade-up" data-aos-delay="0">
+              <div class="fitur-card__icon" aria-hidden="true"><i class="fa-solid fa-table-columns"></i></div>
+              <h3 class="fitur-card__title">Bracket 12 &amp; 15 tim</h3>
+              <p class="fitur-card__text">
+                Skema slot tim tetap untuk fast tournament—memetakan babak dan jadwal match jadi lebih rapi sejak awal
+                event.
+              </p>
+            </article>
+            <article class="fitur-card" data-aos="fade-up" data-aos-delay="60">
+              <div class="fitur-card__icon" aria-hidden="true"><i class="fa-solid fa-users"></i></div>
+              <h3 class="fitur-card__title">Squad &amp; class squad</h3>
+              <p class="fitur-card__text">
+                Fokus pada mode FF tim—narasi dan struktur data mengikuti kompetisi squad yang kamu gelar.
+              </p>
+            </article>
+            <article class="fitur-card" data-aos="fade-up" data-aos-delay="120">
+              <div class="fitur-card__icon" aria-hidden="true"><i class="fa-solid fa-bolt"></i></div>
+              <h3 class="fitur-card__title">Hitung poin otomatis</h3>
+              <p class="fitur-card__text">
+                Arah produk ke input hasil match lalu poin mengikuti aturan fast tournament yang kamu standarkan—kurangi
+                rumus manual antar babak.
+              </p>
+            </article>
+            <article class="fitur-card" data-aos="fade-up" data-aos-delay="180">
+              <div class="fitur-card__icon" aria-hidden="true"><i class="fa-solid fa-chart-line"></i></div>
+              <h3 class="fitur-card__title">Klasemen &amp; ringkasan</h3>
+              <p class="fitur-card__text">
+                Tampilan ke arah leaderboard dan ringkasan hasil agar pengumuman ke peserta bisa lebih cepat dan
+                konsisten.
+              </p>
+            </article>
           </div>
         </div>
       </section>
 
-      <section id="daftar" class="border-t border-white/10 px-6 py-14 text-center" data-aos="fade-up">
-        <h2 class="font-heading mb-2 flex flex-wrap items-center justify-center gap-2 text-lg tracking-wide text-white">
-          <svg class="icon icon--lg text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.678.215-6.785.646C3.623 4.48 3.5 5.874 3.5 6.741v6.509z" />
-          </svg>
-          Untuk EO — akses &amp; kontak
-        </h2>
-        <p class="mx-auto mb-6 max-w-lg text-secondary text-sm leading-relaxed">
-          Tambahkan di sini tautan ke alat hitung poin, dokumentasi format 12/15 tim, atau kontak admin (WhatsApp /
-          Discord) khusus verifikasi EO.
-        </p>
-        <a class="btn-accent" href="#beranda">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-          </svg>
-          Kembali ke atas
-        </a>
+      <section id="cara-penggunaan" class="cara" aria-labelledby="cara-penggunaan-title">
+        <div class="cara__inner">
+          <header class="cara__head" data-aos="fade-up">
+            <p class="cara__eyebrow">Panduan singkat</p>
+            <h2 id="cara-penggunaan-title" class="cara__title">Cara penggunaan</h2>
+            <p class="cara__lead">
+              Empat langkah ringkas untuk menjelajahi situs—dari ringkasan format hingga kontak tim FT Epep Squad.
+            </p>
+          </header>
+          <ol class="cara__grid">
+            <li data-aos="fade-up" data-aos-delay="0">
+              <article class="cara-card" aria-labelledby="cara-step-1-title">
+                <span class="cara-card__step" aria-hidden="true">01</span>
+                <div class="cara-card__icon" aria-hidden="true"><i class="fa-solid fa-house"></i></div>
+                <h3 id="cara-step-1-title" class="cara-card__label">Mulai dari beranda</h3>
+                <p class="cara-card__text">
+                  Buka <a class="cara__link" href="#beranda">Beranda</a> untuk memahami format yang didukung: tim
+                  <strong class="text-white">12 / 15</strong>, mode <strong class="text-white">squad</strong> &amp;
+                  <strong class="text-white">class squad</strong>, dan fokus fast tournament Free Fire.
+                </p>
+              </article>
+            </li>
+            <li data-aos="fade-up" data-aos-delay="80">
+              <article class="cara-card" aria-labelledby="cara-step-2-title">
+                <span class="cara-card__step" aria-hidden="true">02</span>
+                <div class="cara-card__icon" aria-hidden="true"><i class="fa-solid fa-layer-group"></i></div>
+                <h3 id="cara-step-2-title" class="cara-card__label">Telusuri fitur</h3>
+                <p class="cara-card__text">
+                  Lihat <a class="cara__link" href="#fitur">Fitur-fitur kami</a> untuk ringkasan format, mode kompetisi,
+                  dan arah <strong class="text-white">hitung poin otomatis</strong> serta klasemen.
+                </p>
+              </article>
+            </li>
+            <li data-aos="fade-up" data-aos-delay="160">
+              <article class="cara-card" aria-labelledby="cara-step-3-title">
+                <span class="cara-card__step" aria-hidden="true">03</span>
+                <div class="cara-card__icon" aria-hidden="true"><i class="fa-solid fa-comments"></i></div>
+                <h3 id="cara-step-3-title" class="cara-card__label">Hubungi tim</h3>
+                <p class="cara-card__text">
+                  Lewat <a class="cara__link" href="#kontak">Kontak</a>—WhatsApp channel, grup, komunitas, atau chat
+                  langsung ke admin untuk koordinasi EO.
+                </p>
+              </article>
+            </li>
+            <li data-aos="fade-up" data-aos-delay="240">
+              <article class="cara-card" aria-labelledby="cara-step-4-title">
+                <span class="cara-card__step" aria-hidden="true">04</span>
+                <div class="cara-card__icon" aria-hidden="true"><i class="fa-solid fa-bars-staggered"></i></div>
+                <h3 id="cara-step-4-title" class="cara-card__label">Menu samping</h3>
+                <p class="cara-card__text">
+                  Gunakan menu navigasi untuk lompat antar bagian. Di ponsel, tap ikon menu di
+                  <strong class="text-white">pojok kanan atas</strong>.
+                </p>
+              </article>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="mengapa-kami" class="mengapa" aria-labelledby="mengapa-title">
+        <div class="mengapa__glow mengapa__glow--1" aria-hidden="true"></div>
+        <div class="mengapa__glow mengapa__glow--2" aria-hidden="true"></div>
+        <div class="mengapa__inner">
+          <header class="mengapa__head" data-aos="fade-up">
+            <p class="mengapa__eyebrow">Nilai untuk EO</p>
+            <h2 id="mengapa-title" class="mengapa__title">Mengapa harus kami?</h2>
+            <p class="mengapa__lead">
+              FT Epep Squad diposisikan untuk Event Organizer yang ingin matchday lebih rapi—format jelas, alur poin
+              terarah, dan jembatan ke komunitas resmi.
+            </p>
+          </header>
+          <div class="mengapa__layout">
+            <div class="mengapa__hero-card" data-aos="fade-up" data-aos-delay="60">
+              <span class="mengapa__hero-tag" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></span>
+              <p class="mengapa__hero-quote">
+                Satu fokus: <strong class="text-white">fast tournament Free Fire</strong> dengan tim
+                <strong class="text-white">12 atau 15</strong>—bukan portal serba-usaha yang melelahkan EO.
+              </p>
+              <p class="mengapa__hero-note">
+                Squad &amp; class squad · hitung poin mengikuti standar yang kamu tetapkan · komunikasi lewat jalur
+                <a class="mengapa__inline" href="#kontak">kontak resmi</a>.
+              </p>
+            </div>
+            <ul class="mengapa__list">
+              <li data-aos="fade-left" data-aos-delay="0">
+                <article class="mengapa-card">
+                  <div class="mengapa-card__rail" aria-hidden="true"></div>
+                  <div class="mengapa-card__ico" aria-hidden="true"><i class="fa-solid fa-bullseye"></i></div>
+                  <div class="mengapa-card__body">
+                    <h3 class="mengapa-card__title">Spesialis format</h3>
+                    <p class="mengapa-card__text">
+                      Bracket dan narasi mengunci ke <strong class="text-white">12 / 15 tim</strong>—memudahkan EO
+                      menjelaskan struktur ke peserta tanpa tabrak format lain.
+                    </p>
+                  </div>
+                </article>
+              </li>
+              <li data-aos="fade-left" data-aos-delay="80">
+                <article class="mengapa-card">
+                  <div class="mengapa-card__rail" aria-hidden="true"></div>
+                  <div class="mengapa-card__ico" aria-hidden="true"><i class="fa-solid fa-gauge-high"></i></div>
+                  <div class="mengapa-card__body">
+                    <h3 class="mengapa-card__title">Matchday lebih ringan</h3>
+                    <p class="mengapa-card__text">
+                      Arah ke <strong class="text-white">hitung poin otomatis</strong> dan ringkasan klasemen supaya
+                      antar babak tidak habis di spreadsheet manual.
+                    </p>
+                  </div>
+                </article>
+              </li>
+              <li data-aos="fade-left" data-aos-delay="160">
+                <article class="mengapa-card">
+                  <div class="mengapa-card__rail" aria-hidden="true"></div>
+                  <div class="mengapa-card__ico" aria-hidden="true"><i class="fa-solid fa-users-line"></i></div>
+                  <div class="mengapa-card__body">
+                    <h3 class="mengapa-card__title">Komunitas terbuka</h3>
+                    <p class="mengapa-card__text">
+                      Channel, grup, dan komunitas WhatsApp—plus admin—agar EO punya titik tanya yang konsisten.
+                    </p>
+                  </div>
+                </article>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="kontak" class="kontak" data-aos="fade-up" aria-labelledby="kontak-title">
+        <div class="kontak__inner">
+          <h2 id="kontak-title" class="kontak__title">Kontak &amp; WhatsApp</h2>
+          <p class="kontak__lead">
+            Gabung channel, grup, atau komunitas. Untuk pertanyaan cepat per EO / fast tournament, hubungi
+            <strong class="text-white">Amin</strong> lewat WhatsApp.
+          </p>
+          <ul class="kontak__list">
+            <li>
+              <a
+                class="kontak__link"
+                href="https://whatsapp.com/channel/0029VbCZBikLdQeXdQJHdH2P"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="kontak__link-ico" aria-hidden="true"><i class="fa-brands fa-whatsapp"></i></span>
+                <span class="kontak__link-body">
+                  <span class="kontak__link-label">Channel</span>
+                  <span class="kontak__link-desc">Ikuti update resmi di WhatsApp Channel.</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="kontak__link"
+                href="https://chat.whatsapp.com/Jm8bvFtXT80516snciC8g8"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="kontak__link-ico" aria-hidden="true"><i class="fa-brands fa-whatsapp"></i></span>
+                <span class="kontak__link-body">
+                  <span class="kontak__link-label">Grup</span>
+                  <span class="kontak__link-desc">Diskusi &amp; info di grup WhatsApp.</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="kontak__link"
+                href="https://chat.whatsapp.com/L75xKqHollb8pBjf1Kb0OD"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="kontak__link-ico" aria-hidden="true"><i class="fa-brands fa-whatsapp"></i></span>
+                <span class="kontak__link-body">
+                  <span class="kontak__link-label">Komunitas</span>
+                  <span class="kontak__link-desc">Komunitas WhatsApp FT Epep Squad.</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="kontak__link"
+                href="https://wa.me/6287720075446"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="kontak__link-ico" aria-hidden="true"><i class="fa-brands fa-whatsapp"></i></span>
+                <span class="kontak__link-body">
+                  <span class="kontak__link-label">WA Amin</span>
+                  <span class="kontak__link-desc">0877-2007-5446 · tap untuk buka chat WhatsApp.</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
       </section>
     </main>
 
@@ -277,5 +496,6 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/alert-alert@1.0.10/dist/standalone/js/alert-alert.min.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/siderbar.js"></script>
   </body>
 </html>
