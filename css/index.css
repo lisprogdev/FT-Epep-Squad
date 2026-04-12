@@ -346,14 +346,6 @@
   opacity: 0.45;
 }
 
-/* --- Tools (#tools) — stub; konten menyusul --- */
-.tools--stub {
-  margin: 0;
-  padding: 0;
-  min-height: 0;
-  border: 0;
-}
-
 /* --- Mengapa harus kami — `.mengapa-x__*` glow + border gradien kartu hero --- */
 .mengapa-x__glow {
   position: absolute;
@@ -988,4 +980,40 @@
 
 .site-ads__unit--leader {
   min-height: 90px;
+}
+
+/* Sub-section iklan di dalam tiap <section> utama — mengisolasi iframe agar reflow tidak “loncat” ke konten */
+.site-ads-section {
+  contain: layout;
+}
+
+/* Modal gate CTA hero — backdrop + posisi tengah viewport (Tailwind/preflight kadang mematikan margin dialog) */
+dialog#hero-cta-gate.hero-cta-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  box-sizing: border-box;
+  width: min(calc(100vw - 1.5rem), 26.5rem);
+  max-width: min(calc(100vw - 1.5rem), 26.5rem);
+  height: max-content;
+  max-height: min(92dvh, 42rem);
+  margin: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+#hero-cta-gate::backdrop {
+  background: color-mix(in srgb, black 78%, transparent);
+}
+
+/* Hero — slot iklan di bawah grid; batasi lebar iframe agar tidak meluber ke kolom visual */
+#beranda .hero-ad-slot iframe {
+  display: block;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+#beranda .site-ads-section--hero-below .site-ads__unit {
+  max-width: 100%;
 }

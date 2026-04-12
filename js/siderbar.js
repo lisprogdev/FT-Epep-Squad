@@ -140,5 +140,6 @@
     initToggle();
     initNavClicks();
     initScrollSpy();
+    document.addEventListener("ft-close-sidebar", closeDrawer);
   });
 })();

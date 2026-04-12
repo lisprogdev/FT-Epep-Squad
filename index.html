@@ -152,6 +152,9 @@
         <a
           href="pages/tools.html"
           data-siderbar-link
+          data-hero-cta-gate-url="pages/tools.html"
+          data-hero-cta-gate-desc="Untuk membuka halaman Tools, tinjau iklan di jendela ini terlebih dahulu."
+          aria-haspopup="dialog"
           class="relative flex items-center gap-3 rounded-[0.65rem] border border-transparent px-[0.85rem] py-[0.72rem] font-[family-name:var(--font-heading)] text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-secondary)] transition hover:border-[color-mix(in_srgb,var(--color-brand)_22%,transparent)] hover:bg-[color-mix(in_srgb,var(--color-brand)_8%,transparent)] hover:text-[var(--color-text-primary)] aria-[current=page]:border-[color-mix(in_srgb,var(--color-brand)_35%,transparent)] aria-[current=page]:bg-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] aria-[current=page]:text-[var(--color-brand-glow)] aria-[current=page]:shadow-[inset_3px_0_0_0_var(--color-brand-glow),0_0_28px_color-mix(in_srgb,var(--color-brand)_10%,transparent)]"
         >
           <span class="grid size-[1.85rem] shrink-0 place-items-center rounded-[0.45rem] border border-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] text-inherit" aria-hidden="true"
@@ -196,7 +199,7 @@
     <main>
       <section
         id="beranda"
-        class="relative isolate flex min-h-dvh min-h-screen items-center overflow-hidden pt-[clamp(4.75rem,11vw,7.5rem)] pb-[clamp(4.5rem,9vw,6.5rem)] pl-[clamp(1.25rem,4vw,3.5rem)] pr-[clamp(1.25rem,4vw,3.5rem)]"
+        class="relative isolate flex min-h-dvh min-h-screen w-full flex-col items-center justify-center gap-8 overflow-hidden pt-[clamp(4.75rem,11vw,7.5rem)] pb-[clamp(4.5rem,9vw,6.5rem)] pl-[clamp(1.25rem,4vw,3.5rem)] pr-[clamp(1.25rem,4vw,3.5rem)]"
         aria-labelledby="hero-title"
         data-aos="fade"
         data-aos-duration="1100"
@@ -212,7 +215,7 @@
         <div class="hero-x__deco hero-x__deco--2" aria-hidden="true"></div>
 
         <div
-          class="relative z-[2] mx-auto grid w-full max-w-[76rem] grid-cols-1 items-stretch gap-[clamp(2rem,5vw,3.5rem)] lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-[clamp(2.25rem,4vw,3.75rem)]"
+          class="relative z-[2] mx-auto grid w-full max-w-[76rem] shrink-0 grid-cols-1 items-stretch gap-[clamp(2rem,5vw,3.5rem)] lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-[clamp(2.25rem,4vw,3.75rem)]"
         >
           <div
             class="relative overflow-hidden rounded-[1.35rem] border border-[color-mix(in_srgb,var(--color-brand)_28%,transparent)] bg-gradient-to-br from-[color-mix(in_srgb,var(--color-bg-secondary)_72%,transparent)] via-[color-mix(in_srgb,var(--color-bg-primary)_88%,transparent)] to-[color-mix(in_srgb,var(--color-bg-secondary)_55%,transparent)] p-[clamp(1.35rem,3.5vw,2.35rem)] shadow-[inset_0_0_0_1px_color-mix(in_srgb,white_5%,transparent),inset_0_1px_0_color-mix(in_srgb,var(--color-brand-glow)_12%,transparent),0_32px_90px_rgba(0,0,0,0.55),0_0_80px_color-mix(in_srgb,var(--color-brand)_10%,transparent)] backdrop-blur-xl backdrop-saturate-[1.25]"
@@ -265,24 +268,28 @@
                 supaya klasemen matchday lebih cepat, konsisten, dan minim salah hitung manual.
               </p>
               <div class="mb-8 flex flex-wrap gap-3" data-aos="fade-up" data-aos-delay="220">
-                <a
-                  class="inline-flex items-center justify-center gap-2 rounded-[0.55rem] border border-[color-mix(in_srgb,var(--color-brand-glow)_55%,var(--color-brand))] bg-[length:200%_auto] px-[1.45rem] py-[0.82rem] font-[family-name:var(--font-heading)] text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-[var(--color-bg-primary)] no-underline shadow-[inset_0_0_0_1px_color-mix(in_srgb,white_22%,transparent),0_0_0_1px_color-mix(in_srgb,var(--color-brand-glow)_28%,transparent),0_14px_36px_color-mix(in_srgb,var(--color-brand)_32%,transparent)] [background-image:linear-gradient(145deg,var(--color-brand)_0%,var(--color-brand-glow)_52%,var(--color-brand)_100%)] transition hover:-translate-y-0.5 hover:shadow-[0_0_0_1px_var(--color-brand-glow),0_18px_48px_color-mix(in_srgb,var(--color-brand-glow)_28%,transparent)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
-                  href="#fitur"
+                <button
+                  type="button"
+                  data-hero-cta-gate-target="#fitur"
+                  aria-haspopup="dialog"
+                  class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-[0.55rem] border border-[color-mix(in_srgb,var(--color-brand-glow)_55%,var(--color-brand))] bg-[length:200%_auto] px-[1.45rem] py-[0.82rem] font-[family-name:var(--font-heading)] text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-[var(--color-bg-primary)] shadow-[inset_0_0_0_1px_color-mix(in_srgb,white_22%,transparent),0_0_0_1px_color-mix(in_srgb,var(--color-brand-glow)_28%,transparent),0_14px_36px_color-mix(in_srgb,var(--color-brand)_32%,transparent)] [background-image:linear-gradient(145deg,var(--color-brand)_0%,var(--color-brand-glow)_52%,var(--color-brand)_100%)] transition hover:-translate-y-0.5 hover:shadow-[0_0_0_1px_var(--color-brand-glow),0_18px_48px_color-mix(in_srgb,var(--color-brand-glow)_28%,transparent)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)]"
                 >
                   <svg class="h-[1.1rem] w-[1.1rem] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                   Fitur-fitur kami
-                </a>
-                <a
-                  class="inline-flex items-center justify-center gap-2 rounded-[0.55rem] border border-[color-mix(in_srgb,var(--color-brand)_42%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_42%,transparent)] px-[1.45rem] py-[0.82rem] font-[family-name:var(--font-heading)] text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-[var(--color-text-primary)] no-underline shadow-[inset_0_0_0_1px_color-mix(in_srgb,white_4%,transparent)] transition hover:-translate-y-0.5 hover:border-[var(--color-brand-glow)] hover:text-[var(--color-brand-glow)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
-                  href="#kontak"
+                </button>
+                <button
+                  type="button"
+                  data-hero-cta-gate-target="#kontak"
+                  aria-haspopup="dialog"
+                  class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-[0.55rem] border border-[color-mix(in_srgb,var(--color-brand)_42%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_42%,transparent)] px-[1.45rem] py-[0.82rem] font-[family-name:var(--font-heading)] text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-[var(--color-text-primary)] shadow-[inset_0_0_0_1px_color-mix(in_srgb,white_4%,transparent)] transition hover:-translate-y-0.5 hover:border-[var(--color-brand-glow)] hover:text-[var(--color-brand-glow)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)]"
                 >
                   <svg class="h-[1.1rem] w-[1.1rem] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                   </svg>
                   Untuk EO
-                </a>
+                </button>
               </div>
               <dl class="m-0 grid max-w-md grid-cols-3 gap-[0.65rem] p-0" data-aos="fade-up" data-aos-delay="280">
                 <div
@@ -362,10 +369,15 @@
           </div>
         </div>
 
-        <div class="relative z-[2] mx-auto flex w-full max-w-[72rem] flex-col items-center gap-4 px-4 pb-24 pt-2" aria-label="Iklan">
-          <script async="async" data-cfasync="false" src="https://performanceingredientgoblet.com/02ad4c20f6520397f8dd0da3a374ae68/invoke.js"></script>
-          <div id="container-02ad4c20f6520397f8dd0da3a374ae68"></div>
-        </div>
+        <section
+          class="site-ads-section site-ads-section--hero-below relative z-[2] mx-auto flex w-full max-w-[min(100%,72rem)] shrink-0 flex-col items-center gap-3 border-t border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_38%,transparent)] px-3 pb-24 pt-4 isolate backdrop-blur-[6px] sm:px-4"
+          aria-label="Iklan"
+        >
+          <div class="hero-ad-slot w-full max-w-full overflow-x-auto overflow-y-hidden">
+            <script async="async" data-cfasync="false" src="https://performanceingredientgoblet.com/02ad4c20f6520397f8dd0da3a374ae68/invoke.js"></script>
+            <div id="container-02ad4c20f6520397f8dd0da3a374ae68" class="mx-auto flex max-w-full justify-center"></div>
+          </div>
+        </section>
 
         <a
           class="absolute bottom-[1.35rem] left-1/2 z-[3] flex -translate-x-1/2 flex-col items-center gap-[0.4rem] rounded-full border border-[color-mix(in_srgb,var(--color-brand)_22%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] px-[1.15rem] pb-[0.35rem] pt-[0.55rem] font-[family-name:var(--font-heading)] text-[0.62rem] uppercase tracking-[0.22em] text-[var(--color-text-secondary)] no-underline opacity-90 shadow-none backdrop-blur-md transition hover:border-[color-mix(in_srgb,var(--color-brand-glow)_40%,transparent)] hover:text-[var(--color-brand-glow)] hover:opacity-100 hover:shadow-[0_0_28px_color-mix(in_srgb,var(--color-brand)_15%,transparent)]"
@@ -494,7 +506,10 @@
           </div>
         </div>
 
-        <div class="relative z-[1] mx-auto flex w-full max-w-[72rem] flex-col items-center gap-4 px-4 py-[clamp(1.25rem,3vw,2.25rem)]" aria-label="Iklan">
+        <section
+          class="site-ads-section relative z-[1] mx-auto flex w-full max-w-[72rem] flex-col items-center gap-4 border-t border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_32%,transparent)] px-4 py-[clamp(1rem,2.8vw,1.85rem)] isolate backdrop-blur-[6px]"
+          aria-label="Iklan"
+        >
           <div class="site-ads__unit">
             <script>
               atOptions = {
@@ -507,7 +522,7 @@
             </script>
             <script src="https://performanceingredientgoblet.com/2b39ed5a6df1bc66366ef9e91d1b3efc/invoke.js"></script>
           </div>
-        </div>
+        </section>
       </section>
 
       <section
@@ -653,7 +668,10 @@
           </ol>
         </div>
 
-        <div class="relative z-[1] mx-auto flex w-full max-w-[72rem] flex-col items-center gap-4 px-4 py-[clamp(1.25rem,3vw,2.25rem)]" aria-label="Iklan">
+        <section
+          class="site-ads-section relative z-[1] mx-auto flex w-full max-w-[72rem] flex-col items-center gap-4 border-t border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_32%,transparent)] px-4 py-[clamp(1rem,2.8vw,1.85rem)] isolate backdrop-blur-[6px]"
+          aria-label="Iklan"
+        >
           <div class="site-ads__unit">
             <script>
               atOptions = {
@@ -666,11 +684,18 @@
             </script>
             <script src="https://performanceingredientgoblet.com/63b4d9e761d51ea73e3376599f4cc01f/invoke.js"></script>
           </div>
-        </div>
+        </section>
       </section>
 
-      <section id="tools" class="tools tools--stub relative isolate" aria-label="Tools">
-        <div class="relative z-[1] mx-auto flex w-full max-w-[72rem] flex-col items-center gap-4 px-4 py-[clamp(1.25rem,3vw,2.25rem)]" aria-label="Iklan">
+      <section
+        id="tools"
+        class="relative isolate overflow-hidden border-t border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--color-bg-primary)_100%,transparent)_0%,color-mix(in_srgb,var(--color-bg-secondary)_55%,transparent)_100%)]"
+        aria-label="Tools"
+      >
+        <section
+          class="site-ads-section relative z-[1] mx-auto flex w-full max-w-[72rem] flex-col items-center gap-4 px-4 py-[clamp(1rem,2.8vw,1.85rem)] isolate"
+          aria-label="Iklan"
+        >
           <div class="site-ads__unit">
             <script>
               atOptions = {
@@ -683,7 +708,7 @@
             </script>
             <script src="https://performanceingredientgoblet.com/8c07e33956a7c934a4bd7a64072821b8/invoke.js"></script>
           </div>
-        </div>
+        </section>
       </section>
 
       <section
@@ -815,7 +840,10 @@
           </div>
         </div>
 
-        <div class="relative z-[1] mx-auto flex w-full max-w-[72rem] flex-col items-center gap-4 px-4 py-[clamp(1.25rem,3vw,2.25rem)]" aria-label="Iklan">
+        <section
+          class="site-ads-section relative z-[1] mx-auto flex w-full max-w-[72rem] flex-col items-center gap-4 border-t border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_32%,transparent)] px-4 py-[clamp(1rem,2.8vw,1.85rem)] isolate backdrop-blur-[6px]"
+          aria-label="Iklan"
+        >
           <div class="site-ads__unit">
             <script>
               atOptions = {
@@ -828,7 +856,7 @@
             </script>
             <script src="https://performanceingredientgoblet.com/8278998bc051fbb62af40f7f216d13a4/invoke.js"></script>
           </div>
-        </div>
+        </section>
       </section>
 
       <section
@@ -984,7 +1012,10 @@
           </div>
         </div>
 
-        <div class="relative z-[1] mx-auto flex w-full max-w-[72rem] flex-col items-center gap-4 px-4 py-[clamp(1.25rem,3vw,2.25rem)]" aria-label="Iklan">
+        <section
+          class="site-ads-section relative z-[1] mx-auto flex w-full max-w-[72rem] flex-col items-center gap-4 border-t border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_32%,transparent)] px-4 py-[clamp(1rem,2.8vw,1.85rem)] isolate backdrop-blur-[6px]"
+          aria-label="Iklan"
+        >
           <div class="site-ads__unit site-ads__unit--leader">
             <script>
               atOptions = {
@@ -997,7 +1028,7 @@
             </script>
             <script src="https://performanceingredientgoblet.com/2af0113ae67de76fd5aa631156a88bac/invoke.js"></script>
           </div>
-        </div>
+        </section>
       </section>
 
       <section id="kontak" class="kontak" aria-labelledby="kontak-title">
@@ -1112,7 +1143,10 @@
           </div>
         </div>
 
-        <div class="relative z-[1] mx-auto flex w-full max-w-[72rem] flex-col items-center gap-4 px-4 py-[clamp(1.25rem,3vw,2.25rem)]" aria-label="Iklan">
+        <section
+          class="site-ads-section relative z-[1] mx-auto flex w-full max-w-[72rem] flex-col items-center gap-4 border-t border-white/[0.08] bg-[color-mix(in_srgb,black_35%,transparent)] px-4 py-[clamp(1rem,2.8vw,1.85rem)] isolate"
+          aria-label="Iklan"
+        >
           <div class="site-ads__unit">
             <script>
               atOptions = {
@@ -1125,9 +1159,57 @@
             </script>
             <script src="https://performanceingredientgoblet.com/affbedc4c7ee9fbd494dbe33c21b3613/invoke.js"></script>
           </div>
-        </div>
+        </section>
       </section>
     </main>
+
+    <dialog
+      id="hero-cta-gate"
+      class="hero-cta-gate rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_38%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_96%,#050505)] p-5 text-[var(--color-text-primary)] shadow-[0_28px_90px_rgba(0,0,0,0.72)] [color-scheme:dark]"
+      aria-labelledby="hero-cta-gate-title"
+      aria-describedby="hero-cta-gate-desc"
+    >
+      <h2 id="hero-cta-gate-title" class="m-0 mb-2 font-[family-name:var(--font-heading)] text-[0.95rem] font-bold uppercase tracking-[0.12em] text-[var(--color-text-primary)]">
+        Tinjau iklan
+      </h2>
+      <p id="hero-cta-gate-desc" class="m-0 mb-3 text-[0.82rem] leading-relaxed text-[var(--color-text-secondary)]"></p>
+      <p
+        id="hero-cta-gate-countdown"
+        class="m-0 mb-3 min-h-[2.75rem] rounded-lg border border-[color-mix(in_srgb,var(--color-brand)_18%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] px-3 py-2 text-[0.72rem] leading-snug text-[color-mix(in_srgb,var(--color-text-secondary)_92%,var(--color-brand-glow))]"
+        role="status"
+        aria-live="polite"
+      ></p>
+      <div
+        id="hero-modal-ad-slot"
+        class="mb-4 flex min-h-[min(18rem,45vh)] w-full items-center justify-center overflow-hidden rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_22%,transparent)] bg-[color-mix(in_srgb,black_40%,transparent)]"
+        data-ad-loaded=""
+      ></div>
+      <label class="mb-5 flex cursor-pointer items-start gap-2.5 text-left text-[0.78rem] leading-snug text-[var(--color-text-secondary)]">
+        <input
+          id="hero-cta-gate-ack"
+          type="checkbox"
+          class="mt-0.5 size-[1.05rem] shrink-0 cursor-pointer rounded border-[color-mix(in_srgb,var(--color-brand)_45%,transparent)] bg-[var(--color-bg-primary)] accent-[var(--color-brand-glow)]"
+        />
+        <span>Saya sudah meninjau atau mengetuk area iklan di atas, lalu ingin melanjutkan.</span>
+      </label>
+      <div class="flex flex-wrap items-center justify-end gap-2 border-t border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] pt-4">
+        <button
+          type="button"
+          id="hero-cta-gate-cancel"
+          class="inline-flex cursor-pointer items-center justify-center rounded-[0.55rem] border border-[color-mix(in_srgb,var(--color-brand)_35%,transparent)] bg-transparent px-[1.1rem] py-[0.65rem] font-[family-name:var(--font-heading)] text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[var(--color-text-secondary)] transition hover:border-[var(--color-brand-glow)] hover:text-[var(--color-text-primary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)]"
+        >
+          Batal
+        </button>
+        <button
+          type="button"
+          id="hero-cta-gate-go"
+          disabled
+          class="inline-flex cursor-pointer items-center justify-center rounded-[0.55rem] border border-[color-mix(in_srgb,var(--color-brand-glow)_50%,var(--color-brand))] bg-gradient-to-br from-[var(--color-brand)] to-[var(--color-brand-glow)] px-[1.25rem] py-[0.65rem] font-[family-name:var(--font-heading)] text-[0.62rem] font-bold uppercase tracking-[0.14em] text-[var(--color-bg-primary)] shadow-[0_6px_24px_color-mix(in_srgb,var(--color-brand)_35%,transparent)] transition enabled:hover:-translate-y-0.5 enabled:hover:shadow-[0_10px_32px_color-mix(in_srgb,var(--color-brand-glow)_30%,transparent)] disabled:cursor-not-allowed disabled:opacity-45 disabled:shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)] motion-reduce:transition-none enabled:motion-reduce:hover:translate-y-0"
+        >
+          Lanjutkan
+        </button>
+      </div>
+    </dialog>
 
     <footer
       id="site-footer"

@@ -18,6 +18,7 @@
 
     <link rel="stylesheet" href="../root.css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="../css/index.css" />
     <link rel="stylesheet" href="../css/tools-page.css" />
     <link rel="stylesheet" href="../css/footer.css" />
     <link
@@ -248,10 +249,16 @@
                 <a
                   class="inline-flex items-center justify-center gap-[0.45rem] rounded-[0.55rem] border border-[color-mix(in_srgb,#5eead4_40%,var(--color-brand-glow))] bg-gradient-to-br from-[color-mix(in_srgb,#5eead4_55%,var(--color-brand))] to-[var(--color-brand-glow)] px-[1.15rem] py-[0.72rem] font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.12em] text-[var(--color-bg-primary)] no-underline shadow-[0_6px_28px_color-mix(in_srgb,var(--color-brand)_35%,transparent)] transition hover:-translate-y-0.5 hover:shadow-[0_10px_36px_color-mix(in_srgb,var(--color-brand-glow)_28%,transparent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
                   href="../index.html#kontak"
+                  data-hero-cta-gate-url="../index.html#kontak"
+                  data-hero-cta-gate-desc="Untuk membuka Kontak di beranda, tinjau iklan di jendela ini terlebih dahulu."
+                  aria-haspopup="dialog"
                   >Koordinasi format BR</a>
                 <a
                   class="inline-flex items-center justify-center gap-[0.45rem] rounded-[0.55rem] border border-[color-mix(in_srgb,var(--color-brand)_38%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_50%,transparent)] px-[1.15rem] py-[0.72rem] font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.12em] text-[var(--color-text-primary)] no-underline transition hover:-translate-y-0.5 hover:border-[var(--color-brand-glow)] hover:text-[var(--color-brand-glow)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
                   href="../index.html#fitur"
+                  data-hero-cta-gate-url="../index.html#fitur"
+                  data-hero-cta-gate-desc="Untuk membuka ringkasan Fitur di beranda, tinjau iklan di jendela ini terlebih dahulu."
+                  aria-haspopup="dialog"
                   >Lihat ringkasan fitur</a>
               </div>
             </article>
@@ -288,10 +295,16 @@
                 <a
                   class="inline-flex items-center justify-center gap-[0.45rem] rounded-[0.55rem] border border-[color-mix(in_srgb,var(--color-brand-glow)_50%,var(--color-brand))] bg-gradient-to-br from-[var(--color-brand)] to-[var(--color-brand-glow)] px-[1.15rem] py-[0.72rem] font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.12em] text-[var(--color-bg-primary)] no-underline shadow-[0_6px_28px_color-mix(in_srgb,var(--color-brand)_35%,transparent)] transition hover:-translate-y-0.5 hover:shadow-[0_10px_36px_color-mix(in_srgb,var(--color-brand-glow)_28%,transparent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
                   href="../index.html#kontak"
+                  data-hero-cta-gate-url="../index.html#kontak"
+                  data-hero-cta-gate-desc="Untuk membuka Kontak di beranda, tinjau iklan di jendela ini terlebih dahulu."
+                  aria-haspopup="dialog"
                   >Koordinasi class squad</a>
                 <a
                   class="inline-flex items-center justify-center gap-[0.45rem] rounded-[0.55rem] border border-[color-mix(in_srgb,var(--color-brand)_38%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_50%,transparent)] px-[1.15rem] py-[0.72rem] font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.12em] text-[var(--color-text-primary)] no-underline transition hover:-translate-y-0.5 hover:border-[var(--color-brand-glow)] hover:text-[var(--color-brand-glow)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
                   href="../index.html#cara-penggunaan"
+                  data-hero-cta-gate-url="../index.html#cara-penggunaan"
+                  data-hero-cta-gate-desc="Untuk membuka Panduan singkat (Cara penggunaan) di beranda, tinjau iklan di jendela ini terlebih dahulu."
+                  aria-haspopup="dialog"
                   >Panduan singkat</a>
               </div>
             </article>
@@ -299,6 +312,54 @@
         </div>
       </section>
     </main>
+
+    <dialog
+      id="hero-cta-gate"
+      class="hero-cta-gate rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_38%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_96%,#050505)] p-5 text-[var(--color-text-primary)] shadow-[0_28px_90px_rgba(0,0,0,0.72)] [color-scheme:dark]"
+      aria-labelledby="hero-cta-gate-title"
+      aria-describedby="hero-cta-gate-desc"
+    >
+      <h2 id="hero-cta-gate-title" class="m-0 mb-2 font-[family-name:var(--font-heading)] text-[0.95rem] font-bold uppercase tracking-[0.12em] text-[var(--color-text-primary)]">
+        Tinjau iklan
+      </h2>
+      <p id="hero-cta-gate-desc" class="m-0 mb-3 text-[0.82rem] leading-relaxed text-[var(--color-text-secondary)]"></p>
+      <p
+        id="hero-cta-gate-countdown"
+        class="m-0 mb-3 min-h-[2.75rem] rounded-lg border border-[color-mix(in_srgb,var(--color-brand)_18%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] px-3 py-2 text-[0.72rem] leading-snug text-[color-mix(in_srgb,var(--color-text-secondary)_92%,var(--color-brand-glow))]"
+        role="status"
+        aria-live="polite"
+      ></p>
+      <div
+        id="hero-modal-ad-slot"
+        class="mb-4 flex min-h-[min(18rem,45vh)] w-full items-center justify-center overflow-hidden rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_22%,transparent)] bg-[color-mix(in_srgb,black_40%,transparent)]"
+        data-ad-loaded=""
+      ></div>
+      <label class="mb-5 flex cursor-pointer items-start gap-2.5 text-left text-[0.78rem] leading-snug text-[var(--color-text-secondary)]">
+        <input
+          id="hero-cta-gate-ack"
+          type="checkbox"
+          class="mt-0.5 size-[1.05rem] shrink-0 cursor-pointer rounded border-[color-mix(in_srgb,var(--color-brand)_45%,transparent)] bg-[var(--color-bg-primary)] accent-[var(--color-brand-glow)]"
+        />
+        <span>Saya sudah meninjau atau mengetuk area iklan di atas, lalu ingin melanjutkan.</span>
+      </label>
+      <div class="flex flex-wrap items-center justify-end gap-2 border-t border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] pt-4">
+        <button
+          type="button"
+          id="hero-cta-gate-cancel"
+          class="inline-flex cursor-pointer items-center justify-center rounded-[0.55rem] border border-[color-mix(in_srgb,var(--color-brand)_35%,transparent)] bg-transparent px-[1.1rem] py-[0.65rem] font-[family-name:var(--font-heading)] text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[var(--color-text-secondary)] transition hover:border-[var(--color-brand-glow)] hover:text-[var(--color-text-primary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)]"
+        >
+          Batal
+        </button>
+        <button
+          type="button"
+          id="hero-cta-gate-go"
+          disabled
+          class="inline-flex cursor-pointer items-center justify-center rounded-[0.55rem] border border-[color-mix(in_srgb,var(--color-brand-glow)_50%,var(--color-brand))] bg-gradient-to-br from-[var(--color-brand)] to-[var(--color-brand-glow)] px-[1.25rem] py-[0.65rem] font-[family-name:var(--font-heading)] text-[0.62rem] font-bold uppercase tracking-[0.14em] text-[var(--color-bg-primary)] shadow-[0_6px_24px_color-mix(in_srgb,var(--color-brand)_35%,transparent)] transition enabled:hover:-translate-y-0.5 enabled:hover:shadow-[0_10px_32px_color-mix(in_srgb,var(--color-brand-glow)_30%,transparent)] disabled:cursor-not-allowed disabled:opacity-45 disabled:shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)] motion-reduce:transition-none enabled:motion-reduce:hover:translate-y-0"
+        >
+          Lanjutkan
+        </button>
+      </div>
+    </dialog>
 
     <footer
       id="site-footer"
