@@ -31,9 +31,13 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  /* Jangan width:100% penuh di sini — foreignObject html-to-image + margin:auto sering bikin isi geser di PNG */
+  align-self: center;
+  flex-shrink: 0;
+  width: min(100%, 36rem);
   max-width: min(100%, 36rem);
-  margin-inline: auto;
+  margin: 0;
+  direction: ltr;
   font-family: var(--font-body);
   color: var(--color-text-primary);
   background: linear-gradient(
@@ -52,20 +56,63 @@
 
 @media (min-width: 480px) {
   #br-match1-poster-capture.br-m1-poster-capture {
+    width: min(100%, 44rem);
     max-width: min(100%, 44rem);
   }
 }
 
 @media (min-width: 1024px) {
   #br-match1-poster-capture.br-m1-poster-capture {
+    width: min(100%, 720px);
     max-width: 720px;
   }
+}
+
+/*
+ * Ekspor PNG (html-to-image): unit vw di dalam clone SVG sering dihitung terhadap viewport
+ * jendela, bukan lebar poster — bikin tipografi beda dari preview dan terlihat buram.
+ * Kelas ini hanya ditambahkan sesaat saat unduh; isi = nilai rem ekuivalen layout ~720px.
+ */
+#br-match1-poster-capture.br-m1-poster-capture--hires-export.br-m1-poster-capture {
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#br-match1-poster-capture.br-m1-poster-capture--hires-export .br-m1-poster__frame {
+  padding: 1.5rem;
+}
+
+#br-match1-poster-capture.br-m1-poster-capture--hires-export .br-m1-poster__brand-name {
+  font-size: 0.98rem;
+}
+
+#br-match1-poster-capture.br-m1-poster-capture--hires-export .br-m1-poster__title {
+  font-size: 1.65rem;
+}
+
+#br-match1-poster-capture.br-m1-poster-capture--hires-export .br-m1-poster__mv-inner {
+  padding: 1rem 1.35rem;
+}
+
+#br-match1-poster-capture.br-m1-poster-capture--hires-export .br-m1-poster__mv-label {
+  font-size: 0.68rem;
+}
+
+#br-match1-poster-capture.br-m1-poster-capture--hires-export .br-m1-poster__mv-name {
+  font-size: 1.28rem;
+}
+
+#br-match1-poster-capture.br-m1-poster-capture--hires-export .br-m1-poster__mv-glow {
+  filter: blur(8px);
 }
 
 /* Isi poster */
 .br-m1-poster-root {
   position: relative;
   flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
   min-height: 0;
   overflow: hidden;
   border-radius: inherit;
@@ -90,6 +137,7 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   gap: 0;
   padding: clamp(1rem, 3.2vw, 1.65rem);
   min-height: 0;
@@ -230,13 +278,14 @@
   opacity: 0.95;
 }
 
-/* MVP — di bawah poster (setelah footer) */
+/* MVP — di bawah poster (setelah footer); tanpa margin horizontal auto (SVG foreignObject sering salah hitung → geser kanan) */
 .br-m1-poster__mv {
   position: relative;
   flex-shrink: 0;
+  align-self: center;
   width: 100%;
   max-width: 24rem;
-  margin: 1.2rem auto 0;
+  margin: 1.2rem 0 0;
   padding-top: 1.05rem;
   border-top: 1px solid color-mix(in srgb, var(--color-brand) 24%, transparent);
 }
@@ -259,6 +308,11 @@
 .br-m1-poster__mv-inner {
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
   overflow: hidden;
   border-radius: 1rem;
   padding: clamp(0.75rem, 2.4vw, 1.1rem) clamp(1rem, 3vw, 1.35rem);
@@ -292,7 +346,8 @@
 
 .br-m1-poster__mv-icon {
   position: relative;
-  margin: 0 auto 0.35rem;
+  flex-shrink: 0;
+  margin: 0 0 0.35rem;
   display: grid;
   place-items: center;
   width: 2rem;
@@ -307,6 +362,8 @@
 
 .br-m1-poster__mv-kicker {
   position: relative;
+  width: 100%;
+  max-width: 100%;
   margin: 0 0 0.2rem;
   font-family: var(--font-heading);
   font-size: 0.5rem;
@@ -318,6 +375,8 @@
 
 .br-m1-poster__mv-label {
   position: relative;
+  width: 100%;
+  max-width: 100%;
   margin: 0 0 0.35rem;
   font-family: var(--font-heading);
   font-size: clamp(0.58rem, 2vw, 0.68rem);
@@ -330,6 +389,8 @@
 
 .br-m1-poster__mv-name {
   position: relative;
+  width: 100%;
+  max-width: 100%;
   margin: 0;
   font-family: var(--font-heading);
   font-size: clamp(1rem, 3.2vw, 1.28rem);
@@ -342,6 +403,8 @@
 
 .br-m1-poster__mv-slot {
   position: relative;
+  width: 100%;
+  max-width: 100%;
   margin: 0.45rem 0 0;
   font-family: var(--font-heading);
   font-size: 0.52rem;
@@ -427,6 +490,92 @@
 
 .br-m1-poster__tr--alt {
   background: color-mix(in srgb, var(--color-bg-primary) 88%, #050505);
+}
+
+/* Juara Match 1 (rank 1–3 di kolom Rank) */
+.br-m1-poster__tr--juara.br-m1-poster__tr--j1 {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, #fbbf24 38%, transparent) 0%,
+    color-mix(in srgb, var(--color-bg-secondary) 52%, #1c1508) 32%,
+    color-mix(in srgb, var(--color-bg-secondary) 44%, transparent) 100%
+  );
+  box-shadow: inset 3px 0 0 #fbbf24;
+}
+
+.br-m1-poster__tr--juara.br-m1-poster__tr--j2 {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, #e2e8f0 22%, transparent) 0%,
+    color-mix(in srgb, var(--color-bg-secondary) 52%, #121418) 32%,
+    color-mix(in srgb, var(--color-bg-primary) 90%, #050505) 100%
+  );
+  box-shadow: inset 3px 0 0 #94a3b8;
+}
+
+.br-m1-poster__tr--juara.br-m1-poster__tr--j3 {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, #fb923c 28%, transparent) 0%,
+    color-mix(in srgb, var(--color-bg-secondary) 50%, #1a1208) 32%,
+    color-mix(in srgb, var(--color-bg-primary) 88%, #0a0806) 100%
+  );
+  box-shadow: inset 3px 0 0 #ea580c;
+}
+
+.br-m1-poster__juara-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  margin-right: 0.35rem;
+  margin-bottom: 0.15rem;
+  padding: 0.14rem 0.45rem 0.12rem;
+  border-radius: 999px;
+  font-family: var(--font-heading);
+  font-size: 0.44rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  vertical-align: middle;
+  line-height: 1;
+  border: 1px solid color-mix(in srgb, white 14%, transparent);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+.br-m1-poster__juara-mark i {
+  font-size: 0.55rem;
+  line-height: 1;
+}
+
+.br-m1-poster__juara-txt {
+  white-space: nowrap;
+}
+
+.br-m1-poster__juara-mark--1 {
+  color: #0f0f0f;
+  background: linear-gradient(135deg, #fde047, #f59e0b);
+}
+
+.br-m1-poster__juara-mark--1 i {
+  color: #713f12;
+}
+
+.br-m1-poster__juara-mark--2 {
+  color: #0f172a;
+  background: linear-gradient(135deg, #f1f5f9, #cbd5e1);
+}
+
+.br-m1-poster__juara-mark--2 i {
+  color: #475569;
+}
+
+.br-m1-poster__juara-mark--3 {
+  color: #fff7ed;
+  background: linear-gradient(135deg, #ea580c, #9a3412);
+}
+
+.br-m1-poster__juara-mark--3 i {
+  color: #ffedd5;
 }
 
 .br-m1-poster__td {
@@ -857,7 +1006,441 @@
     animation: none;
   }
 
+  #br-match1-reset-confirm-dialog[open] .br-m1-notice-dialog__surface {
+    animation: none;
+  }
+
   .br-m1-notice-dialog__ok:active {
     transform: none;
   }
+}
+
+/* —— Modal konfirmasi reset (Match 1) —— */
+#br-match1-reset-confirm-dialog {
+  margin: auto;
+  padding: 0;
+  max-width: calc(100vw - 1.5rem);
+  width: min(24rem, 100%);
+  border: none;
+  background: transparent;
+  color: var(--color-text-primary);
+}
+
+#br-match1-reset-confirm-dialog::backdrop {
+  background: rgb(0 0 0 / 0.78);
+  backdrop-filter: blur(10px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  #br-match1-reset-confirm-dialog[open] .br-m1-notice-dialog__surface {
+    animation: br-m1-notice-pop 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+.br-m1-reset-confirm-dialog__icon {
+  color: var(--color-brand-glow);
+  border-color: color-mix(in srgb, var(--color-brand) 45%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--color-brand-glow) 12%, transparent) inset,
+    0 0 36px color-mix(in srgb, var(--color-brand) 28%, transparent);
+}
+
+.br-m1-reset-confirm-dialog__msg {
+  margin-bottom: 1.15rem;
+}
+
+.br-m1-reset-confirm__actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.65rem;
+}
+
+.br-m1-reset-confirm__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 7.5rem;
+  padding: 0.68rem 1.15rem;
+  border-radius: 0.75rem;
+  font-family: var(--font-heading);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition:
+    filter 0.2s ease,
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.br-m1-reset-confirm__btn--ghost {
+  border-color: color-mix(in srgb, var(--color-brand) 38%, transparent);
+  color: color-mix(in srgb, var(--color-text-secondary) 88%, var(--color-text-primary));
+  background: color-mix(in srgb, var(--color-bg-secondary) 35%, transparent);
+}
+
+.br-m1-reset-confirm__btn--ghost:hover {
+  border-color: color-mix(in srgb, var(--color-brand-glow) 48%, transparent);
+  color: var(--color-text-primary);
+}
+
+.br-m1-reset-confirm__btn--danger {
+  border-color: color-mix(in srgb, #f87171 55%, transparent);
+  color: #fef2f2;
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, #b91c1c 88%, #450a0a),
+    color-mix(in srgb, #7f1d1d 75%, black)
+  );
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+}
+
+.br-m1-reset-confirm__btn--danger:hover {
+  filter: brightness(1.08);
+}
+
+.br-m1-reset-confirm__btn--danger:active {
+  transform: translateY(1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .br-m1-reset-confirm__btn--danger:active {
+    transform: none;
+  }
+}
+
+/* —— Dialog preview sertifikat (Match 1) —— */
+#br-match1-cert-dialog::backdrop {
+  background: rgb(0 0 0 / 0.76);
+  backdrop-filter: blur(8px);
+}
+
+.br-m1-cert-dialog {
+  margin: auto;
+  width: min(calc(100vw - 1.25rem), 52rem);
+  max-width: 100%;
+}
+
+.br-m1-cert-dialog__body {
+  -webkit-overflow-scrolling: touch;
+}
+
+.br-m1-cert-capture {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 2.25rem);
+  padding-bottom: 0.5rem;
+}
+
+.br-m1-cert {
+  position: relative;
+  isolation: isolate;
+  box-sizing: border-box;
+  width: min(100%, 22.5rem);
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 1.15rem;
+  color: var(--color-text-primary);
+  text-align: center;
+  background: linear-gradient(
+    165deg,
+    color-mix(in srgb, var(--color-bg-secondary) 88%, #050505) 0%,
+    var(--color-bg-primary) 55%,
+    #060606 100%
+  );
+  border: 1px solid color-mix(in srgb, var(--color-brand) 32%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, white 6%, transparent) inset,
+    0 22px 56px rgba(0, 0, 0, 0.55),
+    0 0 48px color-mix(in srgb, var(--color-brand) 10%, transparent);
+}
+
+.br-m1-cert__sheen {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  background: linear-gradient(
+    118deg,
+    transparent 38%,
+    color-mix(in srgb, var(--color-brand-glow) 22%, transparent) 50%,
+    transparent 62%
+  );
+}
+
+.br-m1-cert__rim {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, white 5%, transparent);
+}
+
+.br-m1-cert__inner {
+  position: relative;
+  z-index: 1;
+  padding: 1.35rem 1.2rem 1.25rem;
+}
+
+.br-m1-cert__head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+  text-align: left;
+}
+
+.br-m1-cert__logo {
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 14px color-mix(in srgb, var(--color-brand) 35%, transparent));
+}
+
+.br-m1-cert__brand {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.12rem;
+}
+
+.br-m1-cert__brand-name {
+  font-family: var(--font-heading);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+}
+
+.br-m1-cert__brand-url {
+  font-family: var(--font-heading);
+  font-size: 0.48rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-brand-glow);
+}
+
+.br-m1-cert__seal {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  margin: 0 auto 0.65rem;
+  border-radius: 999px;
+  font-size: 1.1rem;
+  border: 1px solid color-mix(in srgb, white 12%, transparent);
+  background: color-mix(in srgb, black 38%, transparent);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.4);
+}
+
+.br-m1-cert__line {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-heading);
+  font-size: 0.48rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text-secondary) 82%, #5eead4);
+}
+
+.br-m1-cert__title {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.15rem, 4vw, 1.45rem);
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  background: linear-gradient(105deg, var(--color-brand-glow), var(--color-brand));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--color-brand-glow);
+}
+
+@supports not (-webkit-background-clip: text) {
+  .br-m1-cert__title {
+    color: var(--color-brand-glow);
+    background: none;
+    -webkit-text-fill-color: unset;
+  }
+}
+
+.br-m1-cert__award {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-heading);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--color-text-primary) 92%, var(--color-brand-glow));
+}
+
+.br-m1-cert__to {
+  margin: 0 0 0.25rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text-secondary) 90%, var(--color-brand));
+}
+
+.br-m1-cert__name {
+  margin: 0 0 0.2rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.05rem, 3.5vw, 1.28rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  color: var(--color-text-primary);
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.45);
+  word-break: break-word;
+}
+
+.br-m1-cert__slot {
+  margin: 0 0 0.15rem;
+  font-family: var(--font-heading);
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-brand-glow);
+}
+
+.br-m1-cert__meta {
+  margin: 0 0 0.85rem;
+  font-size: 0.62rem;
+  color: color-mix(in srgb, var(--color-text-secondary) 88%, white);
+}
+
+.br-m1-cert__hr {
+  height: 1px;
+  margin: 0 0 0.75rem;
+  border-radius: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--color-brand-glow) 55%, var(--color-brand)),
+    transparent
+  );
+  opacity: 0.85;
+}
+
+.br-m1-cert__event {
+  margin: 0 0 0.2rem;
+  font-family: var(--font-heading);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text-primary) 90%, var(--color-brand-glow));
+}
+
+.br-m1-cert__when {
+  margin: 0;
+  font-size: 0.58rem;
+  color: color-mix(in srgb, var(--color-text-secondary) 88%, var(--color-brand));
+}
+
+/* Varian juara + MVP */
+.br-m1-cert--j1 {
+  border-color: color-mix(in srgb, #fbbf24 55%, var(--color-brand));
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, #fbbf24 18%, transparent) inset,
+    0 22px 56px rgba(0, 0, 0, 0.52),
+    0 0 40px color-mix(in srgb, #fbbf24 14%, transparent);
+}
+
+.br-m1-cert--j1 .br-m1-cert__seal {
+  color: #713f12;
+  background: linear-gradient(145deg, #fde047, #f59e0b);
+  border-color: color-mix(in srgb, #fbbf24 55%, transparent);
+  box-shadow: 0 0 28px color-mix(in srgb, #fbbf24 28%, transparent);
+}
+
+.br-m1-cert--j2 {
+  border-color: color-mix(in srgb, #cbd5e1 50%, var(--color-brand));
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, #e2e8f0 12%, transparent) inset,
+    0 22px 56px rgba(0, 0, 0, 0.5),
+    0 0 36px color-mix(in srgb, #94a3b8 12%, transparent);
+}
+
+.br-m1-cert--j2 .br-m1-cert__seal {
+  color: #1e293b;
+  background: linear-gradient(145deg, #f8fafc, #cbd5e1);
+  border-color: color-mix(in srgb, #94a3b8 45%, transparent);
+}
+
+.br-m1-cert--j3 {
+  border-color: color-mix(in srgb, #ea580c 48%, var(--color-brand));
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, #fb923c 14%, transparent) inset,
+    0 22px 56px rgba(0, 0, 0, 0.52),
+    0 0 36px color-mix(in srgb, #ea580c 14%, transparent);
+}
+
+.br-m1-cert--j3 .br-m1-cert__seal {
+  color: #fff7ed;
+  background: linear-gradient(145deg, #fb923c, #9a3412);
+  border-color: color-mix(in srgb, #fdba74 40%, transparent);
+}
+
+.br-m1-cert--mvp {
+  border-color: color-mix(in srgb, #5eead4 42%, var(--color-brand));
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, #5eead4 14%, transparent) inset,
+    0 22px 56px rgba(0, 0, 0, 0.52),
+    0 0 44px color-mix(in srgb, #5eead4 12%, transparent);
+}
+
+.br-m1-cert--mvp .br-m1-cert__line {
+  color: color-mix(in srgb, var(--color-text-secondary) 75%, #5eead4);
+}
+
+.br-m1-cert--mvp .br-m1-cert__seal {
+  color: var(--color-bg-primary);
+  background: linear-gradient(135deg, #5eead4, var(--color-brand-glow));
+  border-color: color-mix(in srgb, #5eead4 50%, var(--color-brand-glow));
+  box-shadow: 0 0 32px color-mix(in srgb, #5eead4 25%, transparent);
+}
+
+.br-m1-cert--empty {
+  border-style: dashed;
+  border-color: color-mix(in srgb, var(--color-brand) 35%, transparent);
+  background: color-mix(in srgb, var(--color-bg-primary) 70%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, white 4%, transparent);
+}
+
+.br-m1-cert__inner--empty {
+  padding: 1.5rem 1.1rem;
+}
+
+.br-m1-cert__empty-head {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text-secondary) 85%, var(--color-brand-glow));
+}
+
+.br-m1-cert__empty-msg {
+  margin: 0;
+  font-size: 0.72rem;
+  line-height: 1.55;
+  color: color-mix(in srgb, var(--color-text-secondary) 92%, var(--color-text-primary));
 }

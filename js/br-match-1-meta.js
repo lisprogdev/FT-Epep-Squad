@@ -513,6 +513,170 @@
     return escapeHtml(t);
   }
 
+  /** Rank Match 1 (angka); 1–3 dipakai untuk tanda podium di poster. */
+  function parseM1RankForPoster(rankStr) {
+    var n = parseInt(String(rankStr || "").trim(), 10);
+    return isNaN(n) || n < 1 ? 0 : n;
+  }
+
+  function posterJuaraBadgeHtml(rankStr) {
+    var n = parseM1RankForPoster(rankStr);
+    if (n < 1 || n > 3) return "";
+    var label = n === 1 ? "Juara 1" : n === 2 ? "Juara 2" : "Juara 3";
+    var icon = n === 1 ? "fa-crown" : "fa-medal";
+    return (
+      '<span class="br-m1-poster__juara-mark br-m1-poster__juara-mark--' +
+      n +
+      '"><i class="fa-solid ' +
+      icon +
+      '" aria-hidden="true"></i><span class="br-m1-poster__juara-txt">' +
+      escapeHtml(label) +
+      "</span></span>"
+    );
+  }
+
+  function posterJuaraRowClass(rankStr, rowEven) {
+    var n = parseM1RankForPoster(rankStr);
+    if (n >= 1 && n <= 3) return "br-m1-poster__tr br-m1-poster__tr--juara br-m1-poster__tr--j" + n;
+    return rowEven ? "br-m1-poster__tr" : "br-m1-poster__tr br-m1-poster__tr--alt";
+  }
+
+  function findTeamByM1Rank(teams, rankN) {
+    if (!teams || !teams.length) return null;
+    for (var i = 0; i < teams.length; i++) {
+      var n = parseInt(String((teams[i] || {}).m1Rank || "").trim(), 10);
+      if (n === rankN) return { slot: i + 1, team: teams[i] || emptyTeam() };
+    }
+    return null;
+  }
+
+  function certArticleEmpty(modClass, kindKey, headline) {
+    return (
+      '<article class="br-m1-cert br-m1-cert--empty ' +
+      modClass +
+      '" data-cert="' +
+      kindKey +
+      '"><div class="br-m1-cert__inner br-m1-cert__inner--empty">' +
+      '<p class="br-m1-cert__empty-head">' +
+      escapeHtml(headline) +
+      '</p><p class="br-m1-cert__empty-msg">Belum ada tim. Isi rank Match 1 pada roster (satu tim per peringkat) agar sertifikat ini muncul.</p>' +
+      "</div></article>"
+    );
+  }
+
+  function certArticleFilled(
+    modClass,
+    kindKey,
+    iconClass,
+    awardLine,
+    recipientName,
+    slotLine,
+    extraLine,
+    eventTitleRaw,
+    whenLineEscaped
+  ) {
+    var ev =
+      eventTitleRaw != null && String(eventTitleRaw).trim() !== ""
+        ? String(eventTitleRaw).trim()
+        : "Turnamen";
+    return (
+      '<article class="br-m1-cert ' +
+      modClass +
+      '" data-cert="' +
+      kindKey +
+      '">' +
+      '<div class="br-m1-cert__sheen" aria-hidden="true"></div>' +
+      '<div class="br-m1-cert__rim" aria-hidden="true"></div>' +
+      '<div class="br-m1-cert__inner">' +
+      '<div class="br-m1-cert__head">' +
+      '<img src="../../img/element/Logo.png" alt="" class="br-m1-cert__logo" width="48" height="48" decoding="async" loading="lazy" />' +
+      '<div class="br-m1-cert__brand">' +
+      '<span class="br-m1-cert__brand-name">FT Epep Squad</span>' +
+      '<span class="br-m1-cert__brand-url" translate="no">ft-epep-squad.web.id</span>' +
+      "</div></div>" +
+      '<div class="br-m1-cert__seal" aria-hidden="true"><i class="' +
+      iconClass +
+      '"></i></div>' +
+      '<p class="br-m1-cert__line">Battle Royale · Match 1</p>' +
+      '<h3 class="br-m1-cert__title">Sertifikat</h3>' +
+      '<p class="br-m1-cert__award">' +
+      escapeHtml(awardLine) +
+      "</p>" +
+      '<p class="br-m1-cert__to">Diberikan kepada</p>' +
+      '<p class="br-m1-cert__name">' +
+      escapeHtml(recipientName) +
+      "</p>" +
+      (slotLine ? '<p class="br-m1-cert__slot">' + escapeHtml(slotLine) + "</p>" : "") +
+      (extraLine ? '<p class="br-m1-cert__meta">' + escapeHtml(extraLine) + "</p>" : "") +
+      '<div class="br-m1-cert__hr" aria-hidden="true"></div>' +
+      '<p class="br-m1-cert__event">' +
+      escapeHtml(ev) +
+      "</p>" +
+      '<p class="br-m1-cert__when">' +
+      whenLineEscaped +
+      "</p></div></article>"
+    );
+  }
+
+  function buildCertificatesHTML(meta, teams) {
+    teams = teams || [];
+    var sessEsc = meta.sessionNumber ? escapeHtml(String(meta.sessionNumber)) : "—";
+    var whenLine = formatDateId(meta.playDate) + " · Sesi " + sessEsc + " · " + formatTime(meta.playTime);
+    var eventRaw = meta.tournamentName || "";
+    var parts = [];
+
+    function pushPlacement(rankNum, modClass, kindKey, iconClass, awardLine) {
+      var hit = findTeamByM1Rank(teams, rankNum);
+      if (!hit) {
+        parts.push(certArticleEmpty(modClass, kindKey, awardLine));
+        return;
+      }
+      var nm = resolveTeamDisplayName(hit.team.teamName, hit.slot);
+      parts.push(
+        certArticleFilled(
+          modClass,
+          kindKey,
+          iconClass,
+          awardLine,
+          nm,
+          "Slot #" + hit.slot,
+          "Placement rank #" + rankNum + " pada Match 1",
+          eventRaw,
+          whenLine
+        )
+      );
+    }
+
+    pushPlacement(1, "br-m1-cert--j1", "j1", "fa-solid fa-crown", "Juara 1 — Placement Match 1");
+    pushPlacement(2, "br-m1-cert--j2", "j2", "fa-solid fa-medal", "Juara 2 — Placement Match 1");
+    pushPlacement(3, "br-m1-cert--j3", "j3", "fa-solid fa-medal", "Juara 3 — Placement Match 1");
+
+    var mvStr = computeMvTeamIndexFromKills(teams);
+    var mvIx = mvStr !== "" ? parseInt(mvStr, 10) : NaN;
+    if (isNaN(mvIx) || mvIx < 1 || mvIx > teams.length) {
+      parts.push(certArticleEmpty("br-m1-cert--mvp", "mvp", "MVP Team — Kill terbanyak"));
+    } else {
+      var t = teams[mvIx - 1] || emptyTeam();
+      var nm = resolveTeamDisplayName(t.teamName, mvIx);
+      var kills = teamKillTotalFromData(t);
+      parts.push(
+        certArticleFilled(
+          "br-m1-cert--mvp",
+          "mvp",
+          "fa-solid fa-star",
+          "MVP Team — Total kill tertinggi (Match 1)",
+          nm,
+          "Slot #" + mvIx,
+          String(kills) + " total kill (Match 1 + eliminasi)",
+          eventRaw,
+          whenLine
+        )
+      );
+    }
+
+    return parts.join("");
+  }
+
   function buildPosterInnerHTML(meta, teams) {
     var title = meta.tournamentName ? escapeHtml(meta.tournamentName) : "Turnamen";
     var season = meta.season ? escapeHtml(meta.season) : "—";
@@ -545,8 +709,9 @@
     var rows = [];
     for (var i = 0; i < teams.length; i++) {
       var r = teams[i] || emptyTeam();
-      var trClass = i % 2 === 0 ? "br-m1-poster__tr" : "br-m1-poster__tr br-m1-poster__tr--alt";
+      var trClass = posterJuaraRowClass(r.m1Rank, i % 2 === 0);
       var rowName = resolveTeamDisplayName(r.teamName, i + 1);
+      var juaraBadge = posterJuaraBadgeHtml(r.m1Rank);
       rows.push(
         '<tr class="' +
           trClass +
@@ -554,6 +719,8 @@
           '<td class="br-m1-poster__td br-m1-poster__td--no">' +
           (i + 1) +
           '</td><td class="br-m1-poster__td br-m1-poster__td--name">' +
+          juaraBadge +
+          (juaraBadge ? " " : "") +
           escapeHtml(rowName) +
           '</td><td class="br-m1-poster__td br-m1-poster__td--rk">' +
           escapeHtml(r.m1Rank) +
@@ -629,9 +796,40 @@
       "</div></div>";
   }
 
+  function fillCertificatesCapture(form) {
+    var root = $("br-match1-cert-capture");
+    if (!root || !form) return;
+    var elTb = form.querySelector("#br-match1-teams-tbody");
+    if (elTb) updateAllRowsPoints(elTb);
+    var payload = collectFromForm(form);
+    root.innerHTML = buildCertificatesHTML(payload, payload.teams || []);
+  }
+
   function getHtmlToImage() {
     var w = typeof window !== "undefined" ? window : {};
     return w.htmlToImage || null;
+  }
+
+  /** Resolusi raster: minimal 2×; ikuti DPR perangkat (hingga 4) agar tidak kalah tajam dari preview. */
+  function getPosterExportPixelRatio() {
+    var d = typeof window !== "undefined" ? window.devicePixelRatio : 1;
+    var x = typeof d === "number" && d > 0 ? d : 1;
+    return Math.min(4, Math.max(2, x));
+  }
+
+  function whenFontsReady() {
+    if (typeof document === "undefined") return Promise.resolve();
+    var f = document.fonts;
+    if (f && typeof f.ready !== "undefined" && f.ready && typeof f.ready.then === "function") return f.ready;
+    return Promise.resolve();
+  }
+
+  function nextFrame() {
+    return new Promise(function (resolve) {
+      window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(resolve);
+      });
+    });
   }
 
   function slugFileName(name) {
@@ -683,8 +881,11 @@
     var btnReset = $("br-match1-meta-reset");
     var tb = form ? form.querySelector("#br-match1-teams-tbody") : null;
     var dlg = $("br-match1-poster-dialog");
+    var dlgCert = $("br-match1-cert-dialog");
     var btnPreview = $("br-match1-preview-open");
+    var btnCertPreview = $("br-match1-cert-preview-open");
     var btnClose = $("br-match1-poster-close");
+    var btnCertClose = $("br-match1-cert-close");
     var btnDl = $("br-match1-poster-download");
     if (!form || !btnReset || !tb) return;
 
@@ -709,6 +910,7 @@
     var AUTOSAVE_MS = 420;
     var saveTimer = null;
     var posterRaf = null;
+    var certRaf = null;
     var lastWrittenJson = "";
 
     function syncBaselineFromForm() {
@@ -748,8 +950,18 @@
       });
     }
 
+    function scheduleCertRefresh() {
+      if (!dlgCert || !dlgCert.open) return;
+      if (certRaf != null) window.cancelAnimationFrame(certRaf);
+      certRaf = window.requestAnimationFrame(function () {
+        certRaf = null;
+        fillCertificatesCapture(form);
+      });
+    }
+
     function onFormDirty() {
       schedulePosterRefresh();
+      scheduleCertRefresh();
       scheduleAutosave();
     }
 
@@ -764,16 +976,6 @@
       saveTimer = null;
       flushPersist();
     }
-
-    window.addEventListener("beforeunload", function (e) {
-      flushPendingSave();
-      if (tb) updateAllRowsPoints(tb);
-      var now = JSON.stringify(collectFromForm(form));
-      if (now !== lastWrittenJson) {
-        e.preventDefault();
-        e.returnValue = "";
-      }
-    });
 
     window.addEventListener("pagehide", function () {
       flushPendingSave();
@@ -793,13 +995,43 @@
       });
     });
 
-    btnReset.addEventListener("click", function () {
+    var dlgResetConfirm = $("br-match1-reset-confirm-dialog");
+    var btnResetCancel = $("br-match1-reset-confirm-cancel");
+    var btnResetApply = $("br-match1-reset-confirm-apply");
+
+    function performBrMatch1MetaReset() {
       clearState();
       form.reset();
       renderTeamTable(tb, 12, []);
       clampPlayDateAndSyncTime(form);
       syncBaselineFromForm();
-      showBrMatch1Toast("warn", "Form dan data lokal telah direset. Tanggal & jam disetel ke sekarang.");
+      showBrMatch1Toast("success", "Form dan data lokal telah direset. Tanggal & jam disetel ke sekarang.");
+    }
+
+    if (dlgResetConfirm) {
+      dlgResetConfirm.addEventListener("click", function (e) {
+        if (e.target === dlgResetConfirm) dlgResetConfirm.close();
+      });
+    }
+    if (dlgResetConfirm && btnResetCancel) {
+      btnResetCancel.addEventListener("click", function () {
+        dlgResetConfirm.close();
+      });
+    }
+    if (dlgResetConfirm && btnResetApply) {
+      btnResetApply.addEventListener("click", function () {
+        dlgResetConfirm.close();
+        performBrMatch1MetaReset();
+      });
+    }
+
+    btnReset.addEventListener("click", function () {
+      if (dlgResetConfirm && typeof dlgResetConfirm.showModal === "function") {
+        dlgResetConfirm.showModal();
+        document.dispatchEvent(new CustomEvent("ft-close-sidebar", { bubbles: true }));
+      } else {
+        performBrMatch1MetaReset();
+      }
     });
 
     if (btnPreview && dlg && typeof dlg.showModal === "function") {
@@ -810,9 +1042,28 @@
       });
     }
 
+    if (btnCertPreview && dlgCert && typeof dlgCert.showModal === "function") {
+      btnCertPreview.addEventListener("click", function () {
+        fillCertificatesCapture(form);
+        dlgCert.showModal();
+        document.dispatchEvent(new CustomEvent("ft-close-sidebar", { bubbles: true }));
+      });
+    }
+
     if (btnClose && dlg) {
       btnClose.addEventListener("click", function () {
         dlg.close();
+      });
+    }
+
+    if (btnCertClose && dlgCert) {
+      btnCertClose.addEventListener("click", function () {
+        dlgCert.close();
+      });
+    }
+    if (dlgCert) {
+      dlgCert.addEventListener("click", function (e) {
+        if (e.target === dlgCert) dlgCert.close();
       });
     }
 
@@ -829,37 +1080,41 @@
         }
         btnDl.disabled = true;
         fillPosterCapture(form);
-        var runExport = function () {
-          h2i
-            .toPng(cap, {
-              pixelRatio: 2,
+        cap.classList.add("br-m1-poster-capture--hires-export");
+        var pr = getPosterExportPixelRatio();
+        whenFontsReady()
+          .then(function () {
+            return nextFrame();
+          })
+          .then(function () {
+            /* Jangan set width/height manual — bisa tidak sama dengan layout klon SVG dan memperparah geser isi */
+            return h2i.toPng(cap, {
+              pixelRatio: pr,
               cacheBust: true,
               backgroundColor: "#0f0f0f",
-            })
-            .then(function (dataUrl) {
-              var a = document.createElement("a");
-              var name = slugFileName((collectFromForm(form).tournamentName || "") + "-match1-roster");
-              a.href = dataUrl;
-              a.download = name + ".png";
-              a.rel = "noopener";
-              document.body.appendChild(a);
-              a.click();
-              a.remove();
-              showBrMatch1Toast("success", "Poster PNG berhasil dibuat dan sedang diunduh.");
-            })
-            .catch(function () {
-              showBrMatch1Toast(
-                "error",
-                "Gagal membuat PNG. Coba tutup modal lain, kurangi ukuran data, atau gunakan peramban lain."
-              );
-            })
-            .finally(function () {
-              btnDl.disabled = false;
             });
-        };
-        requestAnimationFrame(function () {
-          requestAnimationFrame(runExport);
-        });
+          })
+          .then(function (dataUrl) {
+            var a = document.createElement("a");
+            var name = slugFileName((collectFromForm(form).tournamentName || "") + "-match1-roster");
+            a.href = dataUrl;
+            a.download = name + ".png";
+            a.rel = "noopener";
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            showBrMatch1Toast("success", "Poster PNG berhasil dibuat dan sedang diunduh.");
+          })
+          .catch(function () {
+            showBrMatch1Toast(
+              "error",
+              "Gagal membuat PNG. Coba tutup modal lain, kurangi ukuran data, atau gunakan peramban lain."
+            );
+          })
+          .finally(function () {
+            cap.classList.remove("br-m1-poster-capture--hires-export");
+            btnDl.disabled = false;
+          });
       });
     }
   });

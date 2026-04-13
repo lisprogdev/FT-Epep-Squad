@@ -451,7 +451,7 @@
               <div
                 class="min-w-0 max-w-full rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_28%,transparent)] p-4 ring-1 ring-inset ring-[color-mix(in_srgb,white_4%,transparent)] sm:p-5"
               >
-                <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
                   <div>
                     <h3
                       class="m-0 font-[family-name:var(--font-heading)] text-[0.72rem] font-bold uppercase tracking-[0.14em] text-[var(--color-text-primary)]"
@@ -459,14 +459,24 @@
                       Roster tim — Match 1
                     </h3>
                   </div>
-                  <button
-                    type="button"
-                    id="br-match1-preview-open"
-                    class="inline-flex min-h-[2.75rem] shrink-0 cursor-pointer items-center justify-center gap-2 rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_35%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_55%,transparent)] px-4 py-2 font-[family-name:var(--font-heading)] text-[0.62rem] font-bold uppercase tracking-[0.12em] text-[var(--color-text-primary)] shadow-[0_4px_20px_rgba(0,0,0,0.25)] transition hover:border-[var(--color-brand-glow)] hover:text-[var(--color-brand-glow)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)]"
-                  >
-                    <i class="fa-solid fa-image text-[0.78rem]" aria-hidden="true"></i>
-                    Preview poster
-                  </button>
+                  <div class="flex min-w-0 flex-wrap gap-2 sm:justify-end">
+                    <button
+                      type="button"
+                      id="br-match1-cert-preview-open"
+                      class="inline-flex min-h-[2.75rem] shrink-0 cursor-pointer items-center justify-center gap-2 rounded-xl border border-[color-mix(in_srgb,#5eead4_38%,var(--color-brand))] bg-[color-mix(in_srgb,var(--color-bg-secondary)_55%,transparent)] px-4 py-2 font-[family-name:var(--font-heading)] text-[0.62rem] font-bold uppercase tracking-[0.12em] text-[color-mix(in_srgb,var(--color-text-primary)_90%,#5eead4)] shadow-[0_4px_20px_rgba(0,0,0,0.25)] transition hover:border-[var(--color-brand-glow)] hover:text-[var(--color-brand-glow)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)]"
+                    >
+                      <i class="fa-solid fa-award text-[0.78rem]" aria-hidden="true"></i>
+                      Preview sertifikat
+                    </button>
+                    <button
+                      type="button"
+                      id="br-match1-preview-open"
+                      class="inline-flex min-h-[2.75rem] shrink-0 cursor-pointer items-center justify-center gap-2 rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_35%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_55%,transparent)] px-4 py-2 font-[family-name:var(--font-heading)] text-[0.62rem] font-bold uppercase tracking-[0.12em] text-[var(--color-text-primary)] shadow-[0_4px_20px_rgba(0,0,0,0.25)] transition hover:border-[var(--color-brand-glow)] hover:text-[var(--color-brand-glow)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)]"
+                    >
+                      <i class="fa-solid fa-image text-[0.78rem]" aria-hidden="true"></i>
+                      Preview poster
+                    </button>
+                  </div>
                 </div>
                 <div
                   class="br-m1-roster-scroll min-w-0 max-w-full overflow-x-auto rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] bg-[color-mix(in_srgb,black_25%,transparent)] shadow-[inset_0_0_0_1px_color-mix(in_srgb,white_4%,transparent)] [-webkit-overflow-scrolling:touch] [overscroll-behavior-x:contain]"
@@ -540,7 +550,7 @@
               >
                 <p class="m-0 min-w-0 max-w-md text-[0.72rem] leading-relaxed text-[color-mix(in_srgb,var(--color-text-secondary)_88%,transparent)]">
                   <span class="font-[family-name:var(--font-heading)] font-semibold uppercase tracking-[0.12em] text-[var(--color-brand-glow)]">Tip</span>
-                  — perubahan tersimpan otomatis ke perangkat ini. Preview poster ikut memperbarui saat modal preview terbuka. Jika masih ada perubahan yang belum tersimpan, peramban dapat menampilkan peringatan sistem (bukan dari situs ini) sebelum menutup atau pindah halaman.
+                  — perubahan tersimpan otomatis ke perangkat ini (setelah Anda berhenti mengetik sebentar). Preview poster ikut memperbarui saat modal preview terbuka. Saat menutup atau memuat ulang tab, penyimpanan terakhir di lokal dipakai lagi saat halaman dibuka.
                 </p>
                 <div class="flex flex-shrink-0 flex-wrap gap-3 sm:justify-end">
                   <button
@@ -597,12 +607,52 @@
           <div class="flex min-w-0 w-full justify-center pb-2">
             <div
               id="br-match1-poster-capture"
-              class="br-m1-poster-capture relative min-w-0 w-full flex-col overflow-hidden"
+              class="br-m1-poster-capture relative min-w-0 flex-col overflow-hidden"
+              dir="ltr"
               style="height: auto; min-height: 0"
             >
               <!-- isi poster diisi oleh skrip — tinggi mengikuti konten; PNG = tampilan ini -->
             </div>
           </div>
+        </div>
+      </dialog>
+
+      <dialog
+        id="br-match1-cert-dialog"
+        class="br-m1-cert-dialog max-h-[92dvh] overflow-hidden rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_32%,transparent)] bg-[color-mix(in_srgb,#080808_94%,var(--color-bg-secondary))] p-0 text-[var(--color-text-primary)] shadow-[0_32px_100px_rgba(0,0,0,0.78),0_0_1px_color-mix(in_srgb,var(--color-brand-glow)_22%,transparent)_inset] backdrop:bg-black/70 [color-scheme:dark]"
+        aria-labelledby="br-match1-cert-dialog-title"
+      >
+        <div
+          class="flex flex-wrap items-center justify-between gap-3 border-b border-[color-mix(in_srgb,var(--color-brand)_22%,transparent)] bg-[linear-gradient(105deg,color-mix(in_srgb,#5eead4_10%,transparent)_0%,color-mix(in_srgb,var(--color-brand)_10%,transparent)_45%,transparent_70%)] px-3 py-3 sm:px-5"
+        >
+          <h2
+            id="br-match1-cert-dialog-title"
+            class="m-0 min-w-0 flex-1 font-[family-name:var(--font-heading)] text-[0.72rem] font-bold uppercase tracking-[0.16em] text-[color-mix(in_srgb,var(--color-text-primary)_88%,#5eead4)] sm:text-[0.78rem]"
+          >
+            Preview sertifikat
+          </h2>
+          <button
+            type="button"
+            id="br-match1-cert-close"
+            class="inline-flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_28%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_55%,transparent)] text-[var(--color-text-secondary)] transition hover:border-[var(--color-brand-glow)] hover:text-[var(--color-text-primary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)]"
+            aria-label="Tutup preview sertifikat"
+          >
+            <i class="fa-solid fa-xmark text-[0.85rem]" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div
+          class="br-m1-cert-dialog__body max-h-[calc(92dvh-4.5rem)] overflow-y-auto overflow-x-hidden px-3 py-4 sm:px-5 sm:py-5"
+        >
+          <p
+            class="mx-auto mb-5 max-w-[40rem] text-center text-[0.72rem] leading-relaxed text-[color-mix(in_srgb,var(--color-text-secondary)_90%,var(--color-brand-glow))]"
+          >
+            Empat sertifikat untuk
+            <span class="font-[family-name:var(--font-heading)] font-semibold text-[var(--color-text-primary)]">Juara 1–3</span>
+            (berdasarkan rank Match 1) dan
+            <span class="font-[family-name:var(--font-heading)] font-semibold text-[var(--color-text-primary)]">MVP Team</span>
+            (total kill tertinggi). Perbarui roster lalu buka ulang preview jika ada perubahan.
+          </p>
+          <div id="br-match1-cert-capture" class="br-m1-cert-capture"></div>
         </div>
       </dialog>
 
@@ -623,6 +673,36 @@
           <h2 id="br-match1-notice-title" class="br-m1-notice-dialog__title">Peringatan</h2>
           <p id="br-match1-notice-msg" class="br-m1-notice-dialog__msg"></p>
           <button type="button" id="br-match1-notice-ok" class="br-m1-notice-dialog__ok">Mengerti</button>
+        </div>
+      </dialog>
+
+      <dialog
+        id="br-match1-reset-confirm-dialog"
+        class="br-m1-reset-confirm-dialog"
+        aria-labelledby="br-match1-reset-confirm-title"
+        aria-describedby="br-match1-reset-confirm-msg"
+        aria-modal="true"
+      >
+        <div class="br-m1-notice-dialog__surface">
+          <div class="br-m1-notice-dialog__mesh" aria-hidden="true"></div>
+          <div class="br-m1-notice-dialog__rule" aria-hidden="true"></div>
+          <div class="br-m1-notice-dialog__glow" aria-hidden="true"></div>
+          <span class="br-m1-notice-dialog__icon br-m1-reset-confirm-dialog__icon" aria-hidden="true"
+            ><i class="fa-solid fa-rotate-left br-m1-notice-dialog__icon-fa"></i
+          ></span>
+          <h2 id="br-match1-reset-confirm-title" class="br-m1-notice-dialog__title">Reset data roster?</h2>
+          <p id="br-match1-reset-confirm-msg" class="br-m1-notice-dialog__msg br-m1-reset-confirm-dialog__msg">
+            Semua data Match 1 yang tersimpan di perangkat ini akan dihapus, form dikosongkan, dan tanggal serta jam
+            disetel ke sekarang. Tindakan ini tidak bisa dibatalkan.
+          </p>
+          <div class="br-m1-reset-confirm__actions">
+            <button type="button" id="br-match1-reset-confirm-cancel" class="br-m1-reset-confirm__btn br-m1-reset-confirm__btn--ghost">
+              Batal
+            </button>
+            <button type="button" id="br-match1-reset-confirm-apply" class="br-m1-reset-confirm__btn br-m1-reset-confirm__btn--danger">
+              Ya, reset
+            </button>
+          </div>
         </div>
       </dialog>
     </main>
