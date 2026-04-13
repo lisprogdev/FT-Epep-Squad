@@ -1,0 +1,6 @@
+/* Match 1 meta form — keep custom rules minimal; layout uses Tailwind in HTML. */
+
+#br-match1-meta-form input[type="date"],
+#br-match1-meta-form input[type="time"] {
+  color-scheme: dark;
+}
