@@ -211,6 +211,15 @@
     return parseKillValue(t.m1Kill) + parseKillValue(t.totalKill);
   }
 
+  /** Angka untuk urut poster: poin kosong/tidak valid di bawah (sort desc). */
+  function parseTotalPointSort(val) {
+    if (val == null || val === "") return -Infinity;
+    var s = String(val).trim().replace(/\s/g, "").replace(",", ".");
+    if (s === "") return -Infinity;
+    var n = parseFloat(s);
+    return isNaN(n) ? -Infinity : n;
+  }
+
   /** Slot 1-based tim dengan total kill terbesar (m1Kill + totalKill); seri → slot lebih kecil. Kosong jika semua 0. */
   function computeMvTeamIndexFromKills(teams) {
     if (!teams || !teams.length) return "";
@@ -508,6 +517,79 @@
     }
   }
 
+  /** Tanggal panjang untuk sertifikat (Bahasa Indonesia). */
+  function formatDateLongId(iso) {
+    if (!iso) return "—";
+    try {
+      var d = new Date(iso + "T12:00:00");
+      if (isNaN(d.getTime())) return escapeHtml(iso);
+      return escapeHtml(
+        d.toLocaleDateString("id-ID", {
+          weekday: "long",
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        })
+      );
+    } catch (e) {
+      return escapeHtml(iso);
+    }
+  }
+
+  function certPositionTitleId(kindKey, rankNum) {
+    if (kindKey === "mvp") return "MVP";
+    if (rankNum === 1) return "Champion";
+    if (rankNum === 2) return "Runner-up";
+    if (rankNum === 3) return "Third Place";
+    return "—";
+  }
+
+  function certAchievementTextId(kindKey, rankNum, tournamentRaw) {
+    var tn = String(tournamentRaw || "").trim() || "turnamen";
+    if (kindKey === "mvp") {
+      return (
+        "Diberikan atas prestasi tim dengan total eliminasi tertinggi pada Match 1 Battle Royale dalam rangka \"" +
+        tn +
+        "\"."
+      );
+    }
+    var r = rankNum || 0;
+    return (
+      "Diberikan atas pencapaian placement peringkat ke-" +
+      r +
+      " pada Match 1 Battle Royale dalam rangka \"" +
+      tn +
+      "\"."
+    );
+  }
+
+  /** Nomor seri unik deterministik (unduh PNG / arsip). */
+  function buildCertificateSerial(kindKey, meta, slotNum) {
+    var dPart = "00000000";
+    if (meta && meta.playDate) {
+      var dg = digitsOnly(meta.playDate);
+      if (dg.length >= 8) dPart = dg.slice(0, 8);
+      else {
+        try {
+          var d = new Date(meta.playDate + "T12:00:00");
+          if (!isNaN(d.getTime())) {
+            dPart = d.getFullYear() + pad2(d.getMonth() + 1) + pad2(d.getDate());
+          }
+        } catch (e) {}
+      }
+    }
+    var ses = digitsOnly(String((meta && meta.sessionNumber) || "0"));
+    if (!ses) ses = "0";
+    if (ses.length > 4) ses = ses.slice(-4);
+    var k = kindKey === "j1" ? "J1" : kindKey === "j2" ? "J2" : kindKey === "j3" ? "J3" : "MVP";
+    var n =
+      typeof slotNum === "number" && slotNum > 0
+        ? slotNum
+        : parseInt(String(slotNum || ""), 10);
+    var sl = !isNaN(n) && n > 0 ? ("000" + n).slice(-3) : "000";
+    return "FT-BR-M1-" + k + "-" + dPart + "-S" + ses + "-" + sl;
+  }
+
   function formatTime(t) {
     if (!t) return "—";
     return escapeHtml(t);
@@ -517,22 +599,6 @@
   function parseM1RankForPoster(rankStr) {
     var n = parseInt(String(rankStr || "").trim(), 10);
     return isNaN(n) || n < 1 ? 0 : n;
-  }
-
-  function posterJuaraBadgeHtml(rankStr) {
-    var n = parseM1RankForPoster(rankStr);
-    if (n < 1 || n > 3) return "";
-    var label = n === 1 ? "Juara 1" : n === 2 ? "Juara 2" : "Juara 3";
-    var icon = n === 1 ? "fa-crown" : "fa-medal";
-    return (
-      '<span class="br-m1-poster__juara-mark br-m1-poster__juara-mark--' +
-      n +
-      '"><i class="fa-solid ' +
-      icon +
-      '" aria-hidden="true"></i><span class="br-m1-poster__juara-txt">' +
-      escapeHtml(label) +
-      "</span></span>"
-    );
   }
 
   function posterJuaraRowClass(rankStr, rowEven) {
@@ -550,126 +616,237 @@
     return null;
   }
 
-  function certArticleEmpty(modClass, kindKey, headline) {
+  function wrapCertSlot(kindKey, tierLabel, articleHtml) {
+    var k = escapeHtml(kindKey);
+    var lbl = escapeHtml(tierLabel);
     return (
-      '<article class="br-m1-cert br-m1-cert--empty ' +
-      modClass +
+      '<section class="br-m1-cert-slot" data-cert-slot="' +
+      k +
+      '">' +
+      '<div class="br-m1-cert-toolbar">' +
+      '<div class="br-m1-cert-toolbar__left">' +
+      '<span class="br-m1-cert-toolbar__badge" title="Ekspor raster"><i class="fa-solid fa-file-image" aria-hidden="true"></i> PNG</span>' +
+      '<span class="br-m1-cert-toolbar__dim">A4 mendatar · 297 × 210 mm</span></div>' +
+      '<button type="button" class="br-m1-cert-toolbar__dl" data-cert-download="' +
+      k +
+      '" aria-label="Unduh sertifikat ' +
+      lbl +
+      '">' +
+      '<span class="br-m1-cert-toolbar__dl-shine" aria-hidden="true"></span>' +
+      '<i class="fa-solid fa-cloud-arrow-down br-m1-cert-toolbar__dl-ico" aria-hidden="true"></i>' +
+      '<span class="br-m1-cert-toolbar__dl-text">Unduh</span>' +
+      '<span class="br-m1-cert-toolbar__dl-tier">' +
+      lbl +
+      "</span></button></div>" +
+      '<div class="br-m1-cert-viewport">' +
+      articleHtml +
+      "</div></section>"
+    );
+  }
+
+  function certArticleEmpty(kindKey, tierLabel, hintLine, positionLabel) {
+    var mvpCls = kindKey === "mvp" ? " br-m1-cert--mvp" : "";
+    var posEsc = escapeHtml(positionLabel || "—");
+    return (
+      '<article class="br-m1-cert br-m1-cert--classic br-m1-cert--empty' +
+      mvpCls +
       '" data-cert="' +
       kindKey +
-      '"><div class="br-m1-cert__inner br-m1-cert__inner--empty">' +
-      '<p class="br-m1-cert__empty-head">' +
-      escapeHtml(headline) +
-      '</p><p class="br-m1-cert__empty-msg">Belum ada tim. Isi rank Match 1 pada roster (satu tim per peringkat) agar sertifikat ini muncul.</p>' +
+      '">' +
+      '<div class="br-m1-cert__waterback" aria-hidden="true"></div>' +
+      '<aside class="br-m1-cert__aside">' +
+      '<div class="br-m1-cert__aside-inner">' +
+      '<div class="br-m1-cert__aside-brandstack">' +
+      '<img src="../../img/element/Logo.png" alt="" class="br-m1-cert__aside-logo" width="48" height="48" decoding="async" loading="lazy" />' +
+      '<div class="br-m1-cert__aside-brandblock">' +
+      '<span class="br-m1-cert__aside-brand-name">FT Epep Squad</span>' +
+      '<span class="br-m1-cert__aside-brand-line">Fast Tournament</span></div></div>' +
+      '<p class="br-m1-cert__aside-tier br-m1-cert__aside-tier--ghost">' +
+      escapeHtml(tierLabel) +
+      '</p><div class="br-m1-cert__aside-ico br-m1-cert__aside-ico--dim"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>' +
+      '<span class="br-m1-cert__aside-tag">Match 1 · BR</span></div></aside>' +
+      '<div class="br-m1-cert__body">' +
+      '<p class="br-m1-cert__brand">Fast Tournament · FT Epep Squad</p>' +
+      '<p class="br-m1-cert__event br-m1-cert__event--dim">—</p>' +
+      '<div class="br-m1-cert__focus">' +
+      '<h2 class="br-m1-cert__title">Certifikat Of Achievement</h2>' +
+      '<p class="br-m1-cert__presented br-m1-cert__presented--dim">Diberikan kepada</p>' +
+      '<p class="br-m1-cert__winner br-m1-cert__winner--dim">—</p>' +
+      '<p class="br-m1-cert__as br-m1-cert__as--dim">Sebagai</p>' +
+      '<p class="br-m1-cert__position br-m1-cert__position--dim">' +
+      posEsc +
+      "</p></div>" +
+      '<p class="br-m1-cert__warn">' +
+      escapeHtml(hintLine) +
+      '</p><p class="br-m1-cert__subhint">Isi roster: rank unik per slot · MVP dari total kill.</p>' +
+      '<footer class="br-m1-cert__sign">' +
+      '<div class="br-m1-cert__serial">' +
+      '<span class="br-m1-cert__serial-lbl">Nomor seri</span>' +
+      '<code class="br-m1-cert__serial-code br-m1-cert__dd--dim">—</code></div>' +
+      '<div class="br-m1-cert__eo">' +
+      '<span class="br-m1-cert__eo-line" aria-hidden="true"></span>' +
+      '<span class="br-m1-cert__eo-name">FT Epep Squad</span>' +
+      '<span class="br-m1-cert__eo-role">Penyelenggara / EO</span></div></footer>' +
+      '<p class="br-m1-cert__footline br-m1-cert__footline--dim">— · — · —</p>' +
       "</div></article>"
     );
   }
 
-  function certArticleFilled(
-    modClass,
-    kindKey,
-    iconClass,
-    awardLine,
-    recipientName,
-    slotLine,
-    extraLine,
-    eventTitleRaw,
-    whenLineEscaped
-  ) {
-    var ev =
-      eventTitleRaw != null && String(eventTitleRaw).trim() !== ""
-        ? String(eventTitleRaw).trim()
-        : "Turnamen";
+  /**
+   * opts: kindKey, iconClass, tierLabel, tournamentName, participantName, positionTitle,
+   * playDateIso, sessionNumber, playTime, achievementText (raw), serialRaw, rankNum (optional), slotNum (optional)
+   */
+  function certArticleFilled(opts) {
+    var kindKey = opts.kindKey;
+    var iconClass = opts.iconClass;
+    var tierLabel = opts.tierLabel;
+    var tournamentName =
+      opts.tournamentName != null && String(opts.tournamentName).trim() !== ""
+        ? String(opts.tournamentName).trim()
+        : "—";
+    var participantName = opts.participantName || "—";
+    var positionTitle = opts.positionTitle || "—";
+    var dateLong = formatDateLongId(opts.playDateIso);
+    var sessRaw = opts.sessionNumber != null && String(opts.sessionNumber).trim() !== "" ? String(opts.sessionNumber).trim() : "";
+    var sessionDisp = sessRaw !== "" ? escapeHtml(sessRaw) : "—";
+    var timeDisp = formatTime(opts.playTime);
+    var achievementEsc = escapeHtml(opts.achievementText || "");
+    var serialEsc = escapeHtml(opts.serialRaw || "");
+    var organizerEsc = escapeHtml(opts.organizerName != null ? String(opts.organizerName) : "FT Epep Squad");
+    var matchLabelEsc = escapeHtml(opts.matchLabel != null ? String(opts.matchLabel) : "Match 1 — Battle Royale (BR)");
+    var mvpCls = kindKey === "mvp" ? " br-m1-cert--mvp" : "";
     return (
-      '<article class="br-m1-cert ' +
-      modClass +
+      '<article class="br-m1-cert br-m1-cert--classic' +
+      mvpCls +
       '" data-cert="' +
       kindKey +
       '">' +
-      '<div class="br-m1-cert__sheen" aria-hidden="true"></div>' +
-      '<div class="br-m1-cert__rim" aria-hidden="true"></div>' +
-      '<div class="br-m1-cert__inner">' +
-      '<div class="br-m1-cert__head">' +
-      '<img src="../../img/element/Logo.png" alt="" class="br-m1-cert__logo" width="48" height="48" decoding="async" loading="lazy" />' +
-      '<div class="br-m1-cert__brand">' +
-      '<span class="br-m1-cert__brand-name">FT Epep Squad</span>' +
-      '<span class="br-m1-cert__brand-url" translate="no">ft-epep-squad.web.id</span>' +
-      "</div></div>" +
-      '<div class="br-m1-cert__seal" aria-hidden="true"><i class="' +
+      '<div class="br-m1-cert__waterback" aria-hidden="true"></div>' +
+      '<aside class="br-m1-cert__aside">' +
+      '<div class="br-m1-cert__aside-inner">' +
+      '<div class="br-m1-cert__aside-brandstack">' +
+      '<img src="../../img/element/Logo.png" alt="" class="br-m1-cert__aside-logo" width="48" height="48" decoding="async" loading="lazy" />' +
+      '<div class="br-m1-cert__aside-brandblock">' +
+      '<span class="br-m1-cert__aside-brand-name">FT Epep Squad</span>' +
+      '<span class="br-m1-cert__aside-brand-line">Fast Tournament</span></div></div>' +
+      '<p class="br-m1-cert__aside-tier">' +
+      escapeHtml(tierLabel) +
+      '</p><div class="br-m1-cert__aside-ico"><i class="' +
       iconClass +
-      '"></i></div>' +
-      '<p class="br-m1-cert__line">Battle Royale · Match 1</p>' +
-      '<h3 class="br-m1-cert__title">Sertifikat</h3>' +
-      '<p class="br-m1-cert__award">' +
-      escapeHtml(awardLine) +
-      "</p>" +
-      '<p class="br-m1-cert__to">Diberikan kepada</p>' +
-      '<p class="br-m1-cert__name">' +
-      escapeHtml(recipientName) +
-      "</p>" +
-      (slotLine ? '<p class="br-m1-cert__slot">' + escapeHtml(slotLine) + "</p>" : "") +
-      (extraLine ? '<p class="br-m1-cert__meta">' + escapeHtml(extraLine) + "</p>" : "") +
-      '<div class="br-m1-cert__hr" aria-hidden="true"></div>' +
+      '" aria-hidden="true"></i></div>' +
+      '<span class="br-m1-cert__aside-tag">Match 1 · BR</span></div></aside>' +
+      '<div class="br-m1-cert__body">' +
+      '<p class="br-m1-cert__brand">Fast Tournament · FT Epep Squad</p>' +
       '<p class="br-m1-cert__event">' +
-      escapeHtml(ev) +
+      escapeHtml(tournamentName) +
       "</p>" +
-      '<p class="br-m1-cert__when">' +
-      whenLineEscaped +
+      '<div class="br-m1-cert__focus">' +
+      '<h2 class="br-m1-cert__title">Certifikat Of Achievement</h2>' +
+      '<p class="br-m1-cert__presented">Diberikan kepada</p>' +
+      '<p class="br-m1-cert__winner">' +
+      escapeHtml(participantName) +
+      "</p>" +
+      '<p class="br-m1-cert__as">Sebagai</p>' +
+      '<p class="br-m1-cert__position">' +
+      escapeHtml(positionTitle) +
+      "</p></div>" +
+      '<footer class="br-m1-cert__sign">' +
+      '<div class="br-m1-cert__serial">' +
+      '<span class="br-m1-cert__serial-lbl">Nomor seri</span>' +
+      '<code class="br-m1-cert__serial-code">' +
+      serialEsc +
+      "</code></div>" +
+      '<div class="br-m1-cert__eo">' +
+      '<span class="br-m1-cert__eo-line" aria-hidden="true"></span>' +
+      '<span class="br-m1-cert__eo-name">' +
+      organizerEsc +
+      "</span>" +
+      '<span class="br-m1-cert__eo-role">Tanda tangan / Penyelenggara</span></div></footer>' +
+      '<p class="br-m1-cert__footline">' +
+      escapeHtml(tournamentName) +
+      " · Sesi " +
+      sessionDisp +
+      " · " +
+      timeDisp +
       "</p></div></article>"
     );
   }
 
   function buildCertificatesHTML(meta, teams) {
     teams = teams || [];
-    var sessEsc = meta.sessionNumber ? escapeHtml(String(meta.sessionNumber)) : "—";
-    var whenLine = formatDateId(meta.playDate) + " · Sesi " + sessEsc + " · " + formatTime(meta.playTime);
     var eventRaw = meta.tournamentName || "";
     var parts = [];
 
-    function pushPlacement(rankNum, modClass, kindKey, iconClass, awardLine) {
+    function pushPlacement(rankNum, kindKey, iconClass, tierText) {
       var hit = findTeamByM1Rank(teams, rankNum);
       if (!hit) {
-        parts.push(certArticleEmpty(modClass, kindKey, awardLine));
+        parts.push(
+          wrapCertSlot(
+            kindKey,
+            tierText,
+            certArticleEmpty(kindKey, tierText, "RANK #" + rankNum + " · BELUM TERISI", certPositionTitleId(kindKey, rankNum))
+          )
+        );
         return;
       }
       var nm = resolveTeamDisplayName(hit.team.teamName, hit.slot);
       parts.push(
-        certArticleFilled(
-          modClass,
+        wrapCertSlot(
           kindKey,
-          iconClass,
-          awardLine,
-          nm,
-          "Slot #" + hit.slot,
-          "Placement rank #" + rankNum + " pada Match 1",
-          eventRaw,
-          whenLine
+          tierText,
+          certArticleFilled({
+            kindKey: kindKey,
+            iconClass: iconClass,
+            tierLabel: tierText,
+            tournamentName: eventRaw,
+            participantName: nm,
+            positionTitle: certPositionTitleId(kindKey, rankNum),
+            playDateIso: meta.playDate,
+            sessionNumber: meta.sessionNumber,
+            playTime: meta.playTime,
+            achievementText: certAchievementTextId(kindKey, rankNum, eventRaw),
+            serialRaw: buildCertificateSerial(kindKey, meta, hit.slot),
+            organizerName: "FT Epep Squad",
+            matchLabel: "Match 1 — Battle Royale (BR)",
+          })
         )
       );
     }
 
-    pushPlacement(1, "br-m1-cert--j1", "j1", "fa-solid fa-crown", "Juara 1 — Placement Match 1");
-    pushPlacement(2, "br-m1-cert--j2", "j2", "fa-solid fa-medal", "Juara 2 — Placement Match 1");
-    pushPlacement(3, "br-m1-cert--j3", "j3", "fa-solid fa-medal", "Juara 3 — Placement Match 1");
+    pushPlacement(1, "j1", "fa-solid fa-trophy", "TOP 1");
+    pushPlacement(2, "j2", "fa-solid fa-angles-up", "TOP 2");
+    pushPlacement(3, "j3", "fa-solid fa-angles-up", "TOP 3");
 
     var mvStr = computeMvTeamIndexFromKills(teams);
     var mvIx = mvStr !== "" ? parseInt(mvStr, 10) : NaN;
     if (isNaN(mvIx) || mvIx < 1 || mvIx > teams.length) {
-      parts.push(certArticleEmpty("br-m1-cert--mvp", "mvp", "MVP Team — Kill terbanyak"));
+      parts.push(
+        wrapCertSlot("mvp", "MVP", certArticleEmpty("mvp", "MVP", "Data MVP belum tersedia (kill tim).", certPositionTitleId("mvp", 0)))
+      );
     } else {
       var t = teams[mvIx - 1] || emptyTeam();
       var nm = resolveTeamDisplayName(t.teamName, mvIx);
       var kills = teamKillTotalFromData(t);
       parts.push(
-        certArticleFilled(
-          "br-m1-cert--mvp",
+        wrapCertSlot(
           "mvp",
-          "fa-solid fa-star",
-          "MVP Team — Total kill tertinggi (Match 1)",
-          nm,
-          "Slot #" + mvIx,
-          String(kills) + " total kill (Match 1 + eliminasi)",
-          eventRaw,
-          whenLine
+          "MVP",
+          certArticleFilled({
+            kindKey: "mvp",
+            iconClass: "fa-solid fa-crosshairs",
+            tierLabel: "MVP",
+            tournamentName: eventRaw,
+            participantName: nm,
+            positionTitle: certPositionTitleId("mvp", 0),
+            playDateIso: meta.playDate,
+            sessionNumber: meta.sessionNumber,
+            playTime: meta.playTime,
+            achievementText:
+              certAchievementTextId("mvp", 0, eventRaw) + " Total kill tim: " + kills + ".",
+            serialRaw: buildCertificateSerial("mvp", meta, mvIx),
+            organizerName: "FT Epep Squad",
+            matchLabel: "Match 1 — Battle Royale (BR)",
+          })
         )
       );
     }
@@ -706,21 +883,29 @@
         mvKills +
         " kill</p></div></div>";
     }
-    var rows = [];
+    var order = [];
     for (var i = 0; i < teams.length; i++) {
-      var r = teams[i] || emptyTeam();
-      var trClass = posterJuaraRowClass(r.m1Rank, i % 2 === 0);
-      var rowName = resolveTeamDisplayName(r.teamName, i + 1);
-      var juaraBadge = posterJuaraBadgeHtml(r.m1Rank);
+      order.push({ slot: i + 1, team: teams[i] || emptyTeam() });
+    }
+    order.sort(function (a, b) {
+      var pa = parseTotalPointSort(a.team.totalPoint);
+      var pb = parseTotalPointSort(b.team.totalPoint);
+      if (pb !== pa) return pb - pa;
+      return a.slot - b.slot;
+    });
+    var rows = [];
+    for (var j = 0; j < order.length; j++) {
+      var r = order[j].team;
+      var slotNum = order[j].slot;
+      var trClass = posterJuaraRowClass(r.m1Rank, j % 2 === 0);
+      var rowName = resolveTeamDisplayName(r.teamName, slotNum);
       rows.push(
         '<tr class="' +
           trClass +
           '">' +
           '<td class="br-m1-poster__td br-m1-poster__td--no">' +
-          (i + 1) +
+          (j + 1) +
           '</td><td class="br-m1-poster__td br-m1-poster__td--name">' +
-          juaraBadge +
-          (juaraBadge ? " " : "") +
           escapeHtml(rowName) +
           '</td><td class="br-m1-poster__td br-m1-poster__td--rk">' +
           escapeHtml(r.m1Rank) +
@@ -815,6 +1000,20 @@
     var d = typeof window !== "undefined" ? window.devicePixelRatio : 1;
     var x = typeof d === "number" && d > 0 ? d : 1;
     return Math.min(4, Math.max(2, x));
+  }
+
+  /** A4 horizontal — lebar × tinggi (px) setara ~96 CSS dpi untuk ekspor PNG. */
+  function getCertA4LandscapePx() {
+    return { w: 1123, h: 794 };
+  }
+
+  function certFileSlugFromKind(kind) {
+    var k = String(kind || "");
+    if (k === "j1") return "top-1";
+    if (k === "j2") return "top-2";
+    if (k === "j3") return "top-3";
+    if (k === "mvp") return "mvp";
+    return slugFileName(k) || "cert";
   }
 
   function whenFontsReady() {
@@ -1064,6 +1263,70 @@
     if (dlgCert) {
       dlgCert.addEventListener("click", function (e) {
         if (e.target === dlgCert) dlgCert.close();
+      });
+    }
+
+    var capCertRoot = $("br-match1-cert-capture");
+    if (capCertRoot && form) {
+      capCertRoot.addEventListener("click", function (e) {
+        var btn = e.target.closest && e.target.closest("[data-cert-download]");
+        if (!btn || !capCertRoot.contains(btn)) return;
+        var kind = btn.getAttribute("data-cert-download");
+        if (!kind || (kind !== "j1" && kind !== "j2" && kind !== "j3" && kind !== "mvp")) return;
+        var slot = capCertRoot.querySelector('[data-cert-slot="' + kind + '"]');
+        var viewport = slot && slot.querySelector(".br-m1-cert-viewport");
+        var h2i = getHtmlToImage();
+        if (!viewport || !h2i || typeof h2i.toPng !== "function") {
+          showBrMatch1Toast(
+            "error",
+            "Pustaka gambar tidak tersedia. Muat ulang halaman atau periksa jaringan."
+          );
+          return;
+        }
+        btn.disabled = true;
+        btn.classList.add("br-m1-cert-toolbar__dl--busy");
+        var a4 = getCertA4LandscapePx();
+        viewport.classList.add("br-m1-cert-viewport--export");
+        viewport.style.width = a4.w + "px";
+        viewport.style.height = a4.h + "px";
+        var pr = getPosterExportPixelRatio();
+        whenFontsReady()
+          .then(function () {
+            return nextFrame();
+          })
+          .then(function () {
+            return h2i.toPng(viewport, {
+              pixelRatio: pr,
+              cacheBust: true,
+              backgroundColor: "#0a0a0c",
+            });
+          })
+          .then(function (dataUrl) {
+            var a = document.createElement("a");
+            var base =
+              slugFileName((collectFromForm(form).tournamentName || "") + "-match1-cert-" + certFileSlugFromKind(kind)) ||
+              "match1-cert-" + certFileSlugFromKind(kind);
+            a.href = dataUrl;
+            a.download = base + ".png";
+            a.rel = "noopener";
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            showBrMatch1Toast("success", "Sertifikat PNG (A4 horizontal) sedang diunduh.");
+          })
+          .catch(function () {
+            showBrMatch1Toast(
+              "error",
+              "Gagal membuat PNG sertifikat. Coba lagi atau gunakan peramban lain."
+            );
+          })
+          .finally(function () {
+            viewport.classList.remove("br-m1-cert-viewport--export");
+            viewport.style.width = "";
+            viewport.style.height = "";
+            btn.disabled = false;
+            btn.classList.remove("br-m1-cert-toolbar__dl--busy");
+          });
       });
     }
 
