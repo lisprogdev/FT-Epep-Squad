@@ -1,9 +1,15 @@
 (function () {
   "use strict";
 
-  var STORAGE_KEY = "ft-epep-squad:br-match-1-meta";
+  var MATCH_NO = "1";
+  var MATCH_LABEL_SHORT = "Match " + MATCH_NO;
+  var MATCH_LABEL_BR = MATCH_LABEL_SHORT + " — Battle Royale (BR)";
+  var MATCH_TAG_BR = MATCH_LABEL_SHORT + " · BR";
+  var MATCH_EVENT_LABEL = MATCH_LABEL_SHORT + " Battle Royale";
+  var MATCH_WORD_LOWER = "match " + MATCH_NO;
+  var STORAGE_KEY = "ft-epep-squad:br-match-" + MATCH_NO + "-meta";
 
-  /** Poin peringkat Match 1 (rank 13–15 = 0 untuk mode 15 tim). */
+  /** Poin peringkat match aktif (rank 13–15 = 0 untuk mode 15 tim). */
   var RANK_PLACEMENT = { 1: 12, 2: 9, 3: 8, 4: 7, 5: 6, 6: 5, 7: 4, 8: 3, 9: 2, 10: 1, 11: 0, 12: 0 };
 
   function $(id) {
@@ -548,7 +554,9 @@
     var tn = String(tournamentRaw || "").trim() || "turnamen";
     if (kindKey === "mvp") {
       return (
-        "Diberikan atas prestasi tim dengan total eliminasi tertinggi pada Match 1 Battle Royale dalam rangka \"" +
+        "Diberikan atas prestasi tim dengan total eliminasi tertinggi pada " +
+        MATCH_EVENT_LABEL +
+        ' dalam rangka "' +
         tn +
         "\"."
       );
@@ -557,7 +565,9 @@
     return (
       "Diberikan atas pencapaian placement peringkat ke-" +
       r +
-      " pada Match 1 Battle Royale dalam rangka \"" +
+      " pada " +
+      MATCH_EVENT_LABEL +
+      ' dalam rangka "' +
       tn +
       "\"."
     );
@@ -604,7 +614,7 @@
         ? slotNum
         : parseInt(String(slotNum || ""), 10);
     var sl = !isNaN(n) && n > 0 ? ("000" + n).slice(-3) : "000";
-    return "FT-BR-M1-" + k + "-" + dPart + "-S" + ses + "-" + sl;
+    return "FT-BR-M" + MATCH_NO + "-" + k + "-" + dPart + "-S" + ses + "-" + sl;
   }
 
   function formatTime(t) {
@@ -681,7 +691,9 @@
       '<p class="br-m1-cert__aside-tier br-m1-cert__aside-tier--ghost">' +
       escapeHtml(tierLabel) +
       '</p><div class="br-m1-cert__aside-ico br-m1-cert__aside-ico--dim"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>' +
-      '<span class="br-m1-cert__aside-tag">Match 1 · BR</span></div></aside>' +
+      '<span class="br-m1-cert__aside-tag">' +
+      escapeHtml(MATCH_TAG_BR) +
+      "</span></div></aside>" +
       '<div class="br-m1-cert__body">' +
       '<p class="br-m1-cert__brand">Fast Tournament · FT Epep Squad</p>' +
       '<p class="br-m1-cert__event br-m1-cert__event--dim">—</p>' +
@@ -730,7 +742,7 @@
     var achievementEsc = escapeHtml(opts.achievementText || "");
     var serialEsc = escapeHtml(opts.serialRaw || "");
     var organizerEsc = escapeHtml(opts.organizerName != null ? String(opts.organizerName) : "FT Epep Squad");
-    var matchLabelEsc = escapeHtml(opts.matchLabel != null ? String(opts.matchLabel) : "Match 1 — Battle Royale (BR)");
+    var matchLabelEsc = escapeHtml(opts.matchLabel != null ? String(opts.matchLabel) : MATCH_LABEL_BR);
     var mvpCls = kindKey === "mvp" ? " br-m1-cert--mvp" : "";
     return (
       '<article class="br-m1-cert br-m1-cert--classic' +
@@ -751,7 +763,9 @@
       '</p><div class="br-m1-cert__aside-ico"><i class="' +
       iconClass +
       '" aria-hidden="true"></i></div>' +
-      '<span class="br-m1-cert__aside-tag">Match 1 · BR</span></div></aside>' +
+      '<span class="br-m1-cert__aside-tag">' +
+      escapeHtml(MATCH_TAG_BR) +
+      "</span></div></aside>" +
       '<div class="br-m1-cert__body">' +
       '<p class="br-m1-cert__brand">Fast Tournament · FT Epep Squad</p>' +
       '<p class="br-m1-cert__event">' +
@@ -827,7 +841,7 @@
             achievementText: certAchievementTextId(kindKey, rankNum, eventRaw),
             serialRaw: buildCertificateSerial(kindKey, meta, hit.slot),
             organizerName: "FT Epep Squad",
-            matchLabel: "Match 1 — Battle Royale (BR)",
+            matchLabel: MATCH_LABEL_BR,
           })
         )
       );
@@ -866,7 +880,7 @@
               certAchievementTextId("mvp", 0, eventRaw) + " Total kill tim: " + kills + ".",
             serialRaw: buildCertificateSerial("mvp", meta, mvIx),
             organizerName: "FT Epep Squad",
-            matchLabel: "Match 1 — Battle Royale (BR)",
+            matchLabel: MATCH_LABEL_BR,
           })
         )
       );
@@ -894,7 +908,9 @@
         '<div class="br-m1-poster__mv-glow" aria-hidden="true"></div>' +
         '<div class="br-m1-poster__mv-inner">' +
         '<div class="br-m1-poster__mv-icon" aria-hidden="true">\u2605</div>' +
-        '<p class="br-m1-poster__mv-kicker">Kill terbanyak · Match 1</p>' +
+        '<p class="br-m1-poster__mv-kicker">Kill terbanyak · ' +
+        escapeHtml(MATCH_LABEL_SHORT) +
+        "</p>" +
         '<p class="br-m1-poster__mv-label">MVP Team</p>' +
         '<p class="br-m1-poster__mv-name">' +
         escapeHtml(mvDisp) +
@@ -966,14 +982,18 @@
       " Tim</span>" +
       "</div></header>" +
       '<div class="br-m1-poster__rule" aria-hidden="true"></div>' +
-      '<p class="br-m1-poster__subhead">Match 1 · Battle Royale</p>' +
+      '<p class="br-m1-poster__subhead">' +
+      escapeHtml(MATCH_LABEL_SHORT) +
+      " · Battle Royale</p>" +
       '<div class="br-m1-poster__table-wrap">' +
       '<table class="br-m1-poster__table">' +
       "<thead>" +
       "<tr>" +
       '<th rowspan="2" class="br-m1-poster__th">No</th>' +
       '<th rowspan="2" class="br-m1-poster__th br-m1-poster__th--name">Nama team</th>' +
-      '<th colspan="2" class="br-m1-poster__th br-m1-poster__th--match">Match 1</th>' +
+      '<th colspan="2" class="br-m1-poster__th br-m1-poster__th--match">' +
+      escapeHtml(MATCH_LABEL_SHORT) +
+      "</th>" +
       '<th rowspan="2" class="br-m1-poster__th">Total kill</th>' +
       '<th rowspan="2" class="br-m1-poster__th">Total point</th>' +
       "</tr><tr>" +
@@ -1528,7 +1548,7 @@
     if (btnPreview && dlg && typeof dlg.showModal === "function") {
       btnPreview.addEventListener("click", function () {
         openGateForPreview(
-          "Untuk membuka preview poster Match 1, tinjau iklan di jendela ini terlebih dahulu.",
+          "Untuk membuka preview poster " + MATCH_LABEL_SHORT + ", tinjau iklan di jendela ini terlebih dahulu.",
           function () {
             fillPosterCapture(form);
             dlg.showModal();
@@ -1541,7 +1561,7 @@
     if (btnCertPreview && dlgCert && typeof dlgCert.showModal === "function") {
       btnCertPreview.addEventListener("click", function () {
         openGateForPreview(
-          "Untuk membuka preview sertifikat Match 1, tinjau iklan di jendela ini terlebih dahulu.",
+          "Untuk membuka preview sertifikat " + MATCH_LABEL_SHORT + ", tinjau iklan di jendela ini terlebih dahulu.",
           function () {
             fillCertificatesCapture(form);
             dlgCert.showModal();
@@ -1607,8 +1627,14 @@
             .then(function (dataUrl) {
               var a = document.createElement("a");
               var base =
-                slugFileName((collectFromForm(form).tournamentName || "") + "-match1-cert-" + certFileSlugFromKind(kind)) ||
-                "match1-cert-" + certFileSlugFromKind(kind);
+                slugFileName(
+                  (collectFromForm(form).tournamentName || "") +
+                    "-match" +
+                    MATCH_NO +
+                    "-cert-" +
+                    certFileSlugFromKind(kind)
+                ) ||
+                "match" + MATCH_NO + "-cert-" + certFileSlugFromKind(kind);
               a.href = dataUrl;
               a.download = base + ".png";
               a.rel = "noopener";
@@ -1636,7 +1662,7 @@
 
     if (btnDl && dlg) {
       btnDl.addEventListener("click", function () {
-        openDownloadAdGate("poster match 1", function () {
+        openDownloadAdGate("poster " + MATCH_WORD_LOWER, function () {
           var cap = $("br-match1-poster-capture");
           var h2i = getHtmlToImage();
           if (!cap || !h2i || typeof h2i.toPng !== "function") {
@@ -1664,7 +1690,7 @@
             })
             .then(function (dataUrl) {
               var a = document.createElement("a");
-              var name = slugFileName((collectFromForm(form).tournamentName || "") + "-match1-roster");
+              var name = slugFileName((collectFromForm(form).tournamentName || "") + "-match" + MATCH_NO + "-roster");
               a.href = dataUrl;
               a.download = name + ".png";
               a.rel = "noopener";
