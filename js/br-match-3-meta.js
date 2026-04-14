@@ -1006,12 +1006,33 @@
         if (pb !== pa) return pb - pa;
         return a.slot - b.slot;
       });
+      var matchHeaderMain = [];
+      var matchHeaderSub = [];
+      for (var mh = 1; mh <= MATCH_COUNT; mh++) {
+        matchHeaderMain.push(
+          '<th colspan="2" class="br-m1-poster__th br-m1-poster__th--match">' + escapeHtml("Match " + mh) + "</th>"
+        );
+        matchHeaderSub.push(
+          '<th class="br-m1-poster__th br-m1-poster__th--sub">Rank</th>' +
+            '<th class="br-m1-poster__th br-m1-poster__th--sub">Kill</th>'
+        );
+      }
       var rows = [];
       for (var j = 0; j < order.length; j++) {
         var r = order[j].team;
         var slotNum = order[j].slot;
         var trClass = posterJuaraRowClass(r[CURRENT_MATCH_RANK_FIELD], j % 2 === 0);
         var rowName = resolveTeamDisplayName(r.teamName, slotNum);
+        var rowMatchCells = [];
+        for (var rm = 1; rm <= MATCH_COUNT; rm++) {
+          rowMatchCells.push(
+            '<td class="br-m1-poster__td br-m1-poster__td--rk">' +
+              escapeHtml(r[matchRankField(rm)]) +
+              '</td><td class="br-m1-poster__td br-m1-poster__td--k">' +
+              escapeHtml(r[matchKillField(rm)]) +
+              "</td>"
+          );
+        }
         rows.push(
           '<tr class="' +
             trClass +
@@ -1020,11 +1041,9 @@
             (j + 1) +
             '</td><td class="br-m1-poster__td br-m1-poster__td--name">' +
             escapeHtml(rowName) +
-            '</td><td class="br-m1-poster__td br-m1-poster__td--rk">' +
-            escapeHtml(r[CURRENT_MATCH_RANK_FIELD]) +
-            '</td><td class="br-m1-poster__td br-m1-poster__td--k">' +
-            escapeHtml(r[CURRENT_MATCH_KILL_FIELD]) +
-            '</td><td class="br-m1-poster__td br-m1-poster__td--tk">' +
+            "</td>" +
+            rowMatchCells.join("") +
+            '<td class="br-m1-poster__td br-m1-poster__td--tk">' +
             escapeHtml(r.totalKill) +
             '</td><td class="br-m1-poster__td br-m1-poster__td--pt">' +
             escapeHtml(r.totalPoint) +
@@ -1067,14 +1086,11 @@
         "<tr>" +
         '<th rowspan="2" class="br-m1-poster__th">No</th>' +
         '<th rowspan="2" class="br-m1-poster__th br-m1-poster__th--name">Nama team</th>' +
-        '<th colspan="2" class="br-m1-poster__th br-m1-poster__th--match">' +
-        escapeHtml(MATCH_LABEL_SHORT) +
-        "</th>" +
+        matchHeaderMain.join("") +
         '<th rowspan="2" class="br-m1-poster__th">Total kill</th>' +
         '<th rowspan="2" class="br-m1-poster__th">Total point</th>' +
         "</tr><tr>" +
-        '<th class="br-m1-poster__th br-m1-poster__th--sub">Rank</th>' +
-        '<th class="br-m1-poster__th br-m1-poster__th--sub">Kill</th>' +
+        matchHeaderSub.join("") +
         "</tr></thead>" +
         "<tbody>" +
         rows.join("") +
@@ -1087,6 +1103,9 @@
     function fillPosterCapture(form) {
       var cap = $("br-match1-poster-capture");
       if (!cap || !form) return;
+      var layoutW = getPosterLayoutWidthPx();
+      cap.style.width = "min(100%, " + layoutW + "px)";
+      cap.style.maxWidth = "min(100%, " + layoutW + "px)";
       var tb = form.querySelector("#br-match1-teams-tbody");
       if (tb) updateAllRowsPoints(tb);
       var payload = collectFromForm(form);
@@ -1117,6 +1136,13 @@
       var d = typeof window !== "undefined" ? window.devicePixelRatio : 1;
       var x = typeof d === "number" && d > 0 ? d : 1;
       return Math.min(4, Math.max(2, x));
+    }
+
+    function getPosterLayoutWidthPx() {
+      var base = 720;
+      var extraPerMatch = 220;
+      var w = base + Math.max(0, MATCH_COUNT - 1) * extraPerMatch;
+      return Math.min(1280, w);
     }
   
     /** A4 horizontal — lebar × tinggi (px) setara ~96 CSS dpi untuk ekspor PNG. */

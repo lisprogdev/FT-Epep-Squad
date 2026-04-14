@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f0f0f" />
+    <meta
+      name="description"
+      content="Match 6 Battle Royale FT Epep Squad — fase survival arc, kontrol endgame, dan efisiensi poin tim."
+    />
+    <title>Match 6 — Battle Royale — FT Epep Squad</title>
+
+    <link rel="icon" href="../../favicon.ico" sizes="any" />
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../../img/favicon/favicon-96x96.png" type="image/png" sizes="96x96" />
+    <link rel="icon" href="../../img/favicon/favicon.svg" type="image/svg+xml" sizes="any" />
+    <link rel="apple-touch-icon" href="../../img/favicon/apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="../../root.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="../../css/index.css" />
+    <link rel="stylesheet" href="../../css/battle-royale-page.css" />
+    <link rel="stylesheet" href="../../css/footer.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../../css/siderbar.css" />
+    <link rel="stylesheet" href="../../css/br-match-6 form.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  </head>
+  <body class="min-h-screen antialiased">
+    <div
+      id="siderbar-backdrop"
+      class="pointer-events-none invisible fixed inset-0 z-[299] bg-black/65 opacity-0 transition-[opacity,visibility] duration-300 ease-out data-[visible]:pointer-events-auto data-[visible]:visible data-[visible]:opacity-100"
+      hidden
+      aria-hidden="true"
+    ></div>
+    <button
+      type="button"
+      id="siderbar-toggle"
+      class="group fixed bottom-[calc(1.25rem+env(safe-area-inset-bottom,0px))] right-[calc(1rem+env(safe-area-inset-right,0px))] z-[302] inline-flex size-[3.15rem] items-center justify-center rounded-full border border-[color-mix(in_srgb,var(--color-brand)_38%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_78%,transparent)] text-[var(--color-brand-glow)] shadow-[0_10px_36px_rgba(0,0,0,0.48),inset_0_0_0_1px_color-mix(in_srgb,white_6%,transparent)] backdrop-blur-md transition hover:border-[color-mix(in_srgb,var(--color-brand-glow)_50%,transparent)] hover:shadow-[0_0_28px_color-mix(in_srgb,var(--color-brand)_18%,transparent)] active:scale-95 aria-expanded:border-[color-mix(in_srgb,var(--color-brand-glow)_55%,transparent)] aria-expanded:text-[var(--color-text-primary)]"
+      aria-controls="siderbar"
+      aria-expanded="false"
+      aria-label="Buka menu navigasi"
+    >
+      <span class="relative inline-grid size-[1.35rem] place-items-center leading-none" aria-hidden="true">
+        <i
+          class="fa-solid fa-bars col-start-1 row-start-1 text-[1.12rem] transition-all duration-[220ms] ease-out group-aria-expanded:rotate-45 group-aria-expanded:scale-[0.82] group-aria-expanded:opacity-0"
+        ></i>
+        <i
+          class="fa-solid fa-xmark col-start-1 row-start-1 -rotate-45 scale-[0.82] text-[1.12rem] opacity-0 transition-all duration-[220ms] ease-out group-aria-expanded:rotate-0 group-aria-expanded:scale-100 group-aria-expanded:opacity-100"
+        ></i>
+      </span>
+    </button>
+    <aside
+      id="siderbar"
+      aria-label="Menu navigasi"
+      class="fixed left-0 top-0 z-[300] flex h-dvh w-[16.25rem] max-w-[85vw] -translate-x-[105%] flex-col overflow-hidden border-r border-[color-mix(in_srgb,var(--color-brand)_28%,transparent)] bg-gradient-to-br from-[color-mix(in_srgb,var(--color-bg-secondary)_88%,transparent)] to-[color-mix(in_srgb,var(--color-bg-primary)_94%,transparent)] px-4 pb-5 pt-[1.35rem] shadow-[8px_0_60px_rgba(0,0,0,0.55)] backdrop-blur-xl backdrop-saturate-[1.2] transition-transform duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)] data-[open]:translate-x-0"
+    >
+      <div
+        class="pointer-events-none absolute -left-[40%] top-[15%] h-[45%] w-[80%] rounded-full bg-[radial-gradient(circle,color-mix(in_srgb,var(--color-brand)_22%,transparent),transparent_70%)] opacity-50"
+        aria-hidden="true"
+      ></div>
+      <div class="relative z-[1] mb-7 flex items-center gap-[0.65rem] border-b border-[color-mix(in_srgb,var(--color-brand)_15%,transparent)] pb-5">
+        <a
+          href="../../index.html#beranda"
+          class="grid size-11 shrink-0 place-items-center rounded-[0.65rem] border border-[color-mix(in_srgb,var(--color-brand)_32%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_75%,transparent)] p-0.5 shadow-[0_0_28px_color-mix(in_srgb,var(--color-brand)_22%,transparent)] transition hover:border-[color-mix(in_srgb,var(--color-brand-glow)_45%,transparent)] hover:shadow-[0_0_32px_color-mix(in_srgb,var(--color-brand)_28%,transparent)]"
+          aria-label="FT Epep Squad — Beranda"
+        >
+          <img class="block size-full object-contain" src="../../img/element/Logo.png" width="80" height="80" alt="" decoding="async" />
+        </a>
+        <div class="flex min-w-0 flex-col gap-0.5">
+          <span class="font-[family-name:var(--font-heading)] text-[0.82rem] font-bold uppercase leading-tight tracking-[0.12em] text-[var(--color-text-primary)]">Epep Squad</span>
+          <span class="text-[0.62rem] uppercase tracking-[0.14em] text-[var(--color-text-secondary)]">EO · Fast tournament</span>
+        </div>
+      </div>
+      <nav class="relative z-[1] mr-[-0.15rem] flex flex-1 flex-col gap-[0.35rem] overflow-y-auto pr-[0.15rem]" aria-label="Utama">
+        <a
+          href="../../index.html#beranda"
+          data-siderbar-link
+          class="relative flex items-center gap-3 rounded-[0.65rem] border border-transparent px-[0.85rem] py-[0.72rem] font-[family-name:var(--font-heading)] text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-secondary)] transition hover:border-[color-mix(in_srgb,var(--color-brand)_22%,transparent)] hover:bg-[color-mix(in_srgb,var(--color-brand)_8%,transparent)] hover:text-[var(--color-text-primary)] aria-[current=page]:border-[color-mix(in_srgb,var(--color-brand)_35%,transparent)] aria-[current=page]:bg-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] aria-[current=page]:text-[var(--color-brand-glow)] aria-[current=page]:shadow-[inset_3px_0_0_0_var(--color-brand-glow),0_0_28px_color-mix(in_srgb,var(--color-brand)_10%,transparent)]"
+        >
+          <span class="grid size-[1.85rem] shrink-0 place-items-center rounded-[0.45rem] border border-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] text-inherit" aria-hidden="true"
+            ><i class="fa-solid fa-house text-[0.92rem] leading-none"></i
+          ></span>
+          <span>Beranda</span>
+        </a>
+        <a
+          href="../../index.html#cara-penggunaan"
+          data-siderbar-link
+          class="relative flex items-center gap-3 rounded-[0.65rem] border border-transparent px-[0.85rem] py-[0.72rem] font-[family-name:var(--font-heading)] text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-secondary)] transition hover:border-[color-mix(in_srgb,var(--color-brand)_22%,transparent)] hover:bg-[color-mix(in_srgb,var(--color-brand)_8%,transparent)] hover:text-[var(--color-text-primary)] aria-[current=page]:border-[color-mix(in_srgb,var(--color-brand)_35%,transparent)] aria-[current=page]:bg-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] aria-[current=page]:text-[var(--color-brand-glow)] aria-[current=page]:shadow-[inset_3px_0_0_0_var(--color-brand-glow),0_0_28px_color-mix(in_srgb,var(--color-brand)_10%,transparent)]"
+        >
+          <span class="grid size-[1.85rem] shrink-0 place-items-center rounded-[0.45rem] border border-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] text-inherit" aria-hidden="true"
+            ><i class="fa-solid fa-book-open text-[0.92rem] leading-none"></i
+          ></span>
+          <span>Cara penggunaan</span>
+        </a>
+        <a
+          href="../tools.html"
+          data-siderbar-link
+          data-hero-cta-gate-url="../tools.html"
+          data-hero-cta-gate-desc="Untuk membuka halaman Tools, tinjau iklan di jendela ini terlebih dahulu."
+          aria-haspopup="dialog"
+          class="relative flex items-center gap-3 rounded-[0.65rem] border border-transparent px-[0.85rem] py-[0.72rem] font-[family-name:var(--font-heading)] text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-secondary)] transition hover:border-[color-mix(in_srgb,var(--color-brand)_22%,transparent)] hover:bg-[color-mix(in_srgb,var(--color-brand)_8%,transparent)] hover:text-[var(--color-text-primary)] aria-[current=page]:border-[color-mix(in_srgb,var(--color-brand)_35%,transparent)] aria-[current=page]:bg-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] aria-[current=page]:text-[var(--color-brand-glow)] aria-[current=page]:shadow-[inset_3px_0_0_0_var(--color-brand-glow),0_0_28px_color-mix(in_srgb,var(--color-brand)_10%,transparent)]"
+        >
+          <span class="grid size-[1.85rem] shrink-0 place-items-center rounded-[0.45rem] border border-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] text-inherit" aria-hidden="true"
+            ><i class="fa-solid fa-screwdriver-wrench text-[0.92rem] leading-none"></i
+          ></span>
+          <span>Tools</span>
+        </a>
+        <a
+          href="../battle-royale.html"
+          data-siderbar-link
+          data-hero-cta-gate-url="../battle-royale.html"
+          data-hero-cta-gate-desc="Untuk membuka halaman Battle Royale, tinjau iklan di jendela ini terlebih dahulu."
+          aria-haspopup="dialog"
+          class="relative flex items-center gap-3 rounded-[0.65rem] border border-transparent px-[0.85rem] py-[0.72rem] font-[family-name:var(--font-heading)] text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-secondary)] transition hover:border-[color-mix(in_srgb,var(--color-brand)_22%,transparent)] hover:bg-[color-mix(in_srgb,var(--color-brand)_8%,transparent)] hover:text-[var(--color-text-primary)] aria-[current=page]:border-[color-mix(in_srgb,var(--color-brand)_35%,transparent)] aria-[current=page]:bg-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] aria-[current=page]:text-[var(--color-brand-glow)] aria-[current=page]:shadow-[inset_3px_0_0_0_var(--color-brand-glow),0_0_28px_color-mix(in_srgb,var(--color-brand)_10%,transparent)]"
+        >
+          <span class="grid size-[1.85rem] shrink-0 place-items-center rounded-[0.45rem] border border-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] text-inherit" aria-hidden="true"
+            ><i class="fa-solid fa-crosshairs text-[0.92rem] leading-none"></i
+          ></span>
+          <span>Battle Royale</span>
+        </a>
+        <a
+          href="../../index.html#mengapa-kami"
+          data-siderbar-link
+          class="relative flex items-center gap-3 rounded-[0.65rem] border border-transparent px-[0.85rem] py-[0.72rem] font-[family-name:var(--font-heading)] text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-secondary)] transition hover:border-[color-mix(in_srgb,var(--color-brand)_22%,transparent)] hover:bg-[color-mix(in_srgb,var(--color-brand)_8%,transparent)] hover:text-[var(--color-text-primary)] aria-[current=page]:border-[color-mix(in_srgb,var(--color-brand)_35%,transparent)] aria-[current=page]:bg-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] aria-[current=page]:text-[var(--color-brand-glow)] aria-[current=page]:shadow-[inset_3px_0_0_0_var(--color-brand-glow),0_0_28px_color-mix(in_srgb,var(--color-brand)_10%,transparent)]"
+        >
+          <span class="grid size-[1.85rem] shrink-0 place-items-center rounded-[0.45rem] border border-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] text-inherit" aria-hidden="true"
+            ><i class="fa-solid fa-circle-question text-[0.92rem] leading-none"></i
+          ></span>
+          <span>Mengapa kami</span>
+        </a>
+        <a
+          href="../../index.html#faq"
+          data-siderbar-link
+          class="relative flex items-center gap-3 rounded-[0.65rem] border border-transparent px-[0.85rem] py-[0.72rem] font-[family-name:var(--font-heading)] text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-secondary)] transition hover:border-[color-mix(in_srgb,var(--color-brand)_22%,transparent)] hover:bg-[color-mix(in_srgb,var(--color-brand)_8%,transparent)] hover:text-[var(--color-text-primary)] aria-[current=page]:border-[color-mix(in_srgb,var(--color-brand)_35%,transparent)] aria-[current=page]:bg-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] aria-[current=page]:text-[var(--color-brand-glow)] aria-[current=page]:shadow-[inset_3px_0_0_0_var(--color-brand-glow),0_0_28px_color-mix(in_srgb,var(--color-brand)_10%,transparent)]"
+        >
+          <span class="grid size-[1.85rem] shrink-0 place-items-center rounded-[0.45rem] border border-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] text-inherit" aria-hidden="true"
+            ><i class="fa-solid fa-clipboard-question text-[0.92rem] leading-none"></i
+          ></span>
+          <span>FAQ</span>
+        </a>
+        <a
+          href="../../index.html#kontak"
+          data-siderbar-link
+          class="relative flex items-center gap-3 rounded-[0.65rem] border border-transparent px-[0.85rem] py-[0.72rem] font-[family-name:var(--font-heading)] text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-secondary)] transition hover:border-[color-mix(in_srgb,var(--color-brand)_22%,transparent)] hover:bg-[color-mix(in_srgb,var(--color-brand)_8%,transparent)] hover:text-[var(--color-text-primary)] aria-[current=page]:border-[color-mix(in_srgb,var(--color-brand)_35%,transparent)] aria-[current=page]:bg-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] aria-[current=page]:text-[var(--color-brand-glow)] aria-[current=page]:shadow-[inset_3px_0_0_0_var(--color-brand-glow),0_0_28px_color-mix(in_srgb,var(--color-brand)_10%,transparent)]"
+        >
+          <span class="grid size-[1.85rem] shrink-0 place-items-center rounded-[0.45rem] border border-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] text-inherit" aria-hidden="true"
+            ><i class="fa-solid fa-envelope text-[0.92rem] leading-none"></i
+          ></span>
+          <span>Kontak</span>
+        </a>
+      </nav>
+      <p class="relative z-[1] mt-4 border-t border-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] pt-4 text-center text-[0.58rem] uppercase tracking-[0.18em] text-[var(--color-text-secondary)]">Fast tournament · FF</p>
+    </aside>
+
+    <main class="min-w-0">
+      <section
+        id="br-match-1-hero"
+        class="relative isolate flex min-h-[min(88dvh,38rem)] items-end overflow-hidden pt-[clamp(5rem,14vw,7rem)] pb-[clamp(2.5rem,6vw,3.75rem)] pl-[clamp(1.25rem,4vw,2rem)] pr-[clamp(1.25rem,4vw,2rem)]"
+        aria-labelledby="br-match-1-title"
+      >
+        <div class="br-hero__bg" aria-hidden="true"></div>
+        <div class="br-hero__gradient" aria-hidden="true"></div>
+        <div class="br-hero__mesh" aria-hidden="true"></div>
+        <div class="br-hero__glow br-hero__glow--1" aria-hidden="true"></div>
+        <div class="br-hero__glow br-hero__glow--2" aria-hidden="true"></div>
+
+        <div class="relative z-10 mx-auto w-full min-w-0 max-w-[72rem]">
+          <nav class="mb-[clamp(1.35rem,4vw,2rem)]" aria-label="Breadcrumb">
+            <ol
+              class="m-0 inline-flex list-none flex-wrap items-center gap-x-2 gap-y-1 rounded-full border border-[color-mix(in_srgb,var(--color-brand)_38%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_42%,transparent)] py-[0.45rem] pl-[0.65rem] pr-[0.55rem] shadow-[inset_0_0_0_1px_color-mix(in_srgb,white_6%,transparent),0_12px_40px_rgba(0,0,0,0.45),0_0_48px_color-mix(in_srgb,var(--color-brand)_12%,transparent)] backdrop-blur-md backdrop-saturate-[1.2]"
+            >
+              <li class="flex items-center">
+                <a
+                  class="inline-flex items-center gap-[0.4rem] rounded-full px-[0.65rem] py-[0.35rem] pl-2 font-[family-name:var(--font-heading)] text-[0.58rem] font-semibold uppercase tracking-[0.16em] text-[color-mix(in_srgb,var(--color-text-secondary)_88%,var(--color-brand-glow))] no-underline transition hover:bg-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] hover:text-[var(--color-text-primary)] hover:shadow-[0_0_20px_color-mix(in_srgb,var(--color-brand)_18%,transparent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)]"
+                  href="../../index.html#beranda"
+                >
+                  <i class="fa-solid fa-house-chimney text-[0.65rem] text-[var(--color-brand-glow)] opacity-90" aria-hidden="true"></i>
+                  <span>Beranda</span>
+                </a>
+              </li>
+              <li class="flex select-none items-center text-[0.45rem] text-[color-mix(in_srgb,var(--color-brand)_55%,transparent)] opacity-85" aria-hidden="true">
+                <i class="fa-solid fa-chevron-right"></i>
+              </li>
+              <li class="flex items-center">
+                <a
+                  class="inline-flex items-center gap-[0.4rem] rounded-full px-[0.65rem] py-[0.35rem] font-[family-name:var(--font-heading)] text-[0.58rem] font-semibold uppercase tracking-[0.16em] text-[color-mix(in_srgb,var(--color-text-secondary)_88%,var(--color-brand-glow))] no-underline transition hover:bg-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] hover:text-[var(--color-text-primary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)]"
+                  href="../battle-royale.html"
+                >
+                  <i class="fa-solid fa-crosshairs text-[0.65rem] text-[var(--color-brand-glow)] opacity-90" aria-hidden="true"></i>
+                  <span>Battle Royale</span>
+                </a>
+              </li>
+              <li class="flex select-none items-center text-[0.45rem] text-[color-mix(in_srgb,var(--color-brand)_55%,transparent)] opacity-85" aria-hidden="true">
+                <i class="fa-solid fa-chevron-right"></i>
+              </li>
+              <li class="flex items-center pr-[0.35rem]" aria-current="page">
+                <span
+                  class="br-hero__crumb-shine inline-flex items-center justify-center rounded-full bg-[length:160%_auto] px-[0.75rem] py-[0.35rem] font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.2em] text-[var(--color-bg-primary)] shadow-[0_0_24px_color-mix(in_srgb,var(--color-brand-glow)_35%,transparent)] [background-image:linear-gradient(120deg,var(--color-brand),var(--color-brand-glow),var(--color-brand))]"
+                >
+                  <span>Match 6</span>
+                </span>
+              </li>
+            </ol>
+          </nav>
+
+          <p class="mb-[0.85rem] font-[family-name:var(--font-heading)] text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-[color-mix(in_srgb,var(--color-text-secondary)_75%,#7ff5e4)]">
+            Warm-up map · Babak pembuka
+          </p>
+          <h1
+            id="br-match-1-title"
+            class="mb-4 max-w-[22ch] font-[family-name:var(--font-heading)] text-[clamp(2rem,3.8vw_+_0.9rem,3.1rem)] font-extrabold leading-[1.05] tracking-[0.04em] text-[var(--color-text-primary)] [text-shadow:0_4px_48px_color-mix(in_srgb,black_55%,transparent)]"
+          >
+            <span class="block">Battle Royale</span>
+            <span
+              class="br-hero__title-shimmer block bg-[length:200%_auto] bg-clip-text text-transparent [background-image:linear-gradient(105deg,#7ff5e4,var(--color-brand-glow),var(--color-brand))]"
+              >Match 6</span
+            >
+          </h1>
+          <p class="m-0 mb-[clamp(1.35rem,4vw,1.85rem)] max-w-2xl text-[clamp(0.9rem,1.2vw_+_0.82rem,1.05rem)] leading-relaxed text-[color-mix(in_srgb,var(--color-text-secondary)_88%,var(--color-text-primary))]">
+            Halaman detail untuk babak pertama: fokus komunikasi squad, rotasi drop awal, dan pembacaan zona tanpa tekanan klasemen penuh. Gunakan tombol di bawah untuk kembali ke daftar match atau menghubungi EO.
+          </p>
+          <div class="flex flex-wrap items-center gap-[0.65rem]">
+            <a
+              class="inline-flex items-center justify-center gap-[0.45rem] rounded-[0.55rem] border border-[color-mix(in_srgb,#5eead4_42%,var(--color-brand-glow))] bg-gradient-to-br from-[color-mix(in_srgb,#5eead4_50%,var(--color-brand))] to-[var(--color-brand-glow)] px-[1.2rem] py-[0.78rem] font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.14em] text-[var(--color-bg-primary)] no-underline shadow-[0_8px_32px_color-mix(in_srgb,var(--color-brand)_38%,transparent)] transition hover:-translate-y-0.5 hover:shadow-[0_12px_40px_color-mix(in_srgb,var(--color-brand-glow)_32%,transparent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+              href="../battle-royale.html#br-matches"
+            >
+              <i class="fa-solid fa-list-ol text-[0.72rem]" aria-hidden="true"></i>
+              <span>Delapan match</span>
+            </a>
+            <a
+              class="inline-flex items-center justify-center gap-[0.45rem] rounded-[0.55rem] border border-[color-mix(in_srgb,var(--color-brand)_38%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_50%,transparent)] px-[1.15rem] py-[0.72rem] font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.12em] text-[var(--color-text-primary)] no-underline backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-[var(--color-brand-glow)] hover:text-[var(--color-brand-glow)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+              href="../tools.html"
+              data-hero-cta-gate-url="../tools.html"
+              data-hero-cta-gate-desc="Untuk membuka halaman Tools, tinjau iklan di jendela ini terlebih dahulu."
+              aria-haspopup="dialog"
+            >
+              <i class="fa-solid fa-screwdriver-wrench text-[0.7rem]" aria-hidden="true"></i>
+              <span>Tools</span>
+            </a>
+            <a
+              class="inline-flex items-center justify-center gap-[0.45rem] rounded-[0.55rem] border border-[color-mix(in_srgb,var(--color-brand)_38%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_50%,transparent)] px-[1.15rem] py-[0.72rem] font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.12em] text-[var(--color-text-primary)] no-underline backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-[var(--color-brand-glow)] hover:text-[var(--color-brand-glow)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+              href="../../index.html#kontak"
+              data-hero-cta-gate-url="../../index.html#kontak"
+              data-hero-cta-gate-desc="Untuk membuka Kontak di beranda, tinjau iklan di jendela ini terlebih dahulu."
+              aria-haspopup="dialog"
+            >
+              <i class="fa-solid fa-envelope text-[0.7rem]" aria-hidden="true"></i>
+              <span>Kontak EO</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="br-match1-meta"
+        class="relative isolate min-w-0 overflow-x-clip border-t border-[color-mix(in_srgb,var(--color-brand)_20%,transparent)] bg-gradient-to-b from-[var(--color-bg-primary)] via-[color-mix(in_srgb,var(--color-bg-secondary)_88%,#050505)] to-[var(--color-bg-primary)] px-[clamp(1rem,3.5vw,2rem)] py-[clamp(2.5rem,6vw,4rem)]"
+        aria-labelledby="br-match1-meta-heading"
+      >
+        <div
+          class="pointer-events-none absolute inset-x-0 top-0 z-0 h-px bg-gradient-to-r from-transparent via-[color-mix(in_srgb,var(--color-brand-glow)_55%,transparent)] to-transparent opacity-80"
+          aria-hidden="true"
+        ></div>
+        <div
+          class="pointer-events-none absolute -left-[20%] bottom-[10%] z-0 h-[min(50vw,22rem)] w-[min(70vw,28rem)] rounded-full bg-[radial-gradient(circle,color-mix(in_srgb,var(--color-brand)_12%,transparent),transparent_68%)] opacity-60 blur-2xl"
+          aria-hidden="true"
+        ></div>
+
+        <div class="relative z-[1] mx-auto w-full min-w-0 max-w-[72rem]">
+          <div class="mb-10 min-w-0 max-w-full">
+            <div class="min-w-0 max-w-2xl">
+              <p
+                class="mb-2 inline-flex items-center gap-2 rounded-full border border-[color-mix(in_srgb,var(--color-brand)_28%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_50%,transparent)] px-3 py-1 font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.2em] text-[var(--color-brand-glow)] shadow-[0_0_24px_color-mix(in_srgb,var(--color-brand)_12%,transparent)] backdrop-blur-sm"
+              >
+                <i class="fa-solid fa-pen-ruler text-[0.65rem] opacity-90" aria-hidden="true"></i>
+                Ringkasan match
+              </p>
+              <h2
+                id="br-match1-meta-heading"
+                class="font-[family-name:var(--font-heading)] text-[clamp(1.2rem,2.6vw,1.55rem)] font-bold uppercase tracking-[0.1em] text-[var(--color-text-primary)] [text-shadow:0_2px_32px_color-mix(in_srgb,black_40%,transparent)]"
+              >
+                Data turnamen
+              </h2>
+              <p class="mt-3 max-w-[40rem] text-[0.88rem] leading-[1.65] text-[color-mix(in_srgb,var(--color-text-secondary)_94%,var(--color-text-primary))]">
+                Catat nama turnamen, season, tanggal bermain, nomor sesi, jam, dan format tim (12 atau 15 tim). Perubahan tersimpan otomatis di perangkat ini; reset menghapus data lokal dan mengosongkan form.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="relative min-w-0 max-w-full overflow-hidden rounded-[1.35rem] border border-[color-mix(in_srgb,var(--color-brand)_28%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_38%,transparent)] p-[clamp(1rem,3vw,2rem)] shadow-[0_28px_80px_rgba(0,0,0,0.5),inset_0_0_0_1px_color-mix(in_srgb,white_7%,transparent)] backdrop-blur-2xl"
+          >
+            <div
+              class="pointer-events-none absolute -right-[18%] -top-[20%] h-[min(70%,22rem)] w-[min(55%,20rem)] rounded-full bg-[radial-gradient(circle_at_30%_30%,color-mix(in_srgb,#5eead4_22%,transparent),transparent_65%)] opacity-90"
+              aria-hidden="true"
+            ></div>
+            <div
+              class="pointer-events-none absolute -bottom-[30%] left-[5%] h-40 w-52 rounded-full bg-[radial-gradient(circle,color-mix(in_srgb,var(--color-brand)_16%,transparent),transparent_70%)] opacity-50"
+              aria-hidden="true"
+            ></div>
+
+            <form id="br-match1-meta-form" class="relative z-[1] grid min-w-0 gap-8" novalidate>
+              <div class="grid min-w-0 grid-cols-1 gap-5 md:grid-cols-2 md:gap-x-5 md:gap-y-6 xl:grid-cols-12 xl:gap-x-6 xl:gap-y-6">
+                <div
+                  class="group flex flex-col gap-2.5 rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_16%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_38%,transparent)] p-4 ring-1 ring-inset ring-[color-mix(in_srgb,white_5%,transparent)] transition duration-300 hover:border-[color-mix(in_srgb,var(--color-brand-glow)_26%,transparent)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.28)] md:col-span-2 xl:col-span-5 xl:p-5"
+                >
+                  <label
+                    for="br-match1-tournament"
+                    class="flex items-center gap-2.5 font-[family-name:var(--font-heading)] text-[0.62rem] font-bold uppercase tracking-[0.18em] text-[color-mix(in_srgb,var(--color-text-secondary)_88%,var(--color-brand-glow))]"
+                  >
+                    <span class="grid size-8 place-items-center rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_20%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_55%,transparent)] text-[var(--color-brand-glow)] shadow-[0_0_20px_color-mix(in_srgb,var(--color-brand)_10%,transparent)] transition group-focus-within:border-[color-mix(in_srgb,var(--color-brand-glow)_42%,transparent)]" aria-hidden="true"
+                      ><i class="fa-solid fa-trophy text-[0.8rem]"></i
+                    ></span>
+                    Nama turnamen
+                  </label>
+                  <input
+                    id="br-match1-tournament"
+                    name="tournamentName"
+                    type="text"
+                    autocomplete="organization"
+                    placeholder="Contoh: FT Cup Open"
+                    class="w-full rounded-xl border border-[color-mix(in_srgb,white_8%,transparent)] bg-[color-mix(in_srgb,black_32%,transparent)] px-3.5 py-3 text-[0.92rem] text-[var(--color-text-primary)] outline-none transition placeholder:text-[color-mix(in_srgb,var(--color-text-secondary)_48%,transparent)] focus:border-[color-mix(in_srgb,var(--color-brand-glow)_45%,transparent)] focus:bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--color-brand-glow)_22%,transparent)]"
+                  />
+                </div>
+                <div
+                  class="group flex flex-col gap-2.5 rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_16%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_38%,transparent)] p-4 ring-1 ring-inset ring-[color-mix(in_srgb,white_5%,transparent)] transition duration-300 hover:border-[color-mix(in_srgb,var(--color-brand-glow)_26%,transparent)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.28)] md:col-span-1 xl:col-span-3 xl:p-5"
+                >
+                  <label
+                    for="br-match1-season"
+                    class="flex items-center gap-2.5 font-[family-name:var(--font-heading)] text-[0.62rem] font-bold uppercase tracking-[0.18em] text-[color-mix(in_srgb,var(--color-text-secondary)_88%,var(--color-brand-glow))]"
+                  >
+                    <span class="grid size-8 place-items-center rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_20%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_55%,transparent)] text-[var(--color-brand-glow)] shadow-[0_0_20px_color-mix(in_srgb,var(--color-brand)_10%,transparent)] transition group-focus-within:border-[color-mix(in_srgb,var(--color-brand-glow)_42%,transparent)]" aria-hidden="true"
+                      ><i class="fa-solid fa-layer-group text-[0.8rem]"></i
+                    ></span>
+                    Season
+                  </label>
+                  <input
+                    id="br-match1-season"
+                    name="season"
+                    type="text"
+                    inputmode="text"
+                    placeholder="Contoh: S4 / 2026 Q1"
+                    class="w-full rounded-xl border border-[color-mix(in_srgb,white_8%,transparent)] bg-[color-mix(in_srgb,black_32%,transparent)] px-3.5 py-3 text-[0.92rem] text-[var(--color-text-primary)] outline-none transition placeholder:text-[color-mix(in_srgb,var(--color-text-secondary)_48%,transparent)] focus:border-[color-mix(in_srgb,var(--color-brand-glow)_45%,transparent)] focus:bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--color-brand-glow)_22%,transparent)]"
+                  />
+                </div>
+                <div
+                  class="group flex flex-col gap-2.5 rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_16%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_38%,transparent)] p-4 ring-1 ring-inset ring-[color-mix(in_srgb,white_5%,transparent)] transition duration-300 hover:border-[color-mix(in_srgb,var(--color-brand-glow)_26%,transparent)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.28)] md:col-span-1 xl:col-span-4 xl:p-5"
+                >
+                  <label
+                    for="br-match1-playdate"
+                    class="flex items-center gap-2.5 font-[family-name:var(--font-heading)] text-[0.62rem] font-bold uppercase tracking-[0.18em] text-[color-mix(in_srgb,var(--color-text-secondary)_88%,var(--color-brand-glow))]"
+                  >
+                    <span class="grid size-8 place-items-center rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_20%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_55%,transparent)] text-[var(--color-brand-glow)] shadow-[0_0_20px_color-mix(in_srgb,var(--color-brand)_10%,transparent)] transition group-focus-within:border-[color-mix(in_srgb,var(--color-brand-glow)_42%,transparent)]" aria-hidden="true"
+                      ><i class="fa-solid fa-calendar-days text-[0.8rem]"></i
+                    ></span>
+                    Tanggal main
+                  </label>
+                  <input
+                    id="br-match1-playdate"
+                    name="playDate"
+                    type="date"
+                    class="w-full rounded-xl border border-[color-mix(in_srgb,white_8%,transparent)] bg-[color-mix(in_srgb,black_32%,transparent)] px-3.5 py-3 text-[0.92rem] text-[var(--color-text-primary)] outline-none transition focus:border-[color-mix(in_srgb,var(--color-brand-glow)_45%,transparent)] focus:bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--color-brand-glow)_22%,transparent)]"
+                  />
+                </div>
+                <div
+                  class="group flex min-w-0 flex-col gap-2.5 rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_16%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_38%,transparent)] p-4 ring-1 ring-inset ring-[color-mix(in_srgb,white_5%,transparent)] transition duration-300 hover:border-[color-mix(in_srgb,var(--color-brand-glow)_26%,transparent)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.28)] md:col-span-1 xl:col-span-3 xl:p-5"
+                >
+                  <label
+                    for="br-match1-session-number"
+                    class="flex items-center gap-2.5 font-[family-name:var(--font-heading)] text-[0.62rem] font-bold uppercase tracking-[0.18em] text-[color-mix(in_srgb,var(--color-text-secondary)_88%,var(--color-brand-glow))]"
+                  >
+                    <span class="grid size-8 shrink-0 place-items-center rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_20%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_55%,transparent)] text-[var(--color-brand-glow)] shadow-[0_0_20px_color-mix(in_srgb,var(--color-brand)_10%,transparent)] transition group-focus-within:border-[color-mix(in_srgb,var(--color-brand-glow)_42%,transparent)]" aria-hidden="true"
+                      ><i class="fa-solid fa-hashtag text-[0.8rem]"></i
+                    ></span>
+                    Sesi
+                  </label>
+                  <input
+                    id="br-match1-session-number"
+                    name="sessionNumber"
+                    type="number"
+                    inputmode="numeric"
+                    min="1"
+                    step="1"
+                    placeholder="1"
+                    class="w-full min-w-0 rounded-xl border border-[color-mix(in_srgb,white_8%,transparent)] bg-[color-mix(in_srgb,black_32%,transparent)] px-3.5 py-3 text-[0.92rem] text-[var(--color-text-primary)] outline-none transition placeholder:text-[color-mix(in_srgb,var(--color-text-secondary)_48%,transparent)] focus:border-[color-mix(in_srgb,var(--color-brand-glow)_45%,transparent)] focus:bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--color-brand-glow)_22%,transparent)] [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                  />
+                </div>
+                <div
+                  class="group flex min-w-0 flex-col gap-2.5 rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_16%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_38%,transparent)] p-4 ring-1 ring-inset ring-[color-mix(in_srgb,white_5%,transparent)] transition duration-300 hover:border-[color-mix(in_srgb,var(--color-brand-glow)_26%,transparent)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.28)] md:col-span-1 xl:col-span-3 xl:p-5"
+                >
+                  <label
+                    for="br-match1-play-time"
+                    class="flex items-center gap-2.5 font-[family-name:var(--font-heading)] text-[0.62rem] font-bold uppercase tracking-[0.18em] text-[color-mix(in_srgb,var(--color-text-secondary)_88%,var(--color-brand-glow))]"
+                  >
+                    <span class="grid size-8 shrink-0 place-items-center rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_20%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_55%,transparent)] text-[var(--color-brand-glow)] shadow-[0_0_20px_color-mix(in_srgb,var(--color-brand)_10%,transparent)] transition group-focus-within:border-[color-mix(in_srgb,var(--color-brand-glow)_42%,transparent)]" aria-hidden="true"
+                      ><i class="fa-solid fa-clock text-[0.8rem]"></i
+                    ></span>
+                    Jam
+                  </label>
+                  <input
+                    id="br-match1-play-time"
+                    name="playTime"
+                    type="time"
+                    class="w-full min-w-0 rounded-xl border border-[color-mix(in_srgb,white_8%,transparent)] bg-[color-mix(in_srgb,black_32%,transparent)] px-3.5 py-3 text-[0.92rem] text-[var(--color-text-primary)] outline-none transition focus:border-[color-mix(in_srgb,var(--color-brand-glow)_45%,transparent)] focus:bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--color-brand-glow)_22%,transparent)]"
+                  />
+                </div>
+
+                <fieldset
+                  class="m-0 grid gap-4 rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_16%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_32%,transparent)] p-4 ring-1 ring-inset ring-[color-mix(in_srgb,white_5%,transparent)] transition duration-300 hover:border-[color-mix(in_srgb,var(--color-brand-glow)_22%,transparent)] md:col-span-2 xl:col-span-6 xl:p-5"
+                >
+                  <legend
+                    class="flex w-full items-center gap-2.5 px-0 font-[family-name:var(--font-heading)] text-[0.62rem] font-bold uppercase tracking-[0.18em] text-[color-mix(in_srgb,var(--color-text-secondary)_88%,var(--color-brand-glow))]"
+                  >
+                    <span class="grid size-8 shrink-0 place-items-center rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_20%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_55%,transparent)] text-[var(--color-brand-glow)] shadow-[0_0_20px_color-mix(in_srgb,var(--color-brand)_10%,transparent)]" aria-hidden="true"
+                      ><i class="fa-solid fa-users text-[0.8rem]"></i
+                    ></span>
+                    Jumlah tim
+                  </legend>
+                  <div class="grid grid-cols-2 gap-3 sm:gap-4">
+                    <label
+                      class="relative cursor-pointer select-none overflow-hidden rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_18%,transparent)] bg-[color-mix(in_srgb,black_22%,transparent)] p-[3px] shadow-[inset_0_1px_0_color-mix(in_srgb,white_6%,transparent)] transition duration-300 hover:border-[color-mix(in_srgb,var(--color-brand-glow)_25%,transparent)] has-[:checked]:border-[color-mix(in_srgb,#5eead4_55%,var(--color-brand-glow))] has-[:checked]:shadow-[0_0_36px_color-mix(in_srgb,var(--color-brand)_28%,transparent)]"
+                    >
+                      <input type="radio" name="teamSlot" value="12" class="peer sr-only" checked />
+                      <span
+                        class="flex min-h-[4.25rem] flex-col items-center justify-center gap-1 rounded-[0.9rem] px-3 py-3 text-center text-[var(--color-text-primary)] transition duration-300 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[var(--color-brand-glow)] peer-checked:bg-gradient-to-br peer-checked:from-[color-mix(in_srgb,#5eead4_38%,var(--color-brand))] peer-checked:to-[var(--color-brand-glow)] peer-checked:text-[var(--color-bg-primary)] peer-checked:shadow-[inset_0_0_0_1px_color-mix(in_srgb,white_14%,transparent)]"
+                      >
+                        <span class="font-[family-name:var(--font-heading)] text-[1.55rem] font-black tabular-nums leading-none tracking-tight">12</span>
+                        <span class="font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.18em] text-current opacity-80">Team</span>
+                      </span>
+                    </label>
+                    <label
+                      class="relative cursor-pointer select-none overflow-hidden rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_18%,transparent)] bg-[color-mix(in_srgb,black_22%,transparent)] p-[3px] shadow-[inset_0_1px_0_color-mix(in_srgb,white_6%,transparent)] transition duration-300 hover:border-[color-mix(in_srgb,var(--color-brand-glow)_25%,transparent)] has-[:checked]:border-[color-mix(in_srgb,#5eead4_55%,var(--color-brand-glow))] has-[:checked]:shadow-[0_0_36px_color-mix(in_srgb,var(--color-brand)_28%,transparent)]"
+                    >
+                      <input type="radio" name="teamSlot" value="15" class="peer sr-only" />
+                      <span
+                        class="flex min-h-[4.25rem] flex-col items-center justify-center gap-1 rounded-[0.9rem] px-3 py-3 text-center text-[var(--color-text-primary)] transition duration-300 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[var(--color-brand-glow)] peer-checked:bg-gradient-to-br peer-checked:from-[color-mix(in_srgb,#5eead4_38%,var(--color-brand))] peer-checked:to-[var(--color-brand-glow)] peer-checked:text-[var(--color-bg-primary)] peer-checked:shadow-[inset_0_0_0_1px_color-mix(in_srgb,white_14%,transparent)]"
+                      >
+                        <span class="font-[family-name:var(--font-heading)] text-[1.55rem] font-black tabular-nums leading-none tracking-tight">15</span>
+                        <span class="font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.18em] text-current opacity-80">Team</span>
+                      </span>
+                    </label>
+                  </div>
+                </fieldset>
+              </div>
+
+              <div
+                class="min-w-0 max-w-full rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_28%,transparent)] p-4 ring-1 ring-inset ring-[color-mix(in_srgb,white_4%,transparent)] sm:p-5"
+              >
+                <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
+                  <div>
+                    <h3
+                      class="m-0 font-[family-name:var(--font-heading)] text-[0.72rem] font-bold uppercase tracking-[0.14em] text-[var(--color-text-primary)]"
+                    >
+                      Roster tim — Match 6
+                    </h3>
+                  </div>
+                  <div class="flex min-w-0 flex-wrap gap-2 sm:justify-end">
+                    <button
+                      type="button"
+                      id="br-match1-cert-preview-open"
+                      class="inline-flex min-h-[2.75rem] shrink-0 cursor-pointer items-center justify-center gap-2 rounded-xl border border-[color-mix(in_srgb,#5eead4_38%,var(--color-brand))] bg-[color-mix(in_srgb,var(--color-bg-secondary)_55%,transparent)] px-4 py-2 font-[family-name:var(--font-heading)] text-[0.62rem] font-bold uppercase tracking-[0.12em] text-[color-mix(in_srgb,var(--color-text-primary)_90%,#5eead4)] shadow-[0_4px_20px_rgba(0,0,0,0.25)] transition hover:border-[var(--color-brand-glow)] hover:text-[var(--color-brand-glow)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)]"
+                    >
+                      <i class="fa-solid fa-award text-[0.78rem]" aria-hidden="true"></i>
+                      Preview sertifikat
+                    </button>
+                    <button
+                      type="button"
+                      id="br-match1-preview-open"
+                      class="inline-flex min-h-[2.75rem] shrink-0 cursor-pointer items-center justify-center gap-2 rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_35%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_55%,transparent)] px-4 py-2 font-[family-name:var(--font-heading)] text-[0.62rem] font-bold uppercase tracking-[0.12em] text-[var(--color-text-primary)] shadow-[0_4px_20px_rgba(0,0,0,0.25)] transition hover:border-[var(--color-brand-glow)] hover:text-[var(--color-brand-glow)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)]"
+                    >
+                      <i class="fa-solid fa-image text-[0.78rem]" aria-hidden="true"></i>
+                      Preview poster
+                    </button>
+                  </div>
+                </div>
+                <div
+                  class="br-m1-roster-scroll min-w-0 max-w-full overflow-x-auto rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] bg-[color-mix(in_srgb,black_25%,transparent)] shadow-[inset_0_0_0_1px_color-mix(in_srgb,white_4%,transparent)] [-webkit-overflow-scrolling:touch] [overscroll-behavior-x:contain]"
+                >
+                  <table
+                    class="w-full min-w-[30rem] border-collapse text-left text-[0.72rem] sm:min-w-[44rem] sm:text-[0.78rem] lg:min-w-[56rem]"
+                    id="br-match1-roster-table"
+                  >
+                    <thead>
+                      <tr
+                        class="border-b border-[color-mix(in_srgb,var(--color-brand)_22%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_65%,transparent)] text-[var(--color-text-secondary)]"
+                      >
+                        <th
+                          class="sticky top-0 z-[1] px-2 py-2.5 text-center align-middle font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.14em] text-[var(--color-brand-glow)] sm:px-3"
+                          rowspan="2"
+                          scope="col"
+                        >
+                          No
+                        </th>
+                        <th
+                          class="sticky top-0 z-[1] min-w-[9rem] px-2 py-2.5 align-middle text-left font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.14em] text-[var(--color-brand-glow)] sm:px-3"
+                          rowspan="2"
+                          scope="col"
+                        >
+                          Nama team
+                        </th>
+                        <th
+                          class="sticky top-0 z-[1] border-x border-[color-mix(in_srgb,var(--color-brand)_15%,transparent)] px-2 py-2 text-center align-middle font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.14em] text-[#7ff5e4] sm:px-3"
+                          colspan="2"
+                          scope="colgroup"
+                        >
+                          Match 6
+                        </th>
+                        <th
+                          class="sticky top-0 z-[1] px-2 py-2.5 text-center align-middle font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.14em] text-[var(--color-brand-glow)] sm:px-3"
+                          rowspan="2"
+                          scope="col"
+                        >
+                          Total kill
+                        </th>
+                        <th
+                          class="sticky top-0 z-[1] px-2 py-2.5 text-center align-middle font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.14em] text-[var(--color-brand-glow)] sm:px-3"
+                          rowspan="2"
+                          scope="col"
+                        >
+                          Total point
+                        </th>
+                      </tr>
+                      <tr class="border-b border-[color-mix(in_srgb,var(--color-brand)_22%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_55%,transparent)] text-[var(--color-text-secondary)]">
+                        <th
+                          class="sticky top-0 z-[1] min-w-[5.25rem] w-[5.75rem] border-l border-[color-mix(in_srgb,var(--color-brand)_15%,transparent)] px-1.5 py-2 text-center align-middle font-[family-name:var(--font-heading)] text-[0.5rem] font-bold uppercase tracking-[0.1em] text-[var(--color-text-secondary)] sm:min-w-[9rem] sm:w-[10rem] sm:px-3 sm:text-[0.55rem] sm:tracking-[0.12em] lg:min-w-[10.5rem] lg:w-[11rem] lg:px-3.5"
+                          scope="col"
+                        >
+                          Rank
+                        </th>
+                        <th
+                          class="sticky top-0 z-[1] min-w-[5.25rem] w-[5.75rem] border-r border-[color-mix(in_srgb,var(--color-brand)_15%,transparent)] px-1.5 py-2 text-center align-middle font-[family-name:var(--font-heading)] text-[0.5rem] font-bold uppercase tracking-[0.1em] text-[var(--color-text-secondary)] sm:min-w-[9rem] sm:w-[10rem] sm:px-3 sm:text-[0.55rem] sm:tracking-[0.12em] lg:min-w-[10.5rem] lg:w-[11rem] lg:px-3.5"
+                          scope="col"
+                        >
+                          Kill
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody id="br-match1-teams-tbody" class="divide-y divide-[color-mix(in_srgb,var(--color-brand)_10%,transparent)]"></tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div
+                class="flex min-w-0 max-w-full flex-col gap-4 border-t border-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] pt-6 sm:flex-row sm:items-center sm:justify-between"
+              >
+                <p class="m-0 min-w-0 max-w-md text-[0.72rem] leading-relaxed text-[color-mix(in_srgb,var(--color-text-secondary)_88%,transparent)]">
+                  <span class="font-[family-name:var(--font-heading)] font-semibold uppercase tracking-[0.12em] text-[var(--color-brand-glow)]">Tip</span>
+                  — perubahan tersimpan otomatis ke perangkat ini (setelah Anda berhenti mengetik sebentar). Preview poster ikut memperbarui saat modal preview terbuka. Saat menutup atau memuat ulang tab, penyimpanan terakhir di lokal dipakai lagi saat halaman dibuka.
+                </p>
+                <div class="flex flex-shrink-0 flex-wrap gap-3 sm:justify-end">
+                  <button
+                    type="button"
+                    id="br-match1-meta-reset"
+                    class="inline-flex min-h-[2.85rem] min-w-[7.5rem] cursor-pointer items-center justify-center gap-2 rounded-xl border border-[color-mix(in_srgb,#f87171_38%,transparent)] bg-[color-mix(in_srgb,#450a0a_42%,transparent)] px-5 py-2.5 font-[family-name:var(--font-heading)] text-[0.62rem] font-bold uppercase tracking-[0.14em] text-[#fecaca] shadow-[0_6px_24px_rgba(0,0,0,0.35)] transition hover:-translate-y-0.5 hover:border-[#f87171] hover:bg-[color-mix(in_srgb,#7f1d1d_48%,transparent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f87171] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+                  >
+                    <i class="fa-solid fa-rotate-left text-[0.78rem]" aria-hidden="true"></i>
+                    Reset
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <dialog
+        id="br-match1-poster-dialog"
+        class="br-m1-poster-dialog max-h-[92dvh] overflow-hidden rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_32%,transparent)] bg-[color-mix(in_srgb,#080808_94%,var(--color-bg-secondary))] p-0 text-[var(--color-text-primary)] shadow-[0_32px_100px_rgba(0,0,0,0.78),0_0_1px_color-mix(in_srgb,var(--color-brand-glow)_22%,transparent)_inset] backdrop:bg-black/70 [color-scheme:dark]"
+        aria-labelledby="br-match1-poster-dialog-title"
+      >
+        <div
+          class="flex flex-wrap items-center justify-between gap-3 border-b border-[color-mix(in_srgb,var(--color-brand)_22%,transparent)] bg-[linear-gradient(105deg,color-mix(in_srgb,var(--color-brand)_12%,transparent)_0%,transparent_55%)] px-3 py-3 sm:px-5"
+        >
+          <h2
+            id="br-match1-poster-dialog-title"
+            class="m-0 min-w-0 flex-1 font-[family-name:var(--font-heading)] text-[0.72rem] font-bold uppercase tracking-[0.16em] text-[color-mix(in_srgb,var(--color-text-primary)_92%,var(--color-brand-glow))] sm:text-[0.78rem]"
+          >
+            Preview poster
+          </h2>
+          <div class="flex shrink-0 flex-wrap items-center justify-end gap-2">
+            <button
+              type="button"
+              id="br-match1-poster-download"
+              class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_55%,var(--color-brand-glow))] bg-gradient-to-br from-[var(--color-brand)] to-[var(--color-brand-glow)] px-3 py-2 font-[family-name:var(--font-heading)] text-[0.56rem] font-bold uppercase tracking-[0.12em] text-[var(--color-bg-primary)] shadow-[0_8px_28px_color-mix(in_srgb,var(--color-brand)_42%,transparent)] transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)]"
+            >
+              <i class="fa-solid fa-download text-[0.72rem]" aria-hidden="true"></i>
+              Unduh PNG
+            </button>
+            <button
+              type="button"
+              id="br-match1-poster-close"
+              class="inline-flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_28%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_55%,transparent)] text-[var(--color-text-secondary)] transition hover:border-[var(--color-brand-glow)] hover:text-[var(--color-text-primary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)]"
+              aria-label="Tutup preview"
+            >
+              <i class="fa-solid fa-xmark text-[0.85rem]" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+        <div
+          class="br-m1-poster-dialog__body max-h-[calc(92dvh-4.5rem)] overflow-y-auto overflow-x-auto px-3 py-4 sm:px-5 sm:py-5"
+        >
+          <div class="flex min-w-0 w-full justify-center pb-2">
+            <div
+              id="br-match1-poster-capture"
+              class="br-m1-poster-capture relative min-w-0 flex-col overflow-hidden"
+              dir="ltr"
+              style="height: auto; min-height: 0"
+            >
+              <!-- isi poster diisi oleh skrip — tinggi mengikuti konten; PNG = tampilan ini -->
+            </div>
+          </div>
+        </div>
+      </dialog>
+
+      <dialog
+        id="br-match1-cert-dialog"
+        class="br-m1-cert-dialog max-h-[92dvh] overflow-hidden rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_32%,transparent)] bg-[color-mix(in_srgb,#080808_94%,var(--color-bg-secondary))] p-0 text-[var(--color-text-primary)] shadow-[0_32px_100px_rgba(0,0,0,0.78),0_0_1px_color-mix(in_srgb,var(--color-brand-glow)_22%,transparent)_inset] backdrop:bg-black/70 [color-scheme:dark]"
+        aria-labelledby="br-match1-cert-dialog-title"
+      >
+        <div
+          class="flex flex-wrap items-center justify-between gap-3 border-b border-[color-mix(in_srgb,var(--color-brand)_22%,transparent)] bg-[linear-gradient(105deg,color-mix(in_srgb,#5eead4_10%,transparent)_0%,color-mix(in_srgb,var(--color-brand)_10%,transparent)_45%,transparent_70%)] px-3 py-3 sm:px-5"
+        >
+          <h2
+            id="br-match1-cert-dialog-title"
+            class="m-0 min-w-0 flex-1 font-[family-name:var(--font-heading)] text-[0.72rem] font-bold uppercase tracking-[0.16em] text-[color-mix(in_srgb,var(--color-text-primary)_88%,#5eead4)] sm:text-[0.78rem]"
+          >
+            Preview sertifikat
+          </h2>
+          <button
+            type="button"
+            id="br-match1-cert-close"
+            class="inline-flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_28%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_55%,transparent)] text-[var(--color-text-secondary)] transition hover:border-[var(--color-brand-glow)] hover:text-[var(--color-text-primary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)]"
+            aria-label="Tutup preview sertifikat"
+          >
+            <i class="fa-solid fa-xmark text-[0.85rem]" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div
+          class="br-m1-cert-dialog__body max-h-[calc(92dvh-4.5rem)] overflow-y-auto overflow-x-hidden px-3 py-4 sm:px-5 sm:py-5"
+        >
+          <p
+            class="mx-auto mb-5 max-w-[40rem] text-center text-[0.72rem] leading-relaxed text-[color-mix(in_srgb,var(--color-text-secondary)_90%,var(--color-brand-glow))]"
+          >
+            Empat sertifikat untuk
+            <span class="font-[family-name:var(--font-heading)] font-semibold text-[var(--color-text-primary)]">Juara 1–3</span>
+            (berdasarkan rank Match 6) dan
+            <span class="font-[family-name:var(--font-heading)] font-semibold text-[var(--color-text-primary)]">MVP Team</span>
+            (total kill tertinggi). Perbarui roster lalu buka ulang preview jika ada perubahan.
+          </p>
+          <div id="br-match1-cert-capture" class="br-m1-cert-capture"></div>
+        </div>
+      </dialog>
+
+      <dialog
+        id="br-match1-notice-dialog"
+        class="br-m1-notice-dialog"
+        aria-labelledby="br-match1-notice-title"
+        aria-describedby="br-match1-notice-msg"
+        aria-modal="true"
+      >
+        <div class="br-m1-notice-dialog__surface">
+          <div class="br-m1-notice-dialog__mesh" aria-hidden="true"></div>
+          <div class="br-m1-notice-dialog__rule" aria-hidden="true"></div>
+          <div class="br-m1-notice-dialog__glow" aria-hidden="true"></div>
+          <span class="br-m1-notice-dialog__icon" aria-hidden="true"
+            ><i class="fa-solid fa-triangle-exclamation br-m1-notice-dialog__icon-fa"></i
+          ></span>
+          <h2 id="br-match1-notice-title" class="br-m1-notice-dialog__title">Peringatan</h2>
+          <p id="br-match1-notice-msg" class="br-m1-notice-dialog__msg"></p>
+          <button type="button" id="br-match1-notice-ok" class="br-m1-notice-dialog__ok">Mengerti</button>
+        </div>
+      </dialog>
+
+      <dialog
+        id="br-match1-reset-confirm-dialog"
+        class="br-m1-reset-confirm-dialog"
+        aria-labelledby="br-match1-reset-confirm-title"
+        aria-describedby="br-match1-reset-confirm-msg"
+        aria-modal="true"
+      >
+        <div class="br-m1-notice-dialog__surface">
+          <div class="br-m1-notice-dialog__mesh" aria-hidden="true"></div>
+          <div class="br-m1-notice-dialog__rule" aria-hidden="true"></div>
+          <div class="br-m1-notice-dialog__glow" aria-hidden="true"></div>
+          <span class="br-m1-notice-dialog__icon br-m1-reset-confirm-dialog__icon" aria-hidden="true"
+            ><i class="fa-solid fa-rotate-left br-m1-notice-dialog__icon-fa"></i
+          ></span>
+          <h2 id="br-match1-reset-confirm-title" class="br-m1-notice-dialog__title">Reset data roster?</h2>
+          <p id="br-match1-reset-confirm-msg" class="br-m1-notice-dialog__msg br-m1-reset-confirm-dialog__msg">
+            Semua data Match 6 yang tersimpan di perangkat ini akan dihapus, form dikosongkan, dan tanggal serta jam
+            disetel ke sekarang. Tindakan ini tidak bisa dibatalkan.
+          </p>
+          <div class="br-m1-reset-confirm__actions">
+            <button type="button" id="br-match1-reset-confirm-cancel" class="br-m1-reset-confirm__btn br-m1-reset-confirm__btn--ghost">
+              Batal
+            </button>
+            <button type="button" id="br-match1-reset-confirm-apply" class="br-m1-reset-confirm__btn br-m1-reset-confirm__btn--danger">
+              Ya, reset
+            </button>
+          </div>
+        </div>
+      </dialog>
+    </main>
+
+    <dialog
+      id="hero-cta-gate"
+      class="hero-cta-gate rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_38%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_96%,#050505)] p-5 text-[var(--color-text-primary)] shadow-[0_28px_90px_rgba(0,0,0,0.72)] [color-scheme:dark]"
+      aria-labelledby="hero-cta-gate-title"
+      aria-describedby="hero-cta-gate-desc"
+    >
+      <h2 id="hero-cta-gate-title" class="m-0 mb-2 font-[family-name:var(--font-heading)] text-[0.95rem] font-bold uppercase tracking-[0.12em] text-[var(--color-text-primary)]">
+        Tinjau iklan
+      </h2>
+      <p id="hero-cta-gate-desc" class="m-0 mb-3 text-[0.82rem] leading-relaxed text-[var(--color-text-secondary)]"></p>
+      <p
+        id="hero-cta-gate-countdown"
+        class="m-0 mb-3 min-h-[2.75rem] rounded-lg border border-[color-mix(in_srgb,var(--color-brand)_18%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] px-3 py-2 text-[0.72rem] leading-snug text-[color-mix(in_srgb,var(--color-text-secondary)_92%,var(--color-brand-glow))]"
+        role="status"
+        aria-live="polite"
+      ></p>
+      <div
+        id="hero-modal-ad-slot"
+        class="mb-4 flex min-h-[min(18rem,45vh)] w-full items-center justify-center overflow-hidden rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_22%,transparent)] bg-[color-mix(in_srgb,black_40%,transparent)]"
+        data-ad-loaded=""
+      ></div>
+      <label class="mb-5 flex cursor-pointer items-start gap-2.5 text-left text-[0.78rem] leading-snug text-[var(--color-text-secondary)]">
+        <input
+          id="hero-cta-gate-ack"
+          type="checkbox"
+          class="mt-0.5 size-[1.05rem] shrink-0 cursor-pointer rounded border-[color-mix(in_srgb,var(--color-brand)_45%,transparent)] bg-[var(--color-bg-primary)] accent-[var(--color-brand-glow)]"
+        />
+        <span>Saya sudah meninjau atau mengetuk area iklan di atas, lalu ingin melanjutkan.</span>
+      </label>
+      <div class="flex flex-wrap items-center justify-end gap-2 border-t border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] pt-4">
+        <button
+          type="button"
+          id="hero-cta-gate-cancel"
+          class="inline-flex cursor-pointer items-center justify-center rounded-[0.55rem] border border-[color-mix(in_srgb,var(--color-brand)_35%,transparent)] bg-transparent px-[1.1rem] py-[0.65rem] font-[family-name:var(--font-heading)] text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[var(--color-text-secondary)] transition hover:border-[var(--color-brand-glow)] hover:text-[var(--color-text-primary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)]"
+        >
+          Batal
+        </button>
+        <button
+          type="button"
+          id="hero-cta-gate-go"
+          disabled
+          class="inline-flex cursor-pointer items-center justify-center rounded-[0.55rem] border border-[color-mix(in_srgb,var(--color-brand-glow)_50%,var(--color-brand))] bg-gradient-to-br from-[var(--color-brand)] to-[var(--color-brand-glow)] px-[1.25rem] py-[0.65rem] font-[family-name:var(--font-heading)] text-[0.62rem] font-bold uppercase tracking-[0.14em] text-[var(--color-bg-primary)] shadow-[0_6px_24px_color-mix(in_srgb,var(--color-brand)_35%,transparent)] transition enabled:hover:-translate-y-0.5 enabled:hover:shadow-[0_10px_32px_color-mix(in_srgb,var(--color-brand-glow)_30%,transparent)] disabled:cursor-not-allowed disabled:opacity-45 disabled:shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)] motion-reduce:transition-none enabled:motion-reduce:hover:translate-y-0"
+        >
+          Lanjutkan
+        </button>
+      </div>
+    </dialog>
+
+    <footer
+      id="site-footer"
+      class="relative isolate overflow-hidden border-t border-[color-mix(in_srgb,var(--color-brand)_18%,transparent)] bg-gradient-to-b from-[#080808] via-[#0f0f0f] to-[#0a0a0a] pb-[calc(4.25rem+env(safe-area-inset-bottom,0px))]"
+    >
+      <div
+        class="pointer-events-none absolute inset-x-0 top-0 z-[1] h-0.5 bg-gradient-to-r from-transparent via-[var(--color-brand-glow)] to-transparent opacity-95"
+        aria-hidden="true"
+      ></div>
+      <div class="ft-footer-noise absolute inset-0" aria-hidden="true"></div>
+      <div
+        class="relative z-[1] mx-auto grid max-w-[72rem] grid-cols-1 gap-8 px-6 py-[clamp(2.5rem,6vw,3.5rem)] pb-[clamp(2rem,5vw,2.75rem)] md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)_minmax(0,1fr)] md:gap-x-10 md:gap-y-8"
+      >
+        <div class="flex items-center gap-4" data-aos="fade-up">
+          <a
+            href="../../index.html#beranda"
+            class="grid size-14 shrink-0 place-items-center rounded-[0.85rem] border border-[color-mix(in_srgb,var(--color-brand)_32%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_80%,transparent)] p-1 shadow-[0_0_28px_color-mix(in_srgb,var(--color-brand)_15%,transparent)] transition hover:-translate-y-0.5 hover:border-[color-mix(in_srgb,var(--color-brand-glow)_45%,transparent)] hover:shadow-[0_0_36px_color-mix(in_srgb,var(--color-brand)_22%,transparent)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+            aria-label="FT Epep Squad — Beranda"
+          >
+            <img class="block size-full object-contain" src="../../img/element/Logo.png" width="72" height="72" alt="" decoding="async" />
+          </a>
+          <div>
+            <span class="mb-1.5 block font-[family-name:var(--font-heading)] text-[0.95rem] font-bold uppercase tracking-[0.14em] text-[var(--color-text-primary)]">FT Epep Squad</span>
+            <p class="m-0 max-w-[22rem] text-[0.78rem] leading-snug text-[var(--color-text-secondary)]">Fast tournament Free Fire · EO-first · 12 &amp; 15 tim</p>
+          </div>
+        </div>
+
+        <nav aria-label="Footer" data-aos="fade-up" data-aos-delay="60">
+          <span class="mb-[0.85rem] block font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.26em] text-[var(--color-brand-glow)]">Navigasi</span>
+          <ul class="m-0 flex list-none flex-col gap-[0.45rem] p-0">
+            <li>
+              <a
+                data-inpage-link
+                href="../../index.html#beranda"
+                class="group inline-flex w-fit items-center gap-2 text-[0.82rem] text-[var(--color-text-secondary)] no-underline transition before:inline-block before:h-px before:w-0 before:bg-[var(--color-brand-glow)] before:transition-[width] before:duration-[220ms] before:content-[''] hover:translate-x-[3px] hover:text-[var(--color-text-primary)] hover:before:w-3 motion-reduce:transition-none motion-reduce:hover:translate-x-0"
+                >Beranda</a>
+            </li>
+            <li>
+              <a
+                data-inpage-link
+                href="../../index.html#fitur"
+                class="group inline-flex w-fit items-center gap-2 text-[0.82rem] text-[var(--color-text-secondary)] no-underline transition before:inline-block before:h-px before:w-0 before:bg-[var(--color-brand-glow)] before:transition-[width] before:duration-[220ms] before:content-[''] hover:translate-x-[3px] hover:text-[var(--color-text-primary)] hover:before:w-3 motion-reduce:transition-none motion-reduce:hover:translate-x-0"
+                >Fitur</a>
+            </li>
+            <li>
+              <a
+                data-inpage-link
+                href="../../index.html#cara-penggunaan"
+                class="group inline-flex w-fit items-center gap-2 text-[0.82rem] text-[var(--color-text-secondary)] no-underline transition before:inline-block before:h-px before:w-0 before:bg-[var(--color-brand-glow)] before:transition-[width] before:duration-[220ms] before:content-[''] hover:translate-x-[3px] hover:text-[var(--color-text-primary)] hover:before:w-3 motion-reduce:transition-none motion-reduce:hover:translate-x-0"
+                >Cara penggunaan</a>
+            </li>
+            <li>
+              <a
+                data-inpage-link
+                href="../../index.html#mengapa-kami"
+                class="group inline-flex w-fit items-center gap-2 text-[0.82rem] text-[var(--color-text-secondary)] no-underline transition before:inline-block before:h-px before:w-0 before:bg-[var(--color-brand-glow)] before:transition-[width] before:duration-[220ms] before:content-[''] hover:translate-x-[3px] hover:text-[var(--color-text-primary)] hover:before:w-3 motion-reduce:transition-none motion-reduce:hover:translate-x-0"
+                >Mengapa kami</a>
+            </li>
+            <li>
+              <a
+                data-inpage-link
+                href="../../index.html#faq"
+                class="group inline-flex w-fit items-center gap-2 text-[0.82rem] text-[var(--color-text-secondary)] no-underline transition before:inline-block before:h-px before:w-0 before:bg-[var(--color-brand-glow)] before:transition-[width] before:duration-[220ms] before:content-[''] hover:translate-x-[3px] hover:text-[var(--color-text-primary)] hover:before:w-3 motion-reduce:transition-none motion-reduce:hover:translate-x-0"
+                >FAQ</a>
+            </li>
+            <li>
+              <a
+                data-inpage-link
+                href="../../index.html#kontak"
+                class="group inline-flex w-fit items-center gap-2 text-[0.82rem] text-[var(--color-text-secondary)] no-underline transition before:inline-block before:h-px before:w-0 before:bg-[var(--color-brand-glow)] before:transition-[width] before:duration-[220ms] before:content-[''] hover:translate-x-[3px] hover:text-[var(--color-text-primary)] hover:before:w-3 motion-reduce:transition-none motion-reduce:hover:translate-x-0"
+                >Kontak</a>
+            </li>
+            <li>
+              <a
+                class="group inline-flex w-fit items-center gap-2 text-[0.82rem] text-[var(--color-text-secondary)] no-underline transition before:inline-block before:h-px before:w-0 before:bg-[var(--color-brand-glow)] before:transition-[width] before:duration-[220ms] before:content-[''] hover:translate-x-[3px] hover:text-[var(--color-text-primary)] hover:before:w-3 motion-reduce:transition-none motion-reduce:hover:translate-x-0"
+                href="https://performanceingredientgoblet.com/angtq6ey?key=40a62c67960666e3277ffb4d5b2ebbbd"
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                >Partner</a>
+            </li>
+          </ul>
+        </nav>
+
+        <div data-aos="fade-up" data-aos-delay="120">
+          <span class="mb-[0.85rem] block font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.26em] text-[var(--color-brand-glow)]">Tetap terhubung</span>
+          <p class="mb-4 max-w-[20rem] text-[0.8rem] leading-relaxed text-[var(--color-text-secondary)]">Channel, grup, komunitas, dan lokasi tim — semuanya di satu alur.</p>
+          <div class="flex flex-wrap gap-[0.55rem]">
+            <a
+              data-inpage-link
+              href="../../index.html#kontak"
+              title="WhatsApp &amp; kontak"
+              class="inline-flex items-center gap-[0.45rem] rounded-full border border-[color-mix(in_srgb,var(--color-brand)_28%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_75%,transparent)] px-[0.85rem] py-2 font-[family-name:var(--font-heading)] text-[0.55rem] font-bold uppercase tracking-[0.12em] text-[var(--color-text-primary)] no-underline transition hover:-translate-y-0.5 hover:border-[color-mix(in_srgb,var(--color-brand-glow)_42%,transparent)] hover:text-[var(--color-brand-glow)] hover:shadow-[0_0_24px_color-mix(in_srgb,var(--color-brand)_12%,transparent)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+            >
+              <i class="fa-brands fa-whatsapp text-base text-[#25d366]" aria-hidden="true"></i>
+              <span>Kontak</span>
+            </a>
+            <a
+              href="https://maps.app.goo.gl/5txpgSWFL8FCJdo27"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Lokasi di Google Maps"
+              class="inline-flex items-center gap-[0.45rem] rounded-full border border-[color-mix(in_srgb,var(--color-brand)_28%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_75%,transparent)] px-[0.85rem] py-2 font-[family-name:var(--font-heading)] text-[0.55rem] font-bold uppercase tracking-[0.12em] text-[var(--color-text-primary)] no-underline transition hover:-translate-y-0.5 hover:border-[color-mix(in_srgb,var(--color-brand-glow)_42%,transparent)] hover:text-[var(--color-brand-glow)] hover:shadow-[0_0_24px_color-mix(in_srgb,var(--color-brand)_12%,transparent)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+            >
+              <i class="fa-solid fa-location-dot text-[0.85rem] text-[var(--color-brand-glow)]" aria-hidden="true"></i>
+              <span>Peta</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="relative z-[1] flex flex-col items-center justify-between gap-1 border-t border-white/[0.06] px-6 py-[1.15rem] text-center sm:flex-row sm:text-left"
+      >
+        <p class="m-0 text-[0.68rem] tracking-wide text-[color-mix(in_srgb,var(--color-text-secondary)_92%,transparent)]">&copy; 2026 FT Epep Squad. Hak cipta dilindungi.</p>
+        <p class="m-0 font-[family-name:var(--font-heading)] text-[0.68rem] uppercase tracking-[0.14em] text-[color-mix(in_srgb,var(--color-brand)_55%,var(--color-text-secondary))]">Squad · Class squad · Hitung poin otomatis</p>
+      </div>
+    </footer>
+
+    <div id="br-match1-toast-root" class="br-m1-toast-root" aria-live="polite"></div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.13/dist/html-to-image.min.js"></script>
+    <script src="../../js/index.js"></script>
+    <script src="../../js/br-match-6-meta.js"></script>
+    <script src="../../js/siderbar.js"></script>
+  </body>
+</html>

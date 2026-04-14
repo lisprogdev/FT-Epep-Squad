@@ -1,7 +1,7 @@
 (function () {
     "use strict";
   
-    var MATCH_NO = "2";
+    var MATCH_NO = "5";
     var MATCH_LABEL_SHORT = "Match " + MATCH_NO;
     var MATCH_LABEL_BR = MATCH_LABEL_SHORT + " — Battle Royale (BR)";
     var MATCH_TAG_BR = MATCH_LABEL_SHORT + " · BR";
