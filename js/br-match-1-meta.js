@@ -563,6 +563,23 @@
     );
   }
 
+  function certThanksTextId(tournamentRaw, seasonRaw, playDateIso) {
+    var tn = String(tournamentRaw || "").trim() || "turnamen ini";
+    var ss = String(seasonRaw || "").trim();
+    var dateTxt = formatDateLongId(playDateIso);
+    var seasonTxt = ss ? " Season " + ss : "";
+    return (
+      "Terima kasih atas dedikasi, sportivitas, dan komitmen luar biasa yang telah Anda tunjukkan selama rangkaian kompetisi " +
+      '"' +
+      tn +
+      '"' +
+      seasonTxt +
+      " yang diselenggarakan pada " +
+      dateTxt +
+      ". Semoga pencapaian ini menjadi motivasi untuk terus berkembang, menjaga konsistensi performa tim, serta meraih hasil yang lebih tinggi pada pertandingan berikutnya."
+    );
+  }
+
   /** Nomor seri unik deterministik (unduh PNG / arsip). */
   function buildCertificateSerial(kindKey, meta, slotNum) {
     var dPart = "00000000";
@@ -675,7 +692,7 @@
       '<p class="br-m1-cert__as br-m1-cert__as--dim">Sebagai</p>' +
       '<p class="br-m1-cert__position br-m1-cert__position--dim">' +
       posEsc +
-      "</p></div>" +
+      '</p><p class="br-m1-cert__thanks br-m1-cert__thanks--dim">Terima kasih atas partisipasi pada turnamen ini. Nama turnamen, season, dan tanggal akan tampil setelah data dilengkapi.</p></div>' +
       '<p class="br-m1-cert__warn">' +
       escapeHtml(hintLine) +
       '</p><p class="br-m1-cert__subhint">Isi roster: rank unik per slot · MVP dari total kill.</p>' +
@@ -706,7 +723,7 @@
         : "—";
     var participantName = opts.participantName || "—";
     var positionTitle = opts.positionTitle || "—";
-    var dateLong = formatDateLongId(opts.playDateIso);
+    var thanksEsc = escapeHtml(certThanksTextId(tournamentName, opts.season, opts.playDateIso));
     var sessRaw = opts.sessionNumber != null && String(opts.sessionNumber).trim() !== "" ? String(opts.sessionNumber).trim() : "";
     var sessionDisp = sessRaw !== "" ? escapeHtml(sessRaw) : "—";
     var timeDisp = formatTime(opts.playTime);
@@ -749,6 +766,8 @@
       '<p class="br-m1-cert__as">Sebagai</p>' +
       '<p class="br-m1-cert__position">' +
       escapeHtml(positionTitle) +
+      '</p><p class="br-m1-cert__thanks">' +
+      thanksEsc +
       "</p></div>" +
       '<footer class="br-m1-cert__sign">' +
       '<div class="br-m1-cert__serial">' +
@@ -799,6 +818,7 @@
             iconClass: iconClass,
             tierLabel: tierText,
             tournamentName: eventRaw,
+            season: meta.season,
             participantName: nm,
             positionTitle: certPositionTitleId(kindKey, rankNum),
             playDateIso: meta.playDate,
@@ -836,6 +856,7 @@
             iconClass: "fa-solid fa-crosshairs",
             tierLabel: "MVP",
             tournamentName: eventRaw,
+            season: meta.season,
             participantName: nm,
             positionTitle: certPositionTitleId("mvp", 0),
             playDateIso: meta.playDate,

@@ -1335,6 +1335,8 @@
 .br-m1-cert-viewport {
   position: relative;
   z-index: 1;
+  display: flex;
+  align-items: center;
   container-type: size;
   container-name: brm1cert;
   width: 100%;
@@ -1361,7 +1363,8 @@
   box-sizing: border-box;
   display: flex;
   width: 100%;
-  height: 100%;
+  height: 80%;
+  margin-block: auto;
   min-width: 0;
   min-height: 0;
   flex-direction: row;
@@ -1742,6 +1745,7 @@
   text-align: center;
   text-transform: uppercase;
   color: color-mix(in srgb, var(--color-text-secondary) 90%, #fef3c7);
+  transform: translateY(0.42em);
 }
 
 .br-m1-cert__as--dim {
@@ -1775,10 +1779,28 @@
     0 8px 24px rgba(0, 0, 0, 0.45),
     0 0 26px color-mix(in srgb, var(--cert-gold) 22%, transparent);
   word-break: break-word;
+  transform: translateY(0.62em);
 }
 
 .br-m1-cert__position--dim {
   opacity: 0.48;
+}
+
+.br-m1-cert__thanks {
+  margin: 5.2em auto 0.15em;
+  width: min(100%, 74em);
+  max-width: 100%;
+  padding: 0 0.2em;
+  font-size: clamp(0.3em, min(2.25cqw, 1.65cqh), 0.48em);
+  font-weight: 600;
+  line-height: 1.32;
+  text-align: center;
+  color: color-mix(in srgb, var(--color-text-primary) 88%, #cbd5e1);
+  text-wrap: balance;
+}
+
+.br-m1-cert__thanks--dim {
+  opacity: 0.5;
 }
 
 .br-m1-cert__presented {
@@ -2082,6 +2104,7 @@
     0 8px 24px rgba(0, 0, 0, 0.45),
     0 0 26px color-mix(in srgb, var(--cert-mint) 22%, transparent);
 }
+
 
 @supports not (-webkit-background-clip: text) {
   .br-m1-cert--mvp .br-m1-cert__aside-tier {
