@@ -6,9 +6,12 @@
     <meta name="theme-color" content="#0f0f0f" />
     <meta
       name="description"
-      content="Tools FT Epep Squad — alat bantu EO fast tournament Free Fire."
+      content="Tools FT Epep Squad — Alat bantu EO Free Fire untuk hitung klasemen, poin otomatis, dan bracket turnamen FF fast tournament."
     />
-    <title>Tools — FT Epep Squad</title>
+    <meta name="keywords" content="tools epep, kalkulator poin ff, klasemen otomatis ff, poin otomatis fast tournament ff, generator bracket ff 12 tim, pembagian grup ff" />
+    <meta property="og:title" content="Tools — Kalkulator Poin & Klasemen Otomatis FF | FT Epep Squad" />
+    <meta property="og:description" content="Kumpulan tools untuk Event Organizer Free Fire: hitung poin otomatis, klasemen fast tournament, bracket 12 & 15 tim." />
+    <title>Tools — Kalkulator Poin & Klasemen Otomatis FF | FT Epep Squad</title>
 
     <link rel="icon" href="../favicon.ico" sizes="any" />
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
@@ -29,6 +32,21 @@
     />
     <link rel="stylesheet" href="../css/siderbar.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      #tools-howto-dialog {
+        opacity: 0;
+        transform: translateY(14px) scale(0.985);
+        transition: opacity 220ms ease, transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      #tools-howto-dialog[open] {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      #tools-howto-dialog::backdrop {
+        background: radial-gradient(circle at 18% 12%, rgba(94, 234, 212, 0.16), rgba(5, 5, 5, 0.88) 52%, rgba(0, 0, 0, 0.94) 100%);
+        backdrop-filter: blur(6px);
+      }
+    </style>
   </head>
   <body class="min-h-screen antialiased">
     <div
@@ -345,13 +363,15 @@
                   data-hero-cta-gate-desc="Untuk membuka halaman Battle Royale, tinjau iklan di jendela ini terlebih dahulu."
                   aria-haspopup="dialog"
                   >Buka halaman match</a>
-                <a
-                  class="inline-flex items-center justify-center gap-[0.45rem] rounded-[0.55rem] border border-[color-mix(in_srgb,var(--color-brand)_38%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_50%,transparent)] px-[1.15rem] py-[0.72rem] font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.12em] text-[var(--color-text-primary)] no-underline transition hover:-translate-y-0.5 hover:border-[var(--color-brand-glow)] hover:text-[var(--color-brand-glow)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
-                  href="../index.html#fitur"
-                  data-hero-cta-gate-url="../index.html#fitur"
-                  data-hero-cta-gate-desc="Untuk membuka ringkasan Fitur di beranda, tinjau iklan di jendela ini terlebih dahulu."
+                <button
+                  type="button"
+                  id="tools-howto-open"
+                  class="inline-flex items-center justify-center gap-[0.45rem] rounded-[0.55rem] border border-[color-mix(in_srgb,var(--color-brand)_38%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_50%,transparent)] px-[1.15rem] py-[0.72rem] font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.12em] text-[var(--color-text-primary)] transition hover:-translate-y-0.5 hover:border-[var(--color-brand-glow)] hover:text-[var(--color-brand-glow)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
                   aria-haspopup="dialog"
-                  >Lihat ringkasan fitur</a>
+                  aria-controls="tools-howto-dialog"
+                >
+                  Cara penggunaan
+                </button>
               </div>
             </article>
 
@@ -415,6 +435,68 @@
         </div>
       </section>
     </main>
+
+    <dialog
+      id="tools-howto-dialog"
+      class="m-auto max-h-[92dvh] w-[min(96vw,44rem)] overflow-hidden rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_38%,transparent)] bg-[linear-gradient(156deg,color-mix(in_srgb,var(--color-bg-secondary)_95%,#040404),color-mix(in_srgb,var(--color-bg-primary)_95%,#090909))] p-0 text-[var(--color-text-primary)] shadow-[0_30px_96px_rgba(0,0,0,0.75),0_0_56px_color-mix(in_srgb,var(--color-brand)_14%,transparent)] [color-scheme:dark]"
+      aria-labelledby="tools-howto-title"
+      aria-describedby="tools-howto-desc"
+    >
+      <div class="relative overflow-hidden border-b border-[color-mix(in_srgb,var(--color-brand)_16%,transparent)] px-4 py-3 sm:px-5">
+        <div class="pointer-events-none absolute -right-16 -top-12 h-36 w-36 rounded-full bg-[radial-gradient(circle,color-mix(in_srgb,var(--color-brand-glow)_30%,transparent),transparent_70%)]" aria-hidden="true"></div>
+        <div class="relative z-[1] mb-2 inline-flex items-center gap-2 rounded-full border border-[color-mix(in_srgb,var(--color-brand)_26%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_62%,transparent)] px-2.5 py-1">
+          <i class="fa-solid fa-bolt text-[0.58rem] text-[var(--color-brand-glow)]" aria-hidden="true"></i>
+          <span class="font-[family-name:var(--font-heading)] text-[0.52rem] font-bold uppercase tracking-[0.2em] text-[color-mix(in_srgb,var(--color-brand-glow)_85%,white)]">Quick setup</span>
+        </div>
+        <h2 id="tools-howto-title" class="relative z-[1] m-0 font-[family-name:var(--font-heading)] text-[0.92rem] font-bold uppercase tracking-[0.14em] text-[var(--color-text-primary)]">
+          Cara penggunaan Battle Royale
+        </h2>
+        <p id="tools-howto-desc" class="relative z-[1] m-0 mt-1 text-[0.8rem] leading-relaxed text-[var(--color-text-secondary)]">
+          Alur premium untuk mengelola Match 1 sampai Match 8 secara cepat, rapi, dan konsisten.
+        </p>
+        <div class="relative z-[1] mt-3 h-[0.28rem] overflow-hidden rounded-full bg-[color-mix(in_srgb,var(--color-brand)_18%,transparent)]">
+          <span class="block h-full w-full bg-[linear-gradient(90deg,var(--color-brand-glow),color-mix(in_srgb,#5eead4_70%,var(--color-brand)),var(--color-brand-glow))]"></span>
+        </div>
+      </div>
+      <div class="space-y-2.5 px-4 py-4 sm:px-5 sm:py-5">
+        <div class="grid grid-cols-[2.2rem_1fr] items-start gap-2.5 rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_18%,transparent)] bg-[linear-gradient(145deg,color-mix(in_srgb,var(--color-bg-primary)_58%,transparent),color-mix(in_srgb,var(--color-bg-secondary)_76%,transparent))] p-3">
+          <span class="grid size-[2rem] place-items-center rounded-lg border border-[color-mix(in_srgb,var(--color-brand)_32%,transparent)] bg-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] text-[0.74rem] font-bold text-[var(--color-brand-glow)]">01</span>
+          <p class="m-0 text-[0.78rem] leading-relaxed text-[var(--color-text-secondary)]">
+            <i class="fa-solid fa-flag-checkered mr-1 text-[0.72rem] text-[var(--color-brand-glow)]" aria-hidden="true"></i>Buka Match yang ingin diisi (M1 sampai M8), lalu lengkapi data turnamen dan roster tim.
+          </p>
+        </div>
+        <div class="grid grid-cols-[2.2rem_1fr] items-start gap-2.5 rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_18%,transparent)] bg-[linear-gradient(145deg,color-mix(in_srgb,var(--color-bg-primary)_58%,transparent),color-mix(in_srgb,var(--color-bg-secondary)_76%,transparent))] p-3">
+          <span class="grid size-[2rem] place-items-center rounded-lg border border-[color-mix(in_srgb,var(--color-brand)_32%,transparent)] bg-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] text-[0.74rem] font-bold text-[var(--color-brand-glow)]">02</span>
+          <p class="m-0 text-[0.78rem] leading-relaxed text-[var(--color-text-secondary)]">
+            <i class="fa-solid fa-table-list mr-1 text-[0.72rem] text-[var(--color-brand-glow)]" aria-hidden="true"></i>Input rank dan kill tiap match; total kill dan total point terhitung otomatis.
+          </p>
+        </div>
+        <div class="grid grid-cols-[2.2rem_1fr] items-start gap-2.5 rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_18%,transparent)] bg-[linear-gradient(145deg,color-mix(in_srgb,var(--color-bg-primary)_58%,transparent),color-mix(in_srgb,var(--color-bg-secondary)_76%,transparent))] p-3">
+          <span class="grid size-[2rem] place-items-center rounded-lg border border-[color-mix(in_srgb,var(--color-brand)_32%,transparent)] bg-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] text-[0.74rem] font-bold text-[var(--color-brand-glow)]">03</span>
+          <p class="m-0 text-[0.78rem] leading-relaxed text-[var(--color-text-secondary)]">
+            <i class="fa-solid fa-image mr-1 text-[0.72rem] text-[var(--color-brand-glow)]" aria-hidden="true"></i>Gunakan preview poster/sertifikat untuk cek hasil, lalu unduh PNG siap publikasi.
+          </p>
+        </div>
+        <div class="grid grid-cols-[2.2rem_1fr] items-start gap-2.5 rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_18%,transparent)] bg-[linear-gradient(145deg,color-mix(in_srgb,var(--color-bg-primary)_58%,transparent),color-mix(in_srgb,var(--color-bg-secondary)_76%,transparent))] p-3">
+          <span class="grid size-[2rem] place-items-center rounded-lg border border-[color-mix(in_srgb,var(--color-brand)_32%,transparent)] bg-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] text-[0.74rem] font-bold text-[var(--color-brand-glow)]">04</span>
+          <p class="m-0 text-[0.78rem] leading-relaxed text-[var(--color-text-secondary)]">
+            <i class="fa-solid fa-arrows-rotate mr-1 text-[0.72rem] text-[var(--color-brand-glow)]" aria-hidden="true"></i>Saat pindah match, lanjutkan input sesuai nomor match agar klasemen tetap sinkron.
+          </p>
+        </div>
+      </div>
+      <div class="flex flex-wrap items-center justify-between gap-2 border-t border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] px-4 py-3 sm:px-5">
+        <span class="text-[0.68rem] uppercase tracking-[0.14em] text-[color-mix(in_srgb,var(--color-text-secondary)_88%,var(--color-brand-glow))]">
+          FT Epep Squad · Ready to run
+        </span>
+        <button
+          type="button"
+          id="tools-howto-close"
+          class="inline-flex cursor-pointer items-center justify-center rounded-[0.55rem] border border-[color-mix(in_srgb,var(--color-brand-glow)_50%,var(--color-brand))] bg-gradient-to-br from-[var(--color-brand)] to-[var(--color-brand-glow)] px-[1.2rem] py-[0.62rem] font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.14em] text-[var(--color-bg-primary)] shadow-[0_6px_24px_color-mix(in_srgb,var(--color-brand)_35%,transparent)] transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)]"
+        >
+          Mengerti
+        </button>
+      </div>
+    </dialog>
 
     <dialog
       id="hero-cta-gate"
@@ -581,6 +663,25 @@
       </div>
     </footer>
 
+    <script>
+      (function () {
+        var openBtn = document.getElementById("tools-howto-open");
+        var closeBtn = document.getElementById("tools-howto-close");
+        var dlg = document.getElementById("tools-howto-dialog");
+        if (!openBtn || !closeBtn || !dlg || typeof dlg.showModal !== "function") return;
+        openBtn.addEventListener("click", function () {
+          dlg.showModal();
+          dlg.scrollTop = 0;
+          document.dispatchEvent(new CustomEvent("ft-close-sidebar", { bubbles: true }));
+        });
+        closeBtn.addEventListener("click", function () {
+          dlg.close();
+        });
+        dlg.addEventListener("click", function (e) {
+          if (e.target === dlg) dlg.close();
+        });
+      })();
+    </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="../js/index.js"></script>
     <script src="../js/siderbar.js"></script>
