@@ -63,9 +63,8 @@
 
 @media (min-width: 1024px) {
   #br-match1-poster-capture.br-m1-poster-capture {
-    width: max-content;
-    max-width: max-content;
-    height: max-content;
+    width: min(100%, 720px);
+    max-width: 720px;
   }
 }
 
