@@ -1,0 +1,170 @@
+/* pages/battle-royale.html — hero layers + motion (markup uses Tailwind) */
+
+.br-hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+    background-color: var(--color-bg-primary);
+    background-image:
+      linear-gradient(125deg, color-mix(in srgb, var(--color-bg-primary) 52%, transparent) 0%, transparent 48%),
+      linear-gradient(305deg, color-mix(in srgb, #5eead4 14%, var(--color-bg-primary)) 0%, transparent 44%),
+      url("https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&w=1920&q=78");
+    background-size: cover, cover, cover;
+    background-position: center, center, center 32%;
+    animation: br-hero-bg-drift 26s ease-in-out infinite alternate;
+  }
+  
+  .br-hero__gradient {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-bg-primary) 22%, transparent) 0%,
+      color-mix(in srgb, var(--color-bg-primary) 58%, transparent) 42%,
+      var(--color-bg-primary) 92%,
+      var(--color-bg-primary) 100%
+    );
+  }
+  
+  .br-hero__mesh {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.42;
+    background:
+      radial-gradient(ellipse 88% 68% at 12% 8%, color-mix(in srgb, var(--color-brand) 22%, transparent), transparent 54%),
+      radial-gradient(ellipse 72% 52% at 92% 18%, color-mix(in srgb, #5eead4 14%, transparent), transparent 50%),
+      linear-gradient(color-mix(in srgb, var(--color-brand) 11%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in srgb, var(--color-brand) 7%, transparent) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px;
+    mask-image: radial-gradient(ellipse 86% 74% at 50% 32%, black 0%, transparent 74%);
+    pointer-events: none;
+  }
+  
+  .br-hero__glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(76px);
+    pointer-events: none;
+    opacity: 0.4;
+    z-index: -1;
+  }
+  
+  .br-hero__glow--1 {
+    width: min(50vw, 23rem);
+    height: min(50vw, 23rem);
+    top: -10%;
+    right: -4%;
+    background: radial-gradient(circle, color-mix(in srgb, #5eead4 85%, var(--color-brand-glow)), transparent 68%);
+    animation: br-hero-glow-pulse 11s ease-in-out infinite;
+  }
+  
+  .br-hero__glow--2 {
+    width: min(38vw, 17rem);
+    height: min(38vw, 17rem);
+    bottom: 8%;
+    left: -8%;
+    background: radial-gradient(circle, var(--color-brand), transparent 72%);
+    animation: br-hero-glow-pulse 13s ease-in-out infinite reverse;
+  }
+  
+  .br-hero__crumb-shine {
+    animation: br-hero-crumb-shine 5.5s ease-in-out infinite;
+  }
+  
+  .br-hero__title-shimmer {
+    animation: br-hero-title-shimmer 7.5s linear infinite;
+  }
+  
+  .br-match-card {
+    --br-card-accent: var(--color-brand-glow);
+    --br-card-accent-soft: color-mix(in srgb, var(--color-brand-glow) 35%, transparent);
+  }
+  
+  .br-match-card--teal {
+    --br-card-accent: #7ff5e4;
+    --br-card-accent-soft: color-mix(in srgb, #5eead4 38%, var(--color-brand) 40%);
+  }
+  
+  .br-match-card__rail {
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--br-card-accent) 92%, white),
+      color-mix(in srgb, var(--color-brand) 70%, var(--br-card-accent))
+    );
+  }
+  
+  #br-matches .br-match-card {
+    transition:
+      transform 0.32s ease,
+      border-color 0.32s ease,
+      box-shadow 0.32s ease;
+  }
+  
+  #br-matches .br-match-card:hover {
+    transform: translateY(-5px);
+    border-color: color-mix(in srgb, var(--color-brand-glow) 42%, transparent);
+    box-shadow:
+      0 22px 56px rgba(0, 0, 0, 0.42),
+      0 0 36px color-mix(in srgb, var(--color-brand) 12%, transparent);
+  }
+  
+  @keyframes br-hero-bg-drift {
+    0% {
+      transform: scale(1.04) translate3d(0, 0, 0);
+    }
+    100% {
+      transform: scale(1.11) translate3d(-1.1%, 0.9%, 0);
+    }
+  }
+  
+  @keyframes br-hero-glow-pulse {
+    0%,
+    100% {
+      opacity: 0.34;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.07);
+    }
+  }
+  
+  @keyframes br-hero-title-shimmer {
+    0% {
+      background-position: 0% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+  
+  @keyframes br-hero-crumb-shine {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .br-hero__bg,
+    .br-hero__glow--1,
+    .br-hero__glow--2,
+    .br-hero__title-shimmer,
+    .br-hero__crumb-shine {
+      animation: none !important;
+    }
+  
+    .br-hero__title-shimmer {
+      background-position: center;
+    }
+  
+    #br-matches .br-match-card:hover {
+      transform: none;
+    }
+  }
+  

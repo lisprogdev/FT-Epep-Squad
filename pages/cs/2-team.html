@@ -575,7 +575,18 @@
         class="site-ads-section relative z-[1] mx-auto flex w-full max-w-[72rem] flex-col items-center gap-4 border-t border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_32%,transparent)] px-4 py-[clamp(1rem,2.8vw,1.85rem)] isolate backdrop-blur-[6px]"
         aria-label="Iklan"
       >
-        <div class="site-ads__unit" data-ft-ad data-ft-ad-key="8c07e33956a7c934a4bd7a64072821b8" data-ft-ad-format="iframe" data-ft-ad-width="300" data-ft-ad-height="250"></div>
+        <div class="site-ads__unit">
+          <script>
+            atOptions = {
+              key: "8c07e33956a7c934a4bd7a64072821b8",
+              format: "iframe",
+              height: 250,
+              width: 300,
+              params: {},
+            };
+          </script>
+          <script src="https://performanceingredientgoblet.com/8c07e33956a7c934a4bd7a64072821b8/invoke.js"></script>
+        </div>
       </section>
 
 
@@ -584,8 +595,30 @@
         class="site-ads-section relative z-[1] mx-auto flex w-full max-w-[72rem] flex-wrap items-center justify-center gap-4 border-t border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_32%,transparent)] px-4 py-[clamp(1rem,2.8vw,1.85rem)] isolate backdrop-blur-[6px]"
         aria-label="Iklan tambahan"
       >
-        <div class="site-ads__unit" data-ft-ad data-ft-ad-key="2af0113ae67de76fd5aa631156a88bac" data-ft-ad-format="iframe" data-ft-ad-width="728" data-ft-ad-height="90"></div>
-        <div class="site-ads__unit" data-ft-ad data-ft-ad-key="8c07e33956a7c934a4bd7a64072821b8" data-ft-ad-format="iframe" data-ft-ad-width="300" data-ft-ad-height="250"></div>
+        <div class="site-ads__unit">
+          <script>
+            atOptions = {
+              key: "2af0113ae67de76fd5aa631156a88bac",
+              format: "iframe",
+              height: 90,
+              width: 728,
+              params: {},
+            };
+          </script>
+          <script src="https://performanceingredientgoblet.com/2af0113ae67de76fd5aa631156a88bac/invoke.js"></script>
+        </div>
+        <div class="site-ads__unit">
+          <script>
+            atOptions = {
+              key: "8c07e33956a7c934a4bd7a64072821b8",
+              format: "iframe",
+              height: 250,
+              width: 300,
+              params: {},
+            };
+          </script>
+          <script src="https://performanceingredientgoblet.com/8c07e33956a7c934a4bd7a64072821b8/invoke.js"></script>
+        </div>
       </section>
 
       <dialog
@@ -811,7 +844,16 @@
           Menyiapkan iklan...
         </p>
         <div class="site-ads__unit flex justify-center">
-          <div class="site-ads__unit" data-ft-ad data-ft-ad-key="8c07e33956a7c934a4bd7a64072821b8" data-ft-ad-format="iframe" data-ft-ad-width="300" data-ft-ad-height="250"></div>
+          <script>
+            atOptions = {
+              key: "8c07e33956a7c934a4bd7a64072821b8",
+              format: "iframe",
+              height: 250,
+              width: 300,
+              params: {},
+            };
+          </script>
+          <script src="https://performanceingredientgoblet.com/8c07e33956a7c934a4bd7a64072821b8/invoke.js"></script>
         </div>
       </div>
       <div class="flex flex-wrap items-center justify-end gap-2 border-t border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] px-4 py-3 sm:px-5">
@@ -993,6 +1035,47 @@
 
     <div id="br-match1-toast-root" class="br-m1-toast-root" aria-live="polite"></div>
 
+
+    <script>
+      (function () {
+        var dlg = document.getElementById("br-match-alert-ad-dialog");
+        var closeBtn = document.getElementById("br-match-alert-ad-close");
+        var cd = document.getElementById("br-match-alert-ad-countdown");
+        if (!dlg || !closeBtn || !cd || typeof dlg.showModal !== "function") return;
+        var key = "ft-br-alert-ad:" + location.pathname;
+        if (sessionStorage.getItem(key) === "1") return;
+        var left = 8;
+        function paint() {
+          if (left > 0) {
+            cd.textContent = "Iklan alert aktif, lanjutkan dalam " + left + " detik...";
+            closeBtn.disabled = true;
+          } else {
+            cd.textContent = "Selesai. Anda bisa lanjutkan.";
+            closeBtn.disabled = false;
+          }
+        }
+        setTimeout(function () {
+          dlg.showModal();
+          paint();
+          var t = setInterval(function () {
+            left -= 1;
+            paint();
+            if (left <= 0) clearInterval(t);
+          }, 1000);
+          closeBtn.addEventListener("click", function () {
+            if (closeBtn.disabled) return;
+            sessionStorage.setItem(key, "1");
+            dlg.close();
+          });
+          dlg.addEventListener("click", function (e) {
+            if (e.target === dlg && !closeBtn.disabled) {
+              sessionStorage.setItem(key, "1");
+              dlg.close();
+            }
+          });
+        }, 1400);
+      })();
+    </script>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.13/dist/html-to-image.min.js"></script>

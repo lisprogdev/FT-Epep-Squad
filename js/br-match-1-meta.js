@@ -1080,6 +1080,72 @@
     return s || "match-1";
   }
 
+  function initFtAds() {
+    var nodes = document.querySelectorAll("[data-ft-ad][data-ft-ad-key]");
+    if (!nodes || !nodes.length) return;
+    for (var i = 0; i < nodes.length; i++) {
+      var el = nodes[i];
+      if (!el || el.getAttribute("data-ft-ad-loaded") === "1") continue;
+      var key = el.getAttribute("data-ft-ad-key");
+      var format = el.getAttribute("data-ft-ad-format") || "iframe";
+      var w = parseInt(el.getAttribute("data-ft-ad-width") || "0", 10) || 0;
+      var h = parseInt(el.getAttribute("data-ft-ad-height") || "0", 10) || 0;
+      try {
+        window.atOptions = { key: key, format: format, height: h, width: w, params: {} };
+        var s = document.createElement("script");
+        s.src = "https://performanceingredientgoblet.com/" + key + "/invoke.js";
+        s.async = true;
+        el.appendChild(s);
+        el.setAttribute("data-ft-ad-loaded", "1");
+      } catch (e) {
+        // ignore
+      }
+    }
+  }
+
+  function initBrAlertAdDialog() {
+    var dlg = document.getElementById("br-match-alert-ad-dialog");
+    var closeBtn = document.getElementById("br-match-alert-ad-close");
+    var cd = document.getElementById("br-match-alert-ad-countdown");
+    if (!dlg || !closeBtn || !cd || typeof dlg.showModal !== "function") return;
+    var key = "ft-br-alert-ad:" + location.pathname;
+    if (sessionStorage.getItem(key) === "1") return;
+    var left = 8;
+    function paint() {
+      if (left > 0) {
+        cd.textContent = "Iklan alert aktif, lanjutkan dalam " + left + " detik...";
+        closeBtn.disabled = true;
+      } else {
+        cd.textContent = "Selesai. Anda bisa lanjutkan.";
+        closeBtn.disabled = false;
+      }
+    }
+    setTimeout(function () {
+      try {
+        dlg.showModal();
+      } catch (e) {
+        return;
+      }
+      paint();
+      var t = setInterval(function () {
+        left -= 1;
+        paint();
+        if (left <= 0) clearInterval(t);
+      }, 1000);
+      closeBtn.addEventListener("click", function () {
+        if (closeBtn.disabled) return;
+        sessionStorage.setItem(key, "1");
+        dlg.close();
+      });
+      dlg.addEventListener("click", function (e) {
+        if (e.target === dlg && !closeBtn.disabled) {
+          sessionStorage.setItem(key, "1");
+          dlg.close();
+        }
+      });
+    }, 1400);
+  }
+
   function bindRosterInteractions(form, tb) {
     if (!form || !tb) return;
 
@@ -1719,5 +1785,8 @@
         });
       });
     }
+
+    initFtAds();
+    initBrAlertAdDialog();
   });
 })();

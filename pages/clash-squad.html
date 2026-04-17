@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f0f0f" />
+    <meta
+      name="description"
+      content="Clash Squad FT Epep Squad — Bracket Single Elimination. Pilih jumlah tim (2/4/8/16) untuk kebutuhan fast tournament."
+    />
+    <meta name="keywords" content="clash squad ff, tools eo ff, fast tournament cs, bracket clash squad, ft epep squad" />
+    <meta property="og:title" content="Clash Squad — Tools Fast Tournament | FT Epep Squad" />
+    <meta
+      property="og:description"
+      content="Clash Squad Single Elimination: 2 team, 4 team, 8 team, 16 team. Akses cepat untuk kebutuhan EO fast tournament."
+    />
+    <title>Clash Squad — Tools Fast Tournament | FT Epep Squad</title>
+
+    <link rel="icon" href="../favicon.ico" sizes="any" />
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../img/favicon/favicon-96x96.png" type="image/png" sizes="96x96" />
+    <link rel="icon" href="../img/favicon/favicon.svg" type="image/svg+xml" sizes="any" />
+    <link rel="apple-touch-icon" href="../img/favicon/apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="../root.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/battle-royale-page.css" />
+    <link rel="stylesheet" href="../css/footer.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../css/siderbar.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  </head>
+  <body class="min-h-screen antialiased">
+    <div
+      id="siderbar-backdrop"
+      class="pointer-events-none invisible fixed inset-0 z-[299] bg-black/65 opacity-0 transition-[opacity,visibility] duration-300 ease-out data-[visible]:pointer-events-auto data-[visible]:visible data-[visible]:opacity-100"
+      hidden
+      aria-hidden="true"
+    ></div>
+    <button
+      type="button"
+      id="siderbar-toggle"
+      class="group fixed bottom-[calc(1.25rem+env(safe-area-inset-bottom,0px))] right-[calc(1rem+env(safe-area-inset-right,0px))] z-[302] inline-flex size-[3.15rem] items-center justify-center rounded-full border border-[color-mix(in_srgb,var(--color-brand)_38%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_78%,transparent)] text-[var(--color-brand-glow)] shadow-[0_10px_36px_rgba(0,0,0,0.48),inset_0_0_0_1px_color-mix(in_srgb,white_6%,transparent)] backdrop-blur-md transition hover:border-[color-mix(in_srgb,var(--color-brand-glow)_50%,transparent)] hover:shadow-[0_0_28px_color-mix(in_srgb,var(--color-brand)_18%,transparent)] active:scale-95 aria-expanded:border-[color-mix(in_srgb,var(--color-brand-glow)_55%,transparent)] aria-expanded:text-[var(--color-text-primary)]"
+      aria-controls="siderbar"
+      aria-expanded="false"
+      aria-label="Buka menu navigasi"
+    >
+      <span class="relative inline-grid size-[1.35rem] place-items-center leading-none" aria-hidden="true">
+        <i
+          class="fa-solid fa-bars col-start-1 row-start-1 text-[1.12rem] transition-all duration-[220ms] ease-out group-aria-expanded:rotate-45 group-aria-expanded:scale-[0.82] group-aria-expanded:opacity-0"
+        ></i>
+        <i
+          class="fa-solid fa-xmark col-start-1 row-start-1 -rotate-45 scale-[0.82] text-[1.12rem] opacity-0 transition-all duration-[220ms] ease-out group-aria-expanded:rotate-0 group-aria-expanded:scale-100 group-aria-expanded:opacity-100"
+        ></i>
+      </span>
+    </button>
+    <aside
+      id="siderbar"
+      aria-label="Menu navigasi"
+      class="fixed left-0 top-0 z-[300] flex h-dvh w-[16.25rem] max-w-[85vw] -translate-x-[105%] flex-col overflow-hidden border-r border-[color-mix(in_srgb,var(--color-brand)_28%,transparent)] bg-gradient-to-br from-[color-mix(in_srgb,var(--color-bg-secondary)_88%,transparent)] to-[color-mix(in_srgb,var(--color-bg-primary)_94%,transparent)] px-4 pb-5 pt-[1.35rem] shadow-[8px_0_60px_rgba(0,0,0,0.55)] backdrop-blur-xl backdrop-saturate-[1.2] transition-transform duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)] data-[open]:translate-x-0"
+    >
+      <div
+        class="pointer-events-none absolute -left-[40%] top-[15%] h-[45%] w-[80%] rounded-full bg-[radial-gradient(circle,color-mix(in_srgb,var(--color-brand)_22%,transparent),transparent_70%)] opacity-50"
+        aria-hidden="true"
+      ></div>
+      <div class="relative z-[1] mb-7 flex items-center gap-[0.65rem] border-b border-[color-mix(in_srgb,var(--color-brand)_15%,transparent)] pb-5">
+        <a
+          href="../index.html#beranda"
+          class="grid size-11 shrink-0 place-items-center rounded-[0.65rem] border border-[color-mix(in_srgb,var(--color-brand)_32%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_75%,transparent)] p-0.5 shadow-[0_0_28px_color-mix(in_srgb,var(--color-brand)_22%,transparent)] transition hover:border-[color-mix(in_srgb,var(--color-brand-glow)_45%,transparent)] hover:shadow-[0_0_32px_color-mix(in_srgb,var(--color-brand)_28%,transparent)]"
+          aria-label="FT Epep Squad — Beranda"
+        >
+          <img class="block size-full object-contain" src="../img/element/Logo.png" width="80" height="80" alt="" decoding="async" />
+        </a>
+        <div class="flex min-w-0 flex-col gap-0.5">
+          <span class="font-[family-name:var(--font-heading)] text-[0.82rem] font-bold uppercase leading-tight tracking-[0.12em] text-[var(--color-text-primary)]">Epep Squad</span>
+          <span class="text-[0.62rem] uppercase tracking-[0.14em] text-[var(--color-text-secondary)]">EO · Fast tournament</span>
+        </div>
+      </div>
+      <nav class="relative z-[1] mr-[-0.15rem] flex flex-1 flex-col gap-[0.35rem] overflow-y-auto pr-[0.15rem]" aria-label="Utama">
+        <a
+          href="../index.html#beranda"
+          data-siderbar-link
+          class="relative flex items-center gap-3 rounded-[0.65rem] border border-transparent px-[0.85rem] py-[0.72rem] font-[family-name:var(--font-heading)] text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-secondary)] transition hover:border-[color-mix(in_srgb,var(--color-brand)_22%,transparent)] hover:bg-[color-mix(in_srgb,var(--color-brand)_8%,transparent)] hover:text-[var(--color-text-primary)] aria-[current=page]:border-[color-mix(in_srgb,var(--color-brand)_35%,transparent)] aria-[current=page]:bg-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] aria-[current=page]:text-[var(--color-brand-glow)] aria-[current=page]:shadow-[inset_3px_0_0_0_var(--color-brand-glow),0_0_28px_color-mix(in_srgb,var(--color-brand)_10%,transparent)]"
+        >
+          <span class="grid size-[1.85rem] shrink-0 place-items-center rounded-[0.45rem] border border-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] text-inherit" aria-hidden="true"
+            ><i class="fa-solid fa-house text-[0.92rem] leading-none"></i
+          ></span>
+          <span>Beranda</span>
+        </a>
+        <a
+          href="../index.html#cara-penggunaan"
+          data-siderbar-link
+          class="relative flex items-center gap-3 rounded-[0.65rem] border border-transparent px-[0.85rem] py-[0.72rem] font-[family-name:var(--font-heading)] text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-secondary)] transition hover:border-[color-mix(in_srgb,var(--color-brand)_22%,transparent)] hover:bg-[color-mix(in_srgb,var(--color-brand)_8%,transparent)] hover:text-[var(--color-text-primary)] aria-[current=page]:border-[color-mix(in_srgb,var(--color-brand)_35%,transparent)] aria-[current=page]:bg-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] aria-[current=page]:text-[var(--color-brand-glow)] aria-[current=page]:shadow-[inset_3px_0_0_0_var(--color-brand-glow),0_0_28px_color-mix(in_srgb,var(--color-brand)_10%,transparent)]"
+        >
+          <span class="grid size-[1.85rem] shrink-0 place-items-center rounded-[0.45rem] border border-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] text-inherit" aria-hidden="true"
+            ><i class="fa-solid fa-book-open text-[0.92rem] leading-none"></i
+          ></span>
+          <span>Cara penggunaan</span>
+        </a>
+        <a
+          href="tools.html"
+          data-siderbar-link
+          data-hero-cta-gate-url="tools.html"
+          data-hero-cta-gate-desc="Untuk membuka halaman Tools, tinjau iklan di jendela ini terlebih dahulu."
+          aria-haspopup="dialog"
+          class="relative flex items-center gap-3 rounded-[0.65rem] border border-transparent px-[0.85rem] py-[0.72rem] font-[family-name:var(--font-heading)] text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-secondary)] transition hover:border-[color-mix(in_srgb,var(--color-brand)_22%,transparent)] hover:bg-[color-mix(in_srgb,var(--color-brand)_8%,transparent)] hover:text-[var(--color-text-primary)] aria-[current=page]:border-[color-mix(in_srgb,var(--color-brand)_35%,transparent)] aria-[current=page]:bg-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] aria-[current=page]:text-[var(--color-brand-glow)] aria-[current=page]:shadow-[inset_3px_0_0_0_var(--color-brand-glow),0_0_28px_color-mix(in_srgb,var(--color-brand)_10%,transparent)]"
+        >
+          <span class="grid size-[1.85rem] shrink-0 place-items-center rounded-[0.45rem] border border-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] text-inherit" aria-hidden="true"
+            ><i class="fa-solid fa-screwdriver-wrench text-[0.92rem] leading-none"></i
+          ></span>
+          <span>Tools</span>
+        </a>
+        <a
+          href="battle-royale.html"
+          data-siderbar-link
+          data-hero-cta-gate-url="battle-royale.html"
+          data-hero-cta-gate-desc="Untuk membuka halaman Battle Royale, tinjau iklan di jendela ini terlebih dahulu."
+          aria-haspopup="dialog"
+          class="relative flex items-center gap-3 rounded-[0.65rem] border border-transparent px-[0.85rem] py-[0.72rem] font-[family-name:var(--font-heading)] text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-secondary)] transition hover:border-[color-mix(in_srgb,var(--color-brand)_22%,transparent)] hover:bg-[color-mix(in_srgb,var(--color-brand)_8%,transparent)] hover:text-[var(--color-text-primary)] aria-[current=page]:border-[color-mix(in_srgb,var(--color-brand)_35%,transparent)] aria-[current=page]:bg-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] aria-[current=page]:text-[var(--color-brand-glow)] aria-[current=page]:shadow-[inset_3px_0_0_0_var(--color-brand-glow),0_0_28px_color-mix(in_srgb,var(--color-brand)_10%,transparent)]"
+        >
+          <span class="grid size-[1.85rem] shrink-0 place-items-center rounded-[0.45rem] border border-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] text-inherit" aria-hidden="true"
+            ><i class="fa-solid fa-crosshairs text-[0.92rem] leading-none"></i
+          ></span>
+          <span>Battle Royale</span>
+        </a>
+        <a
+          href="clash-squad.html"
+          aria-current="page"
+          data-siderbar-link
+          data-hero-cta-gate-url="clash-squad.html"
+          data-hero-cta-gate-desc="Untuk membuka halaman Clash Squad, tinjau iklan di jendela ini terlebih dahulu."
+          aria-haspopup="dialog"
+          class="relative flex items-center gap-3 rounded-[0.65rem] border border-transparent px-[0.85rem] py-[0.72rem] font-[family-name:var(--font-heading)] text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-[var(--color-text-secondary)] transition hover:border-[color-mix(in_srgb,var(--color-brand)_22%,transparent)] hover:bg-[color-mix(in_srgb,var(--color-brand)_8%,transparent)] hover:text-[var(--color-text-primary)] aria-[current=page]:border-[color-mix(in_srgb,var(--color-brand)_35%,transparent)] aria-[current=page]:bg-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] aria-[current=page]:text-[var(--color-brand-glow)] aria-[current=page]:shadow-[inset_3px_0_0_0_var(--color-brand-glow),0_0_28px_color-mix(in_srgb,var(--color-brand)_10%,transparent)]"
+        >
+          <span class="grid size-[1.85rem] shrink-0 place-items-center rounded-[0.45rem] border border-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] text-inherit" aria-hidden="true"
+            ><i class="fa-solid fa-people-group text-[0.92rem] leading-none"></i
+          ></span>
+          <span>Clash Squad</span>
+        </a>
+      </nav>
+      <p class="relative z-[1] mt-4 border-t border-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] pt-4 text-center text-[0.58rem] uppercase tracking-[0.18em] text-[var(--color-text-secondary)]">Fast tournament · FF</p>
+    </aside>
+
+    <main>
+      <section
+        id="cs-hero"
+        class="relative isolate flex min-h-[min(88dvh,42rem)] items-end overflow-hidden pt-[clamp(5rem,14vw,7rem)] pb-[clamp(2.5rem,6vw,3.75rem)] pl-[clamp(1.25rem,4vw,2rem)] pr-[clamp(1.25rem,4vw,2rem)]"
+        aria-labelledby="cs-hero-title"
+      >
+        <div class="br-hero__bg" aria-hidden="true"></div>
+        <div class="br-hero__gradient" aria-hidden="true"></div>
+        <div class="br-hero__mesh" aria-hidden="true"></div>
+        <div class="br-hero__glow br-hero__glow--1" aria-hidden="true"></div>
+        <div class="br-hero__glow br-hero__glow--2" aria-hidden="true"></div>
+
+        <div class="relative z-10 mx-auto w-full max-w-[72rem]">
+          <nav class="mb-[clamp(1.35rem,4vw,2rem)]" aria-label="Breadcrumb">
+            <ol
+              class="m-0 inline-flex list-none flex-wrap items-center gap-x-2 gap-y-1 rounded-full border border-[color-mix(in_srgb,var(--color-brand)_38%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_42%,transparent)] py-[0.45rem] pl-[0.65rem] pr-[0.55rem] shadow-[inset_0_0_0_1px_color-mix(in_srgb,white_6%,transparent),0_12px_40px_rgba(0,0,0,0.45),0_0_48px_color-mix(in_srgb,var(--color-brand)_12%,transparent)] backdrop-blur-md backdrop-saturate-[1.2]"
+            >
+              <li class="flex items-center">
+                <a
+                  class="inline-flex items-center gap-[0.4rem] rounded-full px-[0.65rem] py-[0.35rem] pl-2 font-[family-name:var(--font-heading)] text-[0.58rem] font-semibold uppercase tracking-[0.16em] text-[color-mix(in_srgb,var(--color-text-secondary)_88%,var(--color-brand-glow))] no-underline transition hover:bg-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] hover:text-[var(--color-text-primary)] hover:shadow-[0_0_20px_color-mix(in_srgb,var(--color-brand)_18%,transparent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)]"
+                  href="../index.html#beranda"
+                >
+                  <i class="fa-solid fa-house-chimney text-[0.65rem] text-[var(--color-brand-glow)] opacity-90" aria-hidden="true"></i>
+                  <span>Beranda</span>
+                </a>
+              </li>
+              <li class="flex select-none items-center text-[0.45rem] text-[color-mix(in_srgb,var(--color-brand)_55%,transparent)] opacity-85" aria-hidden="true">
+                <i class="fa-solid fa-chevron-right"></i>
+              </li>
+              <li class="flex items-center">
+                <a
+                  class="inline-flex items-center gap-[0.4rem] rounded-full px-[0.65rem] py-[0.35rem] font-[family-name:var(--font-heading)] text-[0.58rem] font-semibold uppercase tracking-[0.16em] text-[color-mix(in_srgb,var(--color-text-secondary)_88%,var(--color-brand-glow))] no-underline transition hover:bg-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] hover:text-[var(--color-text-primary)] hover:shadow-[0_0_20px_color-mix(in_srgb,var(--color-brand)_18%,transparent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)]"
+                  href="tools.html"
+                  data-hero-cta-gate-url="tools.html"
+                  data-hero-cta-gate-desc="Untuk membuka halaman Tools, tinjau iklan di jendela ini terlebih dahulu."
+                  aria-haspopup="dialog"
+                >
+                  <i class="fa-solid fa-screwdriver-wrench text-[0.65rem] text-[var(--color-brand-glow)] opacity-90" aria-hidden="true"></i>
+                  <span>Tools</span>
+                </a>
+              </li>
+              <li class="flex select-none items-center text-[0.45rem] text-[color-mix(in_srgb,var(--color-brand)_55%,transparent)] opacity-85" aria-hidden="true">
+                <i class="fa-solid fa-chevron-right"></i>
+              </li>
+              <li class="flex items-center pr-[0.35rem]" aria-current="page">
+                <span
+                  class="br-hero__crumb-shine inline-flex items-center gap-[0.4rem] rounded-full bg-[length:160%_auto] px-[0.75rem] py-[0.35rem] pl-[0.55rem] font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.2em] text-[var(--color-bg-primary)] shadow-[0_0_24px_color-mix(in_srgb,var(--color-brand-glow)_35%,transparent)] [background-image:linear-gradient(120deg,var(--color-brand),var(--color-brand-glow),var(--color-brand))]"
+                >
+                  <i class="fa-solid fa-people-group text-[0.65rem] text-[var(--color-bg-primary)]" aria-hidden="true"></i>
+                  <span>Clash Squad</span>
+                </span>
+              </li>
+            </ol>
+          </nav>
+
+          <p class="mb-[0.85rem] font-[family-name:var(--font-heading)] text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-[color-mix(in_srgb,var(--color-text-secondary)_75%,#7ff5e4)]">
+            Fast tournament · Clash Squad · Single elimination
+          </p>
+          <h1
+            id="cs-hero-title"
+            class="mb-4 max-w-[20ch] font-[family-name:var(--font-heading)] text-[clamp(2.1rem,4vw_+_1rem,3.35rem)] font-extrabold leading-[1.05] tracking-[0.04em] text-[var(--color-text-primary)] [text-shadow:0_4px_48px_color-mix(in_srgb,black_55%,transparent)]"
+          >
+            <span class="block">Pilih format</span>
+            <span
+              class="br-hero__title-shimmer block bg-[length:200%_auto] bg-clip-text text-transparent [background-image:linear-gradient(105deg,#7ff5e4,var(--color-brand-glow),var(--color-brand))]"
+              >Clash Squad</span
+            >
+          </h1>
+          <p class="m-0 mb-[clamp(1.35rem,4vw,1.85rem)] max-w-2xl text-[clamp(0.9rem,1.2vw_+_0.82rem,1.05rem)] leading-relaxed text-[color-mix(in_srgb,var(--color-text-secondary)_88%,var(--color-text-primary))]">
+            Halaman ini khusus untuk
+            <span class="font-[family-name:var(--font-heading)] font-semibold text-[var(--color-text-primary)]">bracket Single Elimination</span>
+            Clash Squad. Pilih jumlah tim yang kamu butuhkan (2/4/8/16) untuk membuat alur eliminasi langsung sampai final.
+          </p>
+          <div class="flex flex-wrap items-center gap-[0.65rem]">
+            <a
+              class="inline-flex items-center justify-center gap-[0.45rem] rounded-[0.55rem] border border-[color-mix(in_srgb,#5eead4_42%,var(--color-brand-glow))] bg-gradient-to-br from-[color-mix(in_srgb,#5eead4_50%,var(--color-brand))] to-[var(--color-brand-glow)] px-[1.25rem] py-[0.78rem] font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.14em] text-[var(--color-bg-primary)] no-underline shadow-[0_8px_32px_color-mix(in_srgb,var(--color-brand)_38%,transparent)] transition hover:-translate-y-0.5 hover:shadow-[0_12px_40px_color-mix(in_srgb,var(--color-brand-glow)_32%,transparent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+              href="#cs-formats"
+            >
+              <i class="fa-solid fa-bolt text-[0.72rem]" aria-hidden="true"></i>
+              <span>Akses format</span>
+            </a>
+            <a
+              class="inline-flex items-center justify-center gap-[0.45rem] rounded-[0.55rem] border border-[color-mix(in_srgb,var(--color-brand)_38%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_50%,transparent)] px-[1.15rem] py-[0.72rem] font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.12em] text-[var(--color-text-primary)] no-underline backdrop-blur-sm transition hover:-translate-y-0.5 hover:border-[var(--color-brand-glow)] hover:text-[var(--color-brand-glow)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+              href="tools.html"
+              data-hero-cta-gate-url="tools.html"
+              data-hero-cta-gate-desc="Untuk membuka halaman Tools, tinjau iklan di jendela ini terlebih dahulu."
+              aria-haspopup="dialog"
+            >
+              <i class="fa-solid fa-screwdriver-wrench text-[0.7rem]" aria-hidden="true"></i>
+              <span>Kembali ke Tools</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="site-ads-section relative z-[1] mx-auto flex w-full max-w-[72rem] flex-col items-center gap-4 border-t border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_32%,transparent)] px-4 py-[clamp(1rem,2.8vw,1.85rem)] isolate backdrop-blur-[6px]"
+        aria-label="Iklan"
+      >
+        <div class="site-ads__unit site-ads__unit--leader">
+          <script>
+            atOptions = {
+              key: "2af0113ae67de76fd5aa631156a88bac",
+              format: "iframe",
+              height: 90,
+              width: 728,
+              params: {},
+            };
+          </script>
+          <script src="https://performanceingredientgoblet.com/2af0113ae67de76fd5aa631156a88bac/invoke.js"></script>
+        </div>
+      </section>
+
+      <section
+        id="cs-formats"
+        class="relative border-t border-[color-mix(in_srgb,var(--color-brand)_22%,transparent)] bg-gradient-to-b from-[var(--color-bg-primary)] via-[color-mix(in_srgb,var(--color-bg-secondary)_90%,transparent)] to-[var(--color-bg-primary)]"
+        aria-labelledby="cs-formats-heading"
+      >
+        <div class="mx-auto max-w-[72rem] px-[clamp(1.25rem,4vw,2rem)] py-[clamp(2.5rem,6vw,3.75rem)] pb-[clamp(2.75rem,7vw,4rem)]">
+          <div class="mx-auto mb-[clamp(2rem,5vw,2.75rem)] max-w-[42rem] text-center">
+            <p class="mb-2 font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.26em] text-[color-mix(in_srgb,#7ff5e4_82%,var(--color-text-secondary))]">
+              Pilih jumlah tim
+            </p>
+            <h2
+              id="cs-formats-heading"
+              class="mb-3 font-[family-name:var(--font-heading)] text-[clamp(1.35rem,3vw,1.85rem)] font-extrabold uppercase tracking-[0.1em] text-[var(--color-text-primary)]"
+            >
+              Clash Squad · Single elimination
+            </h2>
+            <p class="m-0 text-[0.92rem] leading-relaxed text-[var(--color-text-secondary)]">
+              Empat pilihan jumlah tim untuk bracket Single Elimination. Kartu ini mengikuti gaya card Battle Royale agar konsisten di Tools.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 gap-[1.15rem] sm:grid-cols-2 xl:grid-cols-4 xl:gap-5">
+            <article
+              class="br-match-card br-match-card--teal group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[color-mix(in_srgb,#5eead4_26%,var(--color-brand)_52%)] bg-gradient-to-br from-[color-mix(in_srgb,var(--color-bg-secondary)_84%,transparent)] to-[color-mix(in_srgb,var(--color-bg-primary)_92%,transparent)] p-[clamp(1.15rem,3vw,1.45rem)] shadow-[0_18px_48px_rgba(0,0,0,0.36)] backdrop-blur-xl transition duration-300 before:pointer-events-none before:absolute before:inset-0 before:rounded-2xl before:p-px before:opacity-50 before:content-[''] before:[background:linear-gradient(135deg,color-mix(in_srgb,var(--br-card-accent)_40%,transparent),transparent_46%,color-mix(in_srgb,var(--color-brand)_16%,transparent))] before:[mask:linear-gradient(#fff_0_0)_content-box,linear-gradient(#fff_0_0)] before:[mask-composite:xor] before:[-webkit-mask-composite:xor] motion-reduce:transition-none"
+              data-aos="fade-up"
+              data-aos-delay="0"
+            >
+              <span class="br-match-card__rail absolute left-0 top-0 h-full w-1 rounded-l-2xl" aria-hidden="true"></span>
+              <div class="relative z-[1] mb-4 flex items-start">
+                <span
+                  class="grid size-[2.65rem] shrink-0 place-items-center rounded-xl border border-[color-mix(in_srgb,#5eead4_38%,var(--color-brand)_38%)] bg-[color-mix(in_srgb,#5eead4_12%,transparent)] font-[family-name:var(--font-heading)] text-[0.72rem] font-black tabular-nums tracking-[0.08em] text-[#b8fff0]"
+                  >02</span
+                >
+              </div>
+              <p class="relative z-[1] mb-1.5 font-[family-name:var(--font-heading)] text-[0.55rem] font-bold uppercase tracking-[0.24em] text-[color-mix(in_srgb,#7ff5e4_88%,var(--color-text-secondary))]">
+                Clash Squad
+              </p>
+              <h3 class="relative z-[1] mb-2 font-[family-name:var(--font-heading)] text-[clamp(1.05rem,2.2vw,1.28rem)] font-extrabold uppercase leading-tight tracking-[0.07em] text-[var(--color-text-primary)]">
+                2 Team
+              </h3>
+              <p class="relative z-[1] mb-5 flex-1 text-[0.82rem] leading-relaxed text-[var(--color-text-secondary)]">
+                Bracket single elimination paling simpel: satu pertandingan penentu menuju juara.
+              </p>
+              <span
+                class="relative z-[1] inline-flex w-full items-center justify-center gap-2 rounded-[0.55rem] border border-[color-mix(in_srgb,var(--color-brand)_28%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_48%,transparent)] py-[0.7rem] font-[family-name:var(--font-heading)] text-[0.55rem] font-bold uppercase tracking-[0.14em] text-[color-mix(in_srgb,var(--color-text-secondary)_90%,var(--color-brand-glow))]"
+                aria-label="Format 2 team segera tersedia"
+                >Segera</span
+              >
+            </article>
+
+            <article
+              class="br-match-card group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_30%,transparent)] bg-gradient-to-br from-[color-mix(in_srgb,var(--color-bg-secondary)_84%,transparent)] to-[color-mix(in_srgb,var(--color-bg-primary)_92%,transparent)] p-[clamp(1.15rem,3vw,1.45rem)] shadow-[0_18px_48px_rgba(0,0,0,0.36)] backdrop-blur-xl transition duration-300 before:pointer-events-none before:absolute before:inset-0 before:rounded-2xl before:p-px before:opacity-50 before:content-[''] before:[background:linear-gradient(135deg,color-mix(in_srgb,var(--color-brand-glow)_40%,transparent),transparent_46%,color-mix(in_srgb,var(--color-brand)_16%,transparent))] before:[mask:linear-gradient(#fff_0_0)_content-box,linear-gradient(#fff_0_0)] before:[mask-composite:xor] before:[-webkit-mask-composite:xor] motion-reduce:transition-none"
+              data-aos="fade-up"
+              data-aos-delay="40"
+            >
+              <span class="br-match-card__rail absolute left-0 top-0 h-full w-1 rounded-l-2xl" aria-hidden="true"></span>
+              <div class="relative z-[1] mb-4 flex items-start">
+                <span
+                  class="grid size-[2.65rem] shrink-0 place-items-center rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_34%,transparent)] bg-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] font-[family-name:var(--font-heading)] text-[0.72rem] font-black tabular-nums tracking-[0.08em] text-[var(--color-brand-glow)]"
+                  >04</span
+                >
+              </div>
+              <p class="relative z-[1] mb-1.5 font-[family-name:var(--font-heading)] text-[0.55rem] font-bold uppercase tracking-[0.24em] text-[var(--color-brand-glow)]">
+                Clash Squad
+              </p>
+              <h3 class="relative z-[1] mb-2 font-[family-name:var(--font-heading)] text-[clamp(1.05rem,2.2vw,1.28rem)] font-extrabold uppercase leading-tight tracking-[0.07em] text-[var(--color-text-primary)]">
+                4 Team
+              </h3>
+              <p class="relative z-[1] mb-5 flex-1 text-[0.82rem] leading-relaxed text-[var(--color-text-secondary)]">
+                Single elimination kecil untuk mini-tournament: semifinal lalu final.
+              </p>
+              <span
+                class="relative z-[1] inline-flex w-full items-center justify-center gap-2 rounded-[0.55rem] border border-[color-mix(in_srgb,var(--color-brand)_28%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_48%,transparent)] py-[0.7rem] font-[family-name:var(--font-heading)] text-[0.55rem] font-bold uppercase tracking-[0.14em] text-[color-mix(in_srgb,var(--color-text-secondary)_90%,var(--color-brand-glow))]"
+                aria-label="Format 4 team segera tersedia"
+                >Segera</span
+              >
+            </article>
+
+            <article
+              class="br-match-card br-match-card--teal group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[color-mix(in_srgb,#5eead4_26%,var(--color-brand)_52%)] bg-gradient-to-br from-[color-mix(in_srgb,var(--color-bg-secondary)_84%,transparent)] to-[color-mix(in_srgb,var(--color-bg-primary)_92%,transparent)] p-[clamp(1.15rem,3vw,1.45rem)] shadow-[0_18px_48px_rgba(0,0,0,0.36)] backdrop-blur-xl transition duration-300 before:pointer-events-none before:absolute before:inset-0 before:rounded-2xl before:p-px before:opacity-50 before:content-[''] before:[background:linear-gradient(135deg,color-mix(in_srgb,var(--br-card-accent)_40%,transparent),transparent_46%,color-mix(in_srgb,var(--color-brand)_16%,transparent))] before:[mask:linear-gradient(#fff_0_0)_content-box,linear-gradient(#fff_0_0)] before:[mask-composite:xor] before:[-webkit-mask-composite:xor] motion-reduce:transition-none"
+              data-aos="fade-up"
+              data-aos-delay="80"
+            >
+              <span class="br-match-card__rail absolute left-0 top-0 h-full w-1 rounded-l-2xl" aria-hidden="true"></span>
+              <div class="relative z-[1] mb-4 flex items-start">
+                <span
+                  class="grid size-[2.65rem] shrink-0 place-items-center rounded-xl border border-[color-mix(in_srgb,#5eead4_38%,var(--color-brand)_38%)] bg-[color-mix(in_srgb,#5eead4_12%,transparent)] font-[family-name:var(--font-heading)] text-[0.72rem] font-black tabular-nums tracking-[0.08em] text-[#b8fff0]"
+                  >08</span
+                >
+              </div>
+              <p class="relative z-[1] mb-1.5 font-[family-name:var(--font-heading)] text-[0.55rem] font-bold uppercase tracking-[0.24em] text-[color-mix(in_srgb,#7ff5e4_88%,var(--color-text-secondary))]">
+                Clash Squad
+              </p>
+              <h3 class="relative z-[1] mb-2 font-[family-name:var(--font-heading)] text-[clamp(1.05rem,2.2vw,1.28rem)] font-extrabold uppercase leading-tight tracking-[0.07em] text-[var(--color-text-primary)]">
+                8 Team
+              </h3>
+              <p class="relative z-[1] mb-5 flex-1 text-[0.82rem] leading-relaxed text-[var(--color-text-secondary)]">
+                Ukuran populer untuk single elimination: dari quarterfinal sampai final.
+              </p>
+              <span
+                class="relative z-[1] inline-flex w-full items-center justify-center gap-2 rounded-[0.55rem] border border-[color-mix(in_srgb,var(--color-brand)_28%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_48%,transparent)] py-[0.7rem] font-[family-name:var(--font-heading)] text-[0.55rem] font-bold uppercase tracking-[0.14em] text-[color-mix(in_srgb,var(--color-text-secondary)_90%,var(--color-brand-glow))]"
+                aria-label="Format 8 team segera tersedia"
+                >Segera</span
+              >
+            </article>
+
+            <article
+              class="br-match-card group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_30%,transparent)] bg-gradient-to-br from-[color-mix(in_srgb,var(--color-bg-secondary)_84%,transparent)] to-[color-mix(in_srgb,var(--color-bg-primary)_92%,transparent)] p-[clamp(1.15rem,3vw,1.45rem)] shadow-[0_18px_48px_rgba(0,0,0,0.36)] backdrop-blur-xl transition duration-300 before:pointer-events-none before:absolute before:inset-0 before:rounded-2xl before:p-px before:opacity-50 before:content-[''] before:[background:linear-gradient(135deg,color-mix(in_srgb,var(--color-brand-glow)_40%,transparent),transparent_46%,color-mix(in_srgb,var(--color-brand)_16%,transparent))] before:[mask:linear-gradient(#fff_0_0)_content-box,linear-gradient(#fff_0_0)] before:[mask-composite:xor] before:[-webkit-mask-composite:xor] motion-reduce:transition-none"
+              data-aos="fade-up"
+              data-aos-delay="120"
+            >
+              <span class="br-match-card__rail absolute left-0 top-0 h-full w-1 rounded-l-2xl" aria-hidden="true"></span>
+              <div class="relative z-[1] mb-4 flex items-start">
+                <span
+                  class="grid size-[2.65rem] shrink-0 place-items-center rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_34%,transparent)] bg-[color-mix(in_srgb,var(--color-brand)_12%,transparent)] font-[family-name:var(--font-heading)] text-[0.72rem] font-black tabular-nums tracking-[0.08em] text-[var(--color-brand-glow)]"
+                  >16</span
+                >
+              </div>
+              <p class="relative z-[1] mb-1.5 font-[family-name:var(--font-heading)] text-[0.55rem] font-bold uppercase tracking-[0.24em] text-[var(--color-brand-glow)]">
+                Clash Squad
+              </p>
+              <h3 class="relative z-[1] mb-2 font-[family-name:var(--font-heading)] text-[clamp(1.05rem,2.2vw,1.28rem)] font-extrabold uppercase leading-tight tracking-[0.07em] text-[var(--color-text-primary)]">
+                16 Team
+              </h3>
+              <p class="relative z-[1] mb-5 flex-1 text-[0.82rem] leading-relaxed text-[var(--color-text-secondary)]">
+                Skala event single elimination: banyak match, cocok untuk event komunitas besar.
+              </p>
+              <span
+                class="relative z-[1] inline-flex w-full items-center justify-center gap-2 rounded-[0.55rem] border border-[color-mix(in_srgb,var(--color-brand)_28%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_48%,transparent)] py-[0.7rem] font-[family-name:var(--font-heading)] text-[0.55rem] font-bold uppercase tracking-[0.14em] text-[color-mix(in_srgb,var(--color-text-secondary)_90%,var(--color-brand-glow))]"
+                aria-label="Format 16 team segera tersedia"
+                >Segera</span
+              >
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="site-ads-section relative z-[1] mx-auto flex w-full max-w-[72rem] flex-col items-center gap-4 border-t border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_32%,transparent)] px-4 py-[clamp(1rem,2.8vw,1.85rem)] isolate backdrop-blur-[6px]"
+        aria-label="Iklan"
+      >
+        <div class="site-ads__unit">
+          <script>
+            atOptions = {
+              key: "8c07e33956a7c934a4bd7a64072821b8",
+              format: "iframe",
+              height: 250,
+              width: 300,
+              params: {},
+            };
+          </script>
+          <script src="https://performanceingredientgoblet.com/8c07e33956a7c934a4bd7a64072821b8/invoke.js"></script>
+        </div>
+      </section>
+    </main>
+
+    <dialog
+      id="hero-cta-gate"
+      class="hero-cta-gate rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_38%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_96%,#050505)] p-5 text-[var(--color-text-primary)] shadow-[0_28px_90px_rgba(0,0,0,0.72)] [color-scheme:dark]"
+      aria-labelledby="hero-cta-gate-title"
+      aria-describedby="hero-cta-gate-desc"
+    >
+      <h2 id="hero-cta-gate-title" class="m-0 mb-2 font-[family-name:var(--font-heading)] text-[0.95rem] font-bold uppercase tracking-[0.12em] text-[var(--color-text-primary)]">
+        Tinjau iklan
+      </h2>
+      <p id="hero-cta-gate-desc" class="m-0 mb-3 text-[0.82rem] leading-relaxed text-[var(--color-text-secondary)]"></p>
+      <p
+        id="hero-cta-gate-countdown"
+        class="m-0 mb-3 min-h-[2.75rem] rounded-lg border border-[color-mix(in_srgb,var(--color-brand)_18%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] px-3 py-2 text-[0.72rem] leading-snug text-[color-mix(in_srgb,var(--color-text-secondary)_92%,var(--color-brand-glow))]"
+        role="status"
+        aria-live="polite"
+      ></p>
+      <div
+        id="hero-modal-ad-slot"
+        class="mb-4 flex min-h-[min(18rem,45vh)] w-full items-center justify-center overflow-hidden rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_22%,transparent)] bg-[color-mix(in_srgb,black_40%,transparent)]"
+        data-ad-loaded=""
+      ></div>
+      <label class="mb-5 flex cursor-pointer items-start gap-2.5 text-left text-[0.78rem] leading-snug text-[var(--color-text-secondary)]">
+        <input
+          id="hero-cta-gate-ack"
+          type="checkbox"
+          class="mt-0.5 size-[1.05rem] shrink-0 cursor-pointer rounded border-[color-mix(in_srgb,var(--color-brand)_45%,transparent)] bg-[var(--color-bg-primary)] accent-[var(--color-brand-glow)]"
+        />
+        <span>Saya sudah meninjau atau mengetuk area iklan di atas, lalu ingin melanjutkan.</span>
+      </label>
+      <div class="flex flex-wrap items-center justify-end gap-2 border-t border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] pt-4">
+        <button
+          type="button"
+          id="hero-cta-gate-cancel"
+          class="inline-flex cursor-pointer items-center justify-center rounded-[0.55rem] border border-[color-mix(in_srgb,var(--color-brand)_35%,transparent)] bg-transparent px-[1.1rem] py-[0.65rem] font-[family-name:var(--font-heading)] text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[var(--color-text-secondary)] transition hover:border-[var(--color-brand-glow)] hover:text-[var(--color-text-primary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)]"
+        >
+          Batal
+        </button>
+        <button
+          type="button"
+          id="hero-cta-gate-go"
+          disabled
+          class="inline-flex cursor-pointer items-center justify-center rounded-[0.55rem] border border-[color-mix(in_srgb,var(--color-brand-glow)_50%,var(--color-brand))] bg-gradient-to-br from-[var(--color-brand)] to-[var(--color-brand-glow)] px-[1.25rem] py-[0.65rem] font-[family-name:var(--font-heading)] text-[0.62rem] font-bold uppercase tracking-[0.14em] text-[var(--color-bg-primary)] shadow-[0_6px_24px_color-mix(in_srgb,var(--color-brand)_35%,transparent)] transition enabled:hover:-translate-y-0.5 enabled:hover:shadow-[0_10px_32px_color-mix(in_srgb,var(--color-brand-glow)_30%,transparent)] disabled:cursor-not-allowed disabled:opacity-45 disabled:shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)] motion-reduce:transition-none enabled:motion-reduce:hover:translate-y-0"
+        >
+          Lanjutkan
+        </button>
+      </div>
+    </dialog>
+
+    <footer
+      id="site-footer"
+      class="relative isolate overflow-hidden border-t border-[color-mix(in_srgb,var(--color-brand)_18%,transparent)] bg-gradient-to-b from-[#080808] via-[#0f0f0f] to-[#0a0a0a] pb-[calc(4.25rem+env(safe-area-inset-bottom,0px))]"
+    >
+      <div
+        class="pointer-events-none absolute inset-x-0 top-0 z-[1] h-0.5 bg-gradient-to-r from-transparent via-[var(--color-brand-glow)] to-transparent opacity-95"
+        aria-hidden="true"
+      ></div>
+      <div class="ft-footer-noise absolute inset-0" aria-hidden="true"></div>
+      <div
+        class="relative z-[1] mx-auto grid max-w-[72rem] grid-cols-1 gap-8 px-6 py-[clamp(2.5rem,6vw,3.5rem)] pb-[clamp(2rem,5vw,2.75rem)] md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)_minmax(0,1fr)] md:gap-x-10 md:gap-y-8"
+      >
+        <div class="flex items-center gap-4" data-aos="fade-up">
+          <a
+            href="../index.html#beranda"
+            class="grid size-14 shrink-0 place-items-center rounded-[0.85rem] border border-[color-mix(in_srgb,var(--color-brand)_32%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_80%,transparent)] p-1 shadow-[0_0_28px_color-mix(in_srgb,var(--color-brand)_15%,transparent)] transition hover:-translate-y-0.5 hover:border-[color-mix(in_srgb,var(--color-brand-glow)_45%,transparent)] hover:shadow-[0_0_36px_color-mix(in_srgb,var(--color-brand)_22%,transparent)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+            aria-label="FT Epep Squad — Beranda"
+          >
+            <img class="block size-full object-contain" src="../img/element/Logo.png" width="72" height="72" alt="" decoding="async" />
+          </a>
+          <div>
+            <span class="mb-1.5 block font-[family-name:var(--font-heading)] text-[0.95rem] font-bold uppercase tracking-[0.14em] text-[var(--color-text-primary)]">FT Epep Squad</span>
+            <p class="m-0 max-w-[22rem] text-[0.78rem] leading-snug text-[var(--color-text-secondary)]">Fast tournament Free Fire · EO-first · Clash Squad</p>
+          </div>
+        </div>
+
+        <nav aria-label="Footer" data-aos="fade-up" data-aos-delay="60">
+          <span class="mb-[0.85rem] block font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.26em] text-[var(--color-brand-glow)]">Navigasi</span>
+          <ul class="m-0 flex list-none flex-col gap-[0.45rem] p-0">
+            <li>
+              <a
+                data-inpage-link
+                href="../index.html#beranda"
+                class="group inline-flex w-fit items-center gap-2 text-[0.82rem] text-[var(--color-text-secondary)] no-underline transition before:inline-block before:h-px before:w-0 before:bg-[var(--color-brand-glow)] before:transition-[width] before:duration-[220ms] before:content-[''] hover:translate-x-[3px] hover:text-[var(--color-text-primary)] hover:before:w-3 motion-reduce:transition-none motion-reduce:hover:translate-x-0"
+                >Beranda</a
+              >
+            </li>
+            <li>
+              <a
+                class="group inline-flex w-fit items-center gap-2 text-[0.82rem] text-[var(--color-text-secondary)] no-underline transition before:inline-block before:h-px before:w-0 before:bg-[var(--color-brand-glow)] before:transition-[width] before:duration-[220ms] before:content-[''] hover:translate-x-[3px] hover:text-[var(--color-text-primary)] hover:before:w-3 motion-reduce:transition-none motion-reduce:hover:translate-x-0"
+                href="tools.html"
+                >Tools</a
+              >
+            </li>
+            <li>
+              <a
+                class="group inline-flex w-fit items-center gap-2 text-[0.82rem] text-[var(--color-text-secondary)] no-underline transition before:inline-block before:h-px before:w-0 before:bg-[var(--color-brand-glow)] before:transition-[width] before:duration-[220ms] before:content-[''] hover:translate-x-[3px] hover:text-[var(--color-text-primary)] hover:before:w-3 motion-reduce:transition-none motion-reduce:hover:translate-x-0"
+                href="battle-royale.html"
+                >Battle Royale</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <div data-aos="fade-up" data-aos-delay="120">
+          <span class="mb-[0.85rem] block font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.26em] text-[var(--color-brand-glow)]">Tetap terhubung</span>
+          <p class="mb-4 max-w-[20rem] text-[0.8rem] leading-relaxed text-[var(--color-text-secondary)]">Channel, grup, komunitas, dan lokasi tim — semuanya di satu alur.</p>
+          <div class="flex flex-wrap gap-[0.55rem]">
+            <a
+              data-inpage-link
+              href="../index.html#kontak"
+              title="WhatsApp &amp; kontak"
+              class="inline-flex items-center gap-[0.45rem] rounded-full border border-[color-mix(in_srgb,var(--color-brand)_28%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_75%,transparent)] px-[0.85rem] py-2 font-[family-name:var(--font-heading)] text-[0.55rem] font-bold uppercase tracking-[0.12em] text-[var(--color-text-primary)] no-underline transition hover:-translate-y-0.5 hover:border-[color-mix(in_srgb,var(--color-brand-glow)_42%,transparent)] hover:text-[var(--color-brand-glow)] hover:shadow-[0_0_24px_color-mix(in_srgb,var(--color-brand)_12%,transparent)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+            >
+              <i class="fa-brands fa-whatsapp text-base text-[#25d366]" aria-hidden="true"></i>
+              <span>Kontak</span>
+            </a>
+            <a
+              href="https://maps.app.goo.gl/5txpgSWFL8FCJdo27"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Lokasi di Google Maps"
+              class="inline-flex items-center gap-[0.45rem] rounded-full border border-[color-mix(in_srgb,var(--color-brand)_28%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_75%,transparent)] px-[0.85rem] py-2 font-[family-name:var(--font-heading)] text-[0.55rem] font-bold uppercase tracking-[0.12em] text-[var(--color-text-primary)] no-underline transition hover:-translate-y-0.5 hover:border-[color-mix(in_srgb,var(--color-brand-glow)_42%,transparent)] hover:text-[var(--color-brand-glow)] hover:shadow-[0_0_24px_color-mix(in_srgb,var(--color-brand)_12%,transparent)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+            >
+              <i class="fa-solid fa-location-dot text-[0.85rem] text-[var(--color-brand-glow)]" aria-hidden="true"></i>
+              <span>Peta</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative z-[1] flex flex-col items-center justify-between gap-1 border-t border-white/[0.06] px-6 py-[1.15rem] text-center sm:flex-row sm:text-left">
+        <p class="m-0 text-[0.68rem] tracking-wide text-[color-mix(in_srgb,var(--color-text-secondary)_92%,transparent)]">&copy; 2026 FT Epep Squad. Hak cipta dilindungi.</p>
+        <p class="m-0 font-[family-name:var(--font-heading)] text-[0.68rem] uppercase tracking-[0.14em] text-[color-mix(in_srgb,var(--color-brand)_55%,var(--color-text-secondary))]">Squad · Clash squad · Tools</p>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../js/index.js"></script>
+    <script src="../js/siderbar.js"></script>
+  </body>
+</html>
