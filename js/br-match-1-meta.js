@@ -150,8 +150,12 @@
   }
 
   function getTeamCount(form) {
+    if (!form) return 12;
     var teamEl = form.querySelector('input[name="teamSlot"]:checked');
-    return teamEl && teamEl.value === "15" ? 15 : 12;
+    var raw = teamEl && teamEl.value != null ? String(teamEl.value).trim() : "";
+    var n = parseInt(raw, 10);
+    if (!isNaN(n) && n > 1) return n;
+    return raw === "15" ? 15 : 12;
   }
 
   function pad2(n) {
@@ -456,7 +460,9 @@
     var rawSession = snEl && snEl.value != null ? String(snEl.value) : "";
     var sessionDigits = digitsOnly(rawSession);
     var teamEl = form.querySelector('input[name="teamSlot"]:checked');
-    var teamSlot = teamEl && teamEl.value === "15" ? "15" : "12";
+    var rawSlot = teamEl && teamEl.value != null ? String(teamEl.value).trim() : "";
+    var slotN = parseInt(rawSlot, 10);
+    var teamSlot = !isNaN(slotN) && slotN > 1 ? String(slotN) : rawSlot === "15" ? "15" : "12";
     var tb = form.querySelector("#br-match1-teams-tbody");
     var teams = readTeamsFromTbody(tb);
     var mvTeamIndex = computeMvTeamIndexFromKills(teams);
@@ -497,15 +503,23 @@
       }
     }
     if (pt) pt.value = data.playTime || "";
-    var t12 = form.querySelector('input[name="teamSlot"][value="12"]');
-    var t15 = form.querySelector('input[name="teamSlot"][value="15"]');
     var slot = data.teamSlot;
-    if (slot === 15 || slot === "15") {
-      if (t15) t15.checked = true;
-    } else if (t12) {
-      t12.checked = true;
-    }
-    var cnt = slot === 15 || slot === "15" ? 15 : 12;
+    var slotStr = slot != null ? String(slot).trim() : "";
+    var slotN = parseInt(slotStr, 10);
+    var safeSlotStr = slotStr.replace(/"/g, "");
+    var slotRadio = safeSlotStr !== "" ? form.querySelector('input[name="teamSlot"][value="' + safeSlotStr + '"]') : null;
+    var hasSlotRadio = !!(slotRadio && slotRadio.type === "radio");
+    if (hasSlotRadio) slotRadio.checked = true;
+
+    // Jika data lama tersimpan (mis. 12/15) tapi halaman ini memaksa slot lain (mis. 2 team),
+    // prioritaskan pilihan yang tersedia di form.
+    var cnt = hasSlotRadio
+      ? !isNaN(slotN) && slotN > 1
+        ? slotN
+        : slotStr === "15"
+          ? 15
+          : 12
+      : getTeamCount(form);
     if (tb) renderTeamTable(tb, cnt, data.teams || []);
     clampPlayDateAndSyncTime(form);
   }
@@ -895,7 +909,7 @@
     var when = formatDateId(meta.playDate);
     var sess = meta.sessionNumber ? escapeHtml(meta.sessionNumber) : "—";
     var tm = formatTime(meta.playTime);
-    var fmt = meta.teamSlot === "15" ? "15" : "12";
+    var fmt = meta.teamSlot != null && String(meta.teamSlot).trim() !== "" ? String(meta.teamSlot).trim() : "12";
     var mvIxStr = computeMvTeamIndexFromKills(teams);
     var mvIx = mvIxStr !== "" ? parseInt(mvIxStr, 10) : NaN;
     var mvBlock = "";
@@ -1579,7 +1593,7 @@
     function performBrMatch1MetaReset() {
       clearState();
       form.reset();
-      renderTeamTable(tb, 12, []);
+      renderTeamTable(tb, getTeamCount(form), []);
       clampPlayDateAndSyncTime(form);
       syncBaselineFromForm();
       showBrMatch1Toast("success", "Form dan data lokal telah direset. Tanggal & jam disetel ke sekarang.");
