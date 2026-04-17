@@ -1779,6 +1779,11 @@
             btnDl.disabled = true;
             fillPosterCapture(form);
             cap.classList.add("br-m1-poster-capture--hires-export");
+            var prevCapW = cap.style.width;
+            var prevCapMaxW = cap.style.maxWidth;
+            /* Samakan hasil export mobile vs desktop: paksa kanvas poster ke lebar desktop saat raster. */
+            cap.style.width = "720px";
+            cap.style.maxWidth = "720px";
             var pr = getPosterExportPixelRatio();
             whenFontsReady()
               .then(function () {
@@ -1811,6 +1816,8 @@
               })
               .finally(function () {
                 cap.classList.remove("br-m1-poster-capture--hires-export");
+                cap.style.width = prevCapW;
+                cap.style.maxWidth = prevCapMaxW;
                 btnDl.disabled = false;
               });
           });
