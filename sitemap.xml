@@ -11,6 +11,11 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://ft-epep-squad.web.id/pages/clash-squad.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://ft-epep-squad.web.id/pages/tools.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -52,6 +57,16 @@
   </url>
   <url>
     <loc>https://ft-epep-squad.web.id/pages/br/match-8.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ft-epep-squad.web.id/pages/cs/2-team.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ft-epep-squad.web.id/pages/cs/4-team.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
