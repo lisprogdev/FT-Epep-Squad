@@ -17,15 +17,15 @@
     <meta name="theme-color" content="#0f0f0f" />
     <meta
       name="description"
-      content="Clash Squad 2 Team — Single Elimination. Input data turnamen, rounde, BO, dan hasil match untuk Fast Tournament."
+      content="Clash Squad 4 Team — Single Elimination. Input data turnamen, rounde, dan hasil match untuk Fast Tournament."
     />
     <meta name="keywords" content="clash squad 2 team, bracket cs 2 team, single elimination cs, tools eo ff, ft epep squad" />
-    <meta property="og:title" content="Clash Squad 2 Team — Single Elimination | FT Epep Squad" />
+    <meta property="og:title" content="Clash Squad 4 Team — Single Elimination | FT Epep Squad" />
     <meta
       property="og:description"
-      content="Format Clash Squad 2 Team Single Elimination: input data turnamen, rounde, BO, dan hasil match untuk kebutuhan EO fast tournament."
+      content="Format Clash Squad 4 Team Single Elimination: input data turnamen, rounde, dan hasil match untuk kebutuhan EO fast tournament."
     />
-    <title>Clash Squad 2 Team — Single Elimination | FT Epep Squad</title>
+    <title>Clash Squad 4 Team — Single Elimination | FT Epep Squad</title>
 
     <link rel="icon" href="../../favicon.ico" sizes="any" />
     <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon" />
@@ -243,7 +243,7 @@
             >
           </h1>
           <p class="m-0 mb-[clamp(1.35rem,4vw,1.85rem)] max-w-2xl text-[clamp(0.9rem,1.2vw_+_0.82rem,1.05rem)] leading-relaxed text-[color-mix(in_srgb,var(--color-text-secondary)_88%,var(--color-text-primary))]">
-            Halaman format Clash Squad 2 Team untuk bracket Single Elimination. Isi data turnamen, pilih rounde &amp; BO, lalu masukkan hasil match untuk menentukan pemenang.
+            Halaman format Clash Squad 4 Team untuk bracket Single Elimination. Isi data turnamen, pilih rounde, lalu masukkan hasil match SF1, SF2, dan Final untuk menentukan champion.
           </p>
           <div class="flex flex-wrap items-center gap-[0.65rem]">
             <a
@@ -327,7 +327,7 @@
               aria-hidden="true"
             ></div>
 
-            <form id="cs2-form" class="relative z-[1] grid min-w-0 gap-8" novalidate>
+            <form id="cs4-form" class="relative z-[1] grid min-w-0 gap-8" novalidate>
               <div class="grid min-w-0 grid-cols-1 gap-5 md:grid-cols-2 md:gap-x-5 md:gap-y-6 xl:grid-cols-12 xl:gap-x-6 xl:gap-y-6">
                 <div
                   class="group flex flex-col gap-2.5 rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_16%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_38%,transparent)] p-4 ring-1 ring-inset ring-[color-mix(in_srgb,white_5%,transparent)] transition duration-300 hover:border-[color-mix(in_srgb,var(--color-brand-glow)_26%,transparent)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.28)] md:col-span-2 xl:col-span-5 xl:p-5"
@@ -493,65 +493,6 @@
                     </label>
                   </div>
                 </fieldset>
-
-                <fieldset
-                  class="m-0 grid gap-4 rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_16%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_32%,transparent)] p-4 ring-1 ring-inset ring-[color-mix(in_srgb,white_5%,transparent)] transition duration-300 hover:border-[color-mix(in_srgb,var(--color-brand-glow)_22%,transparent)] md:col-span-2 xl:col-span-6 xl:p-5"
-                >
-                  <legend
-                    class="flex w-full items-center gap-2.5 px-0 font-[family-name:var(--font-heading)] text-[0.62rem] font-bold uppercase tracking-[0.18em] text-[color-mix(in_srgb,var(--color-text-secondary)_88%,var(--color-brand-glow))]"
-                  >
-                    <span class="grid size-8 shrink-0 place-items-center rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_20%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_55%,transparent)] text-[var(--color-brand-glow)] shadow-[0_0_20px_color-mix(in_srgb,var(--color-brand)_10%,transparent)]" aria-hidden="true"
-                      ><i class="fa-solid fa-medal text-[0.8rem]"></i
-                    ></span>
-                    BO
-                  </legend>
-                  <div class="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
-                    <label
-                      class="relative cursor-pointer select-none overflow-hidden rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_18%,transparent)] bg-[color-mix(in_srgb,black_22%,transparent)] p-[3px] shadow-[inset_0_1px_0_color-mix(in_srgb,white_6%,transparent)] transition duration-300 hover:border-[color-mix(in_srgb,var(--color-brand-glow)_25%,transparent)] has-[:checked]:border-[color-mix(in_srgb,#5eead4_55%,var(--color-brand-glow))] has-[:checked]:shadow-[0_0_36px_color-mix(in_srgb,var(--color-brand)_28%,transparent)]"
-                    >
-                      <input type="radio" name="bo" value="1" class="peer sr-only" checked />
-                      <span
-                        class="flex min-h-[4.25rem] flex-col items-center justify-center gap-1 rounded-[0.9rem] px-3 py-3 text-center text-[var(--color-text-primary)] transition duration-300 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[var(--color-brand-glow)] peer-checked:bg-gradient-to-br peer-checked:from-[color-mix(in_srgb,#5eead4_38%,var(--color-brand))] peer-checked:to-[var(--color-brand-glow)] peer-checked:text-[var(--color-bg-primary)] peer-checked:shadow-[inset_0_0_0_1px_color-mix(in_srgb,white_14%,transparent)]"
-                      >
-                        <span class="font-[family-name:var(--font-heading)] text-[1.55rem] font-black tabular-nums leading-none tracking-tight">1</span>
-                        <span class="font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.18em] text-current opacity-80">BO</span>
-                      </span>
-                    </label>
-                    <label
-                      class="relative cursor-pointer select-none overflow-hidden rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_18%,transparent)] bg-[color-mix(in_srgb,black_22%,transparent)] p-[3px] shadow-[inset_0_1px_0_color-mix(in_srgb,white_6%,transparent)] transition duration-300 hover:border-[color-mix(in_srgb,var(--color-brand-glow)_25%,transparent)] has-[:checked]:border-[color-mix(in_srgb,#5eead4_55%,var(--color-brand-glow))] has-[:checked]:shadow-[0_0_36px_color-mix(in_srgb,var(--color-brand)_28%,transparent)]"
-                    >
-                      <input type="radio" name="bo" value="3" class="peer sr-only" />
-                      <span
-                        class="flex min-h-[4.25rem] flex-col items-center justify-center gap-1 rounded-[0.9rem] px-3 py-3 text-center text-[var(--color-text-primary)] transition duration-300 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[var(--color-brand-glow)] peer-checked:bg-gradient-to-br peer-checked:from-[color-mix(in_srgb,#5eead4_38%,var(--color-brand))] peer-checked:to-[var(--color-brand-glow)] peer-checked:text-[var(--color-bg-primary)] peer-checked:shadow-[inset_0_0_0_1px_color-mix(in_srgb,white_14%,transparent)]"
-                      >
-                        <span class="font-[family-name:var(--font-heading)] text-[1.55rem] font-black tabular-nums leading-none tracking-tight">3</span>
-                        <span class="font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.18em] text-current opacity-80">BO</span>
-                      </span>
-                    </label>
-                    <label
-                      class="relative cursor-pointer select-none overflow-hidden rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_18%,transparent)] bg-[color-mix(in_srgb,black_22%,transparent)] p-[3px] shadow-[inset_0_1px_0_color-mix(in_srgb,white_6%,transparent)] transition duration-300 hover:border-[color-mix(in_srgb,var(--color-brand-glow)_25%,transparent)] has-[:checked]:border-[color-mix(in_srgb,#5eead4_55%,var(--color-brand-glow))] has-[:checked]:shadow-[0_0_36px_color-mix(in_srgb,var(--color-brand)_28%,transparent)]"
-                    >
-                      <input type="radio" name="bo" value="5" class="peer sr-only" />
-                      <span
-                        class="flex min-h-[4.25rem] flex-col items-center justify-center gap-1 rounded-[0.9rem] px-3 py-3 text-center text-[var(--color-text-primary)] transition duration-300 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[var(--color-brand-glow)] peer-checked:bg-gradient-to-br peer-checked:from-[color-mix(in_srgb,#5eead4_38%,var(--color-brand))] peer-checked:to-[var(--color-brand-glow)] peer-checked:text-[var(--color-bg-primary)] peer-checked:shadow-[inset_0_0_0_1px_color-mix(in_srgb,white_14%,transparent)]"
-                      >
-                        <span class="font-[family-name:var(--font-heading)] text-[1.55rem] font-black tabular-nums leading-none tracking-tight">5</span>
-                        <span class="font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.18em] text-current opacity-80">BO</span>
-                      </span>
-                    </label>
-                    <label
-                      class="relative cursor-pointer select-none overflow-hidden rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_18%,transparent)] bg-[color-mix(in_srgb,black_22%,transparent)] p-[3px] shadow-[inset_0_1px_0_color-mix(in_srgb,white_6%,transparent)] transition duration-300 hover:border-[color-mix(in_srgb,var(--color-brand-glow)_25%,transparent)] has-[:checked]:border-[color-mix(in_srgb,#5eead4_55%,var(--color-brand-glow))] has-[:checked]:shadow-[0_0_36px_color-mix(in_srgb,var(--color-brand)_28%,transparent)]"
-                    >
-                      <input type="radio" name="bo" value="7" class="peer sr-only" />
-                      <span
-                        class="flex min-h-[4.25rem] flex-col items-center justify-center gap-1 rounded-[0.9rem] px-3 py-3 text-center text-[var(--color-text-primary)] transition duration-300 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[var(--color-brand-glow)] peer-checked:bg-gradient-to-br peer-checked:from-[color-mix(in_srgb,#5eead4_38%,var(--color-brand))] peer-checked:to-[var(--color-brand-glow)] peer-checked:text-[var(--color-bg-primary)] peer-checked:shadow-[inset_0_0_0_1px_color-mix(in_srgb,white_14%,transparent)]"
-                      >
-                        <span class="font-[family-name:var(--font-heading)] text-[1.55rem] font-black tabular-nums leading-none tracking-tight">7</span>
-                        <span class="font-[family-name:var(--font-heading)] text-[0.58rem] font-bold uppercase tracking-[0.18em] text-current opacity-80">BO</span>
-                      </span>
-                    </label>
-                  </div>
-                </fieldset>
               </div>
 
               <div
@@ -560,7 +501,7 @@
                 <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
                   <div>
                     <h3 class="m-0 font-[family-name:var(--font-heading)] text-[0.72rem] font-bold uppercase tracking-[0.14em] text-[var(--color-text-primary)]">
-                      Tim — Clash Squad 2 Team
+                      Tim — Clash Squad 4 Team
                     </h3>
                   </div>
                   <div class="flex min-w-0 flex-wrap gap-2 sm:justify-end">
@@ -574,7 +515,7 @@
                     </button>
                     <button
                       type="button"
-                      id="cs2-bracket-preview-open"
+                      id="cs4-bracket-preview-open"
                       class="inline-flex min-h-[2.75rem] shrink-0 cursor-pointer items-center justify-center gap-2 rounded-xl border border-[color-mix(in_srgb,var(--color-brand-glow)_34%,transparent)] bg-[color-mix(in_srgb,black_20%,transparent)] px-4 py-2 font-[family-name:var(--font-heading)] text-[0.62rem] font-bold uppercase tracking-[0.12em] text-[var(--color-text-primary)] shadow-[0_4px_20px_rgba(0,0,0,0.25)] transition hover:border-[var(--color-brand-glow)] hover:text-[var(--color-brand-glow)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)]"
                     >
                       <i class="fa-solid fa-diagram-project text-[0.78rem]" aria-hidden="true"></i>
@@ -583,9 +524,9 @@
                   </div>
                 </div>
                 <section
-                  id="cs2-series"
+                  id="cs4-series"
                   class="min-w-0 max-w-full overflow-hidden rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] bg-[color-mix(in_srgb,black_22%,transparent)] shadow-[inset_0_0_0_1px_color-mix(in_srgb,white_4%,transparent)]"
-                  aria-label="Skor Clash Squad"
+                  aria-label="Skor Clash Squad 4 Team"
                 >
                   <header
                     class="flex flex-col gap-3 border-b border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_55%,transparent)] px-3 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-4"
@@ -596,49 +537,63 @@
                         Skor match
                       </span>
                       <p class="m-0 text-[0.72rem] text-[var(--color-text-secondary)]">
-                        Rounde: <strong id="cs2-rounde-label" class="text-[var(--color-text-primary)]">5</strong> ·
-                        BO: <strong id="cs2-bo-label" class="text-[var(--color-text-primary)]">1</strong>
+                        Rounde: <strong id="cs4-rounde-label" class="text-[var(--color-text-primary)]">5</strong>
                       </p>
                     </div>
                     <div class="flex flex-wrap items-center gap-2 text-[0.72rem]">
-                      <span class="text-[var(--color-text-secondary)]">Series</span>
-                      <span class="inline-flex items-center gap-2 rounded-full border border-[color-mix(in_srgb,#5eead4_22%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] px-3 py-1">
-                        <strong id="cs2-wins-left" class="text-[var(--color-text-primary)]">0</strong>
-                        <span class="text-[var(--color-text-secondary)]">-</span>
-                        <strong id="cs2-wins-right" class="text-[var(--color-text-primary)]">0</strong>
-                      </span>
-                      <span id="cs2-winner-badge" class="hidden rounded-full border border-[color-mix(in_srgb,#5eead4_28%,transparent)] bg-[color-mix(in_srgb,#5eead4_10%,transparent)] px-3 py-1 font-[family-name:var(--font-heading)] text-[0.55rem] font-bold uppercase tracking-[0.18em] text-[#b8fff0]">
-                        Menang
+                      <span id="cs4-champion-badge" class="hidden rounded-full border border-[color-mix(in_srgb,#5eead4_28%,transparent)] bg-[color-mix(in_srgb,#5eead4_10%,transparent)] px-3 py-1 font-[family-name:var(--font-heading)] text-[0.55rem] font-bold uppercase tracking-[0.18em] text-[#b8fff0]">
+                        Champion
                       </span>
                     </div>
                   </header>
 
                   <div class="grid gap-3 p-3 sm:p-4">
-                    <div class="grid gap-3 md:grid-cols-[1fr_auto_1fr] md:items-center">
+                    <div class="grid gap-3 md:grid-cols-2">
                       <div class="rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_35%,transparent)] p-3">
                         <p class="m-0 mb-2 font-[family-name:var(--font-heading)] text-[0.55rem] font-bold uppercase tracking-[0.18em] text-[var(--color-brand-glow)]">
-                          Nama team
+                          Team 1 (SF 1)
                         </p>
                         <input
-                          id="cs2-team-left"
-                          name="csTeamLeft"
+                          id="cs4-team-1"
+                          name="csTeam1"
                           type="text"
                           placeholder="Nama team 1"
                           class="w-full rounded-xl border border-[color-mix(in_srgb,white_8%,transparent)] bg-[color-mix(in_srgb,black_30%,transparent)] px-3.5 py-3 text-[0.92rem] text-[var(--color-text-primary)] outline-none transition placeholder:text-[color-mix(in_srgb,var(--color-text-secondary)_48%,transparent)] focus:border-[color-mix(in_srgb,var(--color-brand-glow)_45%,transparent)] focus:bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--color-brand-glow)_22%,transparent)]"
                         />
                       </div>
-                      <div class="mx-auto inline-flex size-12 items-center justify-center rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_18%,transparent)] bg-[color-mix(in_srgb,black_28%,transparent)] font-[family-name:var(--font-heading)] text-[0.75rem] font-black uppercase tracking-[0.22em] text-[color-mix(in_srgb,var(--color-text-secondary)_88%,var(--color-brand-glow))] shadow-[0_0_26px_color-mix(in_srgb,var(--color-brand)_10%,transparent)]">
-                        VS
+                      <div class="rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_35%,transparent)] p-3">
+                        <p class="m-0 mb-2 font-[family-name:var(--font-heading)] text-[0.55rem] font-bold uppercase tracking-[0.18em] text-[var(--color-brand-glow)]">
+                          Team 2 (SF 1)
+                        </p>
+                        <input
+                          id="cs4-team-2"
+                          name="csTeam2"
+                          type="text"
+                          placeholder="Nama team 2"
+                          class="w-full rounded-xl border border-[color-mix(in_srgb,white_8%,transparent)] bg-[color-mix(in_srgb,black_30%,transparent)] px-3.5 py-3 text-[0.92rem] text-[var(--color-text-primary)] outline-none transition placeholder:text-[color-mix(in_srgb,var(--color-text-secondary)_48%,transparent)] focus:border-[color-mix(in_srgb,var(--color-brand-glow)_45%,transparent)] focus:bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--color-brand-glow)_22%,transparent)]"
+                        />
                       </div>
                       <div class="rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_35%,transparent)] p-3">
                         <p class="m-0 mb-2 font-[family-name:var(--font-heading)] text-[0.55rem] font-bold uppercase tracking-[0.18em] text-[var(--color-brand-glow)]">
-                          Nama team
+                          Team 3 (SF 2)
                         </p>
                         <input
-                          id="cs2-team-right"
-                          name="csTeamRight"
+                          id="cs4-team-3"
+                          name="csTeam3"
                           type="text"
-                          placeholder="Nama team 2"
+                          placeholder="Nama team 3"
+                          class="w-full rounded-xl border border-[color-mix(in_srgb,white_8%,transparent)] bg-[color-mix(in_srgb,black_30%,transparent)] px-3.5 py-3 text-[0.92rem] text-[var(--color-text-primary)] outline-none transition placeholder:text-[color-mix(in_srgb,var(--color-text-secondary)_48%,transparent)] focus:border-[color-mix(in_srgb,var(--color-brand-glow)_45%,transparent)] focus:bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--color-brand-glow)_22%,transparent)]"
+                        />
+                      </div>
+                      <div class="rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_35%,transparent)] p-3">
+                        <p class="m-0 mb-2 font-[family-name:var(--font-heading)] text-[0.55rem] font-bold uppercase tracking-[0.18em] text-[var(--color-brand-glow)]">
+                          Team 4 (SF 2)
+                        </p>
+                        <input
+                          id="cs4-team-4"
+                          name="csTeam4"
+                          type="text"
+                          placeholder="Nama team 4"
                           class="w-full rounded-xl border border-[color-mix(in_srgb,white_8%,transparent)] bg-[color-mix(in_srgb,black_30%,transparent)] px-3.5 py-3 text-[0.92rem] text-[var(--color-text-primary)] outline-none transition placeholder:text-[color-mix(in_srgb,var(--color-text-secondary)_48%,transparent)] focus:border-[color-mix(in_srgb,var(--color-brand-glow)_45%,transparent)] focus:bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--color-brand-glow)_22%,transparent)]"
                         />
                       </div>
@@ -646,16 +601,16 @@
 
                     <section
                       class="overflow-hidden rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] bg-[color-mix(in_srgb,black_18%,transparent)]"
-                      aria-label="Fase final match sesuai BO"
+                      aria-label="Match per fase SF1 SF2 Final"
                     >
                       <div
                         class="border-b border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_55%,transparent)] px-3 py-2.5"
                       >
                         <p class="m-0 font-[family-name:var(--font-heading)] text-[0.55rem] font-bold uppercase tracking-[0.14em] text-[var(--color-brand-glow)]">
-                          Fase final · Match sesuai BO (accordion)
+                          Match per fase (SF1 · SF2 · Final)
                         </p>
                       </div>
-                      <div id="cs2-matches-accordion" class="divide-y divide-[color-mix(in_srgb,var(--color-brand)_10%,transparent)]"></div>
+                      <div id="cs4-matches-accordion" class="divide-y divide-[color-mix(in_srgb,var(--color-brand)_10%,transparent)]"></div>
                     </section>
                   </div>
                 </section>
@@ -671,7 +626,7 @@
                 <div class="flex flex-shrink-0 flex-wrap gap-3 sm:justify-end">
                   <button
                     type="button"
-                    id="cs2-reset"
+                    id="cs4-reset"
                     class="inline-flex min-h-[2.85rem] min-w-[7.5rem] cursor-pointer items-center justify-center gap-2 rounded-xl border border-[color-mix(in_srgb,#f87171_38%,transparent)] bg-[color-mix(in_srgb,#450a0a_42%,transparent)] px-5 py-2.5 font-[family-name:var(--font-heading)] text-[0.62rem] font-bold uppercase tracking-[0.14em] text-[#fecaca] shadow-[0_6px_24px_rgba(0,0,0,0.35)] transition hover:-translate-y-0.5 hover:border-[#f87171] hover:bg-[color-mix(in_srgb,#7f1d1d_48%,transparent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f87171] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
                   >
                     <i class="fa-solid fa-rotate-left text-[0.78rem]" aria-hidden="true"></i>
@@ -776,15 +731,15 @@
       </dialog>
 
       <dialog
-        id="cs2-bracket-dialog"
-        class="m-auto max-h-[92dvh] w-[min(96vw,60rem)] overflow-hidden rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_32%,transparent)] bg-[color-mix(in_srgb,#080808_94%,var(--color-bg-secondary))] p-0 text-[var(--color-text-primary)] shadow-[0_32px_100px_rgba(0,0,0,0.78),0_0_1px_color-mix(in_srgb,var(--color-brand-glow)_22%,transparent)_inset] backdrop:bg-black/70 [color-scheme:dark]"
-        aria-labelledby="cs2-bracket-dialog-title"
+        id="cs4-bracket-dialog"
+        class="m-auto max-h-[92dvh] w-[min(98vw,90rem)] overflow-hidden rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_32%,transparent)] bg-[color-mix(in_srgb,#080808_94%,var(--color-bg-secondary))] p-0 text-[var(--color-text-primary)] shadow-[0_32px_100px_rgba(0,0,0,0.78),0_0_1px_color-mix(in_srgb,var(--color-brand-glow)_22%,transparent)_inset] backdrop:bg-black/70 [color-scheme:dark]"
+        aria-labelledby="cs4-bracket-dialog-title"
       >
         <div
           class="flex flex-wrap items-center justify-between gap-3 border-b border-[color-mix(in_srgb,var(--color-brand)_22%,transparent)] bg-[linear-gradient(105deg,color-mix(in_srgb,#5eead4_10%,transparent)_0%,color-mix(in_srgb,var(--color-brand)_10%,transparent)_45%,transparent_70%)] px-3 py-3 sm:px-5"
         >
           <h2
-            id="cs2-bracket-dialog-title"
+            id="cs4-bracket-dialog-title"
             class="m-0 min-w-0 flex-1 font-[family-name:var(--font-heading)] text-[0.72rem] font-bold uppercase tracking-[0.16em] text-[color-mix(in_srgb,var(--color-text-primary)_88%,#5eead4)] sm:text-[0.78rem]"
           >
             Bracket · Poster
@@ -792,7 +747,7 @@
           <div class="flex items-center gap-2">
             <button
               type="button"
-              id="cs2-bracket-download"
+              id="cs4-bracket-download"
               class="inline-flex min-h-[2.35rem] cursor-pointer items-center justify-center gap-2 rounded-xl border border-[color-mix(in_srgb,#5eead4_35%,var(--color-brand))] bg-[color-mix(in_srgb,var(--color-bg-secondary)_55%,transparent)] px-3.5 py-2 font-[family-name:var(--font-heading)] text-[0.6rem] font-bold uppercase tracking-[0.14em] text-[color-mix(in_srgb,var(--color-text-primary)_92%,#5eead4)] transition hover:border-[var(--color-brand-glow)] hover:text-[var(--color-brand-glow)] disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)]"
             >
               <i class="fa-solid fa-download text-[0.8rem]" aria-hidden="true"></i>
@@ -800,7 +755,7 @@
             </button>
             <button
               type="button"
-              id="cs2-bracket-close"
+              id="cs4-bracket-close"
               class="inline-flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_28%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_55%,transparent)] text-[var(--color-text-secondary)] transition hover:border-[var(--color-brand-glow)] hover:text-[var(--color-text-primary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)]"
               aria-label="Tutup preview bracket"
             >
@@ -813,7 +768,7 @@
             Preview bracket bergaya poster. Tombol <span class="font-[family-name:var(--font-heading)] font-semibold text-[var(--color-text-primary)]">Unduh PNG</span>
             akan menyimpan hasil sebagai gambar.
           </p>
-          <div id="cs2-bracket-capture" class="flex justify-center"></div>
+          <div id="cs4-bracket-capture" class="mx-auto w-max max-w-none"></div>
         </div>
       </dialog>
 
@@ -853,7 +808,7 @@
           ></span>
           <h2 id="br-match1-reset-confirm-title" class="br-m1-notice-dialog__title">Reset data roster?</h2>
           <p id="br-match1-reset-confirm-msg" class="br-m1-notice-dialog__msg br-m1-reset-confirm-dialog__msg">
-            Semua data Clash Squad 2 Team yang tersimpan di perangkat ini akan dihapus, form dikosongkan, dan tanggal serta jam
+            Semua data Clash Squad 4 Team yang tersimpan di perangkat ini akan dihapus, form dikosongkan, dan tanggal serta jam
             disetel ke sekarang. Tindakan ini tidak bisa dibatalkan.
           </p>
           <div class="br-m1-reset-confirm__actions">
@@ -1186,7 +1141,7 @@
     <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.13/dist/html-to-image.min.js"></script>
     <script src="../../js/index.js"></script>
     <script src="../../js/ft-ad-gates.js"></script>
-    <script src="../../js/cs-2-team.js"></script>
+    <script src="../../js/cs-4-team.js"></script>
     <script src="../../js/siderbar.js"></script>
   </body>
 </html>
