@@ -437,8 +437,8 @@
         "</div>" +
         "</div>" +
         // connector lines (like bracket)
-        '<div class="pointer-events-none absolute left-0 top-1/2 hidden h-0.5 w-10 -translate-x-full -translate-y-1/2 opacity-80 sm:block" aria-hidden="true" style="background:linear-gradient(90deg, transparent, color-mix(in_srgb,#5eead4_70%,transparent));"></div>' +
-        '<div class="pointer-events-none absolute right-0 top-1/2 hidden h-0.5 w-10 translate-x-full -translate-y-1/2 opacity-80 sm:block" aria-hidden="true" style="background:linear-gradient(90deg, color-mix(in_srgb,var(--color-brand-glow)_70%,transparent), transparent);"></div>' +
+        '<div class="pointer-events-none absolute left-0 top-1/2 hidden h-0.5 w-10 -translate-x-full -translate-y-1/2 opacity-80 sm:block" aria-hidden="true" style="background:linear-gradient(90deg, transparent, color-mix(in_srgb,#5eead4_75%,transparent));"></div>' +
+        '<div class="pointer-events-none absolute right-0 top-1/2 hidden h-0.5 w-10 translate-x-full -translate-y-1/2 opacity-80 sm:block" aria-hidden="true" style="background:linear-gradient(90deg, color-mix(in_srgb,#5eead4_75%,transparent), transparent);"></div>' +
         "</div>" +
         '<div class="min-w-0 rounded-2xl border border-[color-mix(in_srgb,var(--color-brand-glow)_18%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_35%,transparent)] p-5 text-right">' +
         '<div class="grid items-center gap-3 justify-items-end" style="grid-template-columns:minmax(2.25rem,auto) minmax(10rem,1fr);">' +
@@ -703,18 +703,25 @@
       );
     }
 
-    function certArticleChampion(opts) {
-      var tierLabel = opts.tierLabel || "Champion";
+    function certArticlePlacement(opts) {
+      var dataCert = opts.dataCert || "placement";
+      var tierLabel = opts.tierLabel || "—";
+      var positionTitle = opts.positionTitle || "—";
       var tourney = opts.tournamentName || "—";
       var winnerName = opts.winnerName || "—";
-      var bo = opts.bo || 1;
-      var rounde = opts.rounde || 5;
-      var totalLine = opts.totalLine || "—";
+      var thanksLine = opts.thanksLine || "—";
       var dateLine = opts.dateLine || "—";
       var timeLine = opts.timeLine || "—";
       var serial = opts.serial || "";
+      var asideTag = opts.asideTag || "Clash Squad · 2 Team";
+      var iconClass = opts.iconClass || "fa-solid fa-award";
+      var extraArticleClass = opts.extraArticleClass ? " " + opts.extraArticleClass : "";
       return (
-        '<article class="br-m1-cert br-m1-cert--classic" data-cert="champion">' +
+        '<article class="br-m1-cert br-m1-cert--classic' +
+        extraArticleClass +
+        '" data-cert="' +
+        escapeHtml(dataCert) +
+        '">' +
         '<div class="br-m1-cert__waterback" aria-hidden="true"></div>' +
         '<aside class="br-m1-cert__aside">' +
         '<div class="br-m1-cert__aside-inner">' +
@@ -725,8 +732,12 @@
         '<span class="br-m1-cert__aside-brand-line">Fast Tournament</span></div></div>' +
         '<p class="br-m1-cert__aside-tier">' +
         escapeHtml(tierLabel) +
-        '</p><div class="br-m1-cert__aside-ico"><i class="fa-solid fa-crown" aria-hidden="true"></i></div>' +
-        '<span class="br-m1-cert__aside-tag">Clash Squad · 2 Team</span></div></aside>' +
+        '</p><div class="br-m1-cert__aside-ico"><i class="' +
+        escapeHtml(iconClass) +
+        '" aria-hidden="true"></i></div>' +
+        '<span class="br-m1-cert__aside-tag">' +
+        escapeHtml(asideTag) +
+        "</span></div></aside>" +
         '<div class="br-m1-cert__body">' +
         '<p class="br-m1-cert__brand">Fast Tournament · FT Epep Squad</p>' +
         '<p class="br-m1-cert__event">' +
@@ -739,13 +750,11 @@
         escapeHtml(winnerName) +
         "</p>" +
         '<p class="br-m1-cert__as">Sebagai</p>' +
-        '<p class="br-m1-cert__position">Champion</p>' +
-        '<p class="br-m1-cert__thanks">Clash Squad 2 Team · BO' +
-        escapeHtml(String(bo)) +
-        " · Rounde " +
-        escapeHtml(String(rounde)) +
-        " · Total skor " +
-        escapeHtml(totalLine) +
+        '<p class="br-m1-cert__position">' +
+        escapeHtml(positionTitle) +
+        "</p>" +
+        '<p class="br-m1-cert__thanks">' +
+        escapeHtml(thanksLine) +
         "</p></div>" +
         '<footer class="br-m1-cert__sign">' +
         '<div class="br-m1-cert__serial">' +
@@ -778,6 +787,7 @@
       var series = computeSeries(normalized, r);
       var winnerSide = seriesWinnerFromWins(series, b);
       var winnerName = winnerSide === "L" ? teamLeft : winnerSide === "R" ? teamRight : "—";
+      var runnerName = winnerSide === "L" ? teamRight : winnerSide === "R" ? teamLeft : "—";
 
       var totalLeft = 0;
       var totalRight = 0;
@@ -790,20 +800,39 @@
       var tourney = textById("br-match1-tournament") || "FT Epep Squad";
       var playDateIso = textById("br-match1-playdate") || localDateISO();
       var playTime = textById("br-match1-play-time") || "";
+      var thanksBase =
+        "Clash Squad 2 Team · BO" + b + " · Rounde " + r + " · Total skor agregat " + totalLeft + " - " + totalRight;
 
-      var article = certArticleChampion({
+      var artChamp = certArticlePlacement({
+        dataCert: "champion",
         tierLabel: "Champion",
+        positionTitle: "Champion",
         tournamentName: tourney,
         winnerName: winnerName,
-        bo: b,
-        rounde: r,
-        totalLine: totalLeft + " - " + totalRight,
+        thanksLine: thanksBase,
         dateLine: fmtDate(playDateIso),
         timeLine: fmtTime(playTime),
         serial: makeSerial("CS2"),
+        asideTag: "Clash Squad · 2 Team",
+        iconClass: "fa-solid fa-crown",
       });
 
-      certCapture.innerHTML = wrapCertSlot("champion", "Champion", article);
+      var artRunner = certArticlePlacement({
+        dataCert: "runnerup",
+        tierLabel: "Runner-up",
+        positionTitle: "Runner-up",
+        tournamentName: tourney,
+        winnerName: runnerName,
+        thanksLine: thanksBase,
+        dateLine: fmtDate(playDateIso),
+        timeLine: fmtTime(playTime),
+        serial: makeSerial("CS2"),
+        asideTag: "Clash Squad · 2 Team",
+        iconClass: "fa-solid fa-medal",
+      });
+
+      certCapture.innerHTML =
+        wrapCertSlot("champion", "Champion", artChamp) + wrapCertSlot("runnerup", "Runner-up", artRunner);
     }
 
     function openCertModal() {
@@ -855,7 +884,13 @@
           btn.disabled = true;
           var tourney = safeFilenamePart(textById("br-match1-tournament") || "FT_Epep_Squad");
           var date = safeFilenamePart(textById("br-match1-playdate") || "");
-          var file = "CS2_Certificate_" + (tourney ? tourney : "Champion") + (date ? "_" + date : "") + ".png";
+          var file =
+            "CS2_Certificate_" +
+            slotKey +
+            "_" +
+            (tourney ? tourney : "Cert") +
+            (date ? "_" + date : "") +
+            ".png";
 
           window.htmlToImage
             .toPng(article, { pixelRatio: 2, cacheBust: true, backgroundColor: "#f6f0df" })
