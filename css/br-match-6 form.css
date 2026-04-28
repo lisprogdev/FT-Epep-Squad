@@ -77,6 +77,26 @@
   text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: max-content;
+  max-width: none;
+}
+
+#br-match1-poster-capture.br-m1-poster-capture--hires-export .br-m1-poster-root {
+  width: max-content;
+}
+
+#br-match1-poster-capture.br-m1-poster-capture--hires-export .br-m1-poster__table-wrap {
+  width: max-content;
+}
+
+#br-match1-poster-capture.br-m1-poster-capture--hires-export .br-m1-poster__table {
+  width: max-content;
+  table-layout: auto;
+}
+
+#br-match1-poster-capture.br-m1-poster-capture--hires-export .br-m1-poster__td--rk,
+#br-match1-poster-capture.br-m1-poster-capture--hires-export .br-m1-poster__td--k {
+  width: auto;
 }
 
 #br-match1-poster-capture.br-m1-poster-capture--hires-export .br-m1-poster__frame {
