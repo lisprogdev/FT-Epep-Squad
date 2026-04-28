@@ -1095,6 +1095,7 @@
   }
 
   function initFtAds() {
+    return;
     var nodes = document.querySelectorAll("[data-ft-ad][data-ft-ad-key]");
     if (!nodes || !nodes.length) return;
     for (var i = 0; i < nodes.length; i++) {
@@ -1107,7 +1108,7 @@
       try {
         window.atOptions = { key: key, format: format, height: h, width: w, params: {} };
         var s = document.createElement("script");
-        s.src = "https://performanceingredientgoblet.com/" + key + "/invoke.js";
+        s.src = "";
         s.async = true;
         el.appendChild(s);
         el.setAttribute("data-ft-ad-loaded", "1");
@@ -1241,6 +1242,7 @@
     }
 
     function ensureGateAdLoaded() {
+      return;
       if (!gateSlot || gateSlot.getAttribute("data-ad-loaded") === "1") return;
       gateSlot.setAttribute("data-ad-loaded", "1");
       var wrap = document.createElement("div");
@@ -1251,7 +1253,7 @@
       wrap.appendChild(opts);
       var inv = document.createElement("script");
       inv.async = true;
-      inv.src = "https://performanceingredientgoblet.com/2b39ed5a6df1bc66366ef9e91d1b3efc/invoke.js";
+      inv.src = "";
       wrap.appendChild(inv);
       gateSlot.appendChild(wrap);
     }
@@ -1449,7 +1451,11 @@
     if (dlGateOpenAd) {
       dlGateOpenAd.addEventListener("click", function () {
         if (!dlGateCtx.active) return;
-        var adUrl = "https://performanceingredientgoblet.com/angtq6ey?key=40a62c67960666e3277ffb4d5b2ebbbd";
+        var adUrl = "";
+        if (!adUrl) {
+          if (dlGateStatus) dlGateStatus.textContent = "Iklan dinonaktifkan.";
+          return;
+        }
         var w = window.open("about:blank", "_blank");
         if (!w) {
           if (dlGateStatus) {

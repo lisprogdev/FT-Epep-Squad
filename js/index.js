@@ -97,6 +97,7 @@
     }
 
     function loadModalAdOnce() {
+      return;
       if (!slot || slot.getAttribute("data-ad-loaded") === "1") return;
       slot.setAttribute("data-ad-loaded", "1");
       var wrap = document.createElement("div");
@@ -107,7 +108,7 @@
       wrap.appendChild(opts);
       var inv = document.createElement("script");
       inv.async = true;
-      inv.src = "https://performanceingredientgoblet.com/2b39ed5a6df1bc66366ef9e91d1b3efc/invoke.js";
+      inv.src = "";
       wrap.appendChild(inv);
       slot.appendChild(wrap);
     }
