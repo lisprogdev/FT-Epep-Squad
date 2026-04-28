@@ -37,19 +37,18 @@
   }
 
   function ensureGateAdLoaded() {
-    return;
     if (!gateSlot || gateSlot.getAttribute("data-ad-loaded") === "1") return;
     gateSlot.setAttribute("data-ad-loaded", "1");
     var wrap = document.createElement("div");
     wrap.className = "site-ads__unit flex w-full justify-center";
-    var opts = document.createElement("script");
-    opts.textContent =
-      'atOptions = { key: "2b39ed5a6df1bc66366ef9e91d1b3efc", format: "iframe", height: 300, width: 160, params: {} };';
-    wrap.appendChild(opts);
     var inv = document.createElement("script");
     inv.async = true;
-    inv.src = "";
+    inv.setAttribute("data-cfasync", "false");
+    inv.src = "https://performanceingredientgoblet.com/02ad4c20f6520397f8dd0da3a374ae68/invoke.js";
     wrap.appendChild(inv);
+    var ctr = document.createElement("div");
+    ctr.id = "container-02ad4c20f6520397f8dd0da3a374ae68";
+    wrap.appendChild(ctr);
     gateSlot.appendChild(wrap);
   }
 
@@ -136,7 +135,7 @@
     lastNow: 0,
     wasAdOpen: false,
   };
-  var DL_AD_URL = "";
+  var DL_AD_URL = "https://performanceingredientgoblet.com/angtq6ey?key=40a62c67960666e3277ffb4d5b2ebbbd";
 
   function clearDlGateTick() {
     if (dlGateTick) {

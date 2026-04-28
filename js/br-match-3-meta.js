@@ -586,518 +586,49 @@
       clampPlayDateAndSyncTime(form);
     }
   
-    function formatDateId(iso) {
-      if (!iso) return "—";
-      try {
-        var d = new Date(iso + "T12:00:00");
-        if (isNaN(d.getTime())) return escapeHtml(iso);
-        return escapeHtml(
-          d.toLocaleDateString("id-ID", { day: "numeric", month: "short", year: "numeric" })
-        );
-      } catch (e) {
-        return escapeHtml(iso);
-      }
+    function buildBrPosterDeps() {
+      return {
+        escapeHtml: escapeHtml,
+        MATCH_COUNT: MATCH_COUNT,
+        matchRankField: matchRankField,
+        matchKillField: matchKillField,
+        parseTotalPointSort: parseTotalPointSort,
+        CURRENT_MATCH_RANK_FIELD: CURRENT_MATCH_RANK_FIELD,
+        computeMvTeamIndexFromKills: computeMvTeamIndexFromKills,
+        resolveTeamDisplayName: resolveTeamDisplayName,
+        teamKillTotalFromData: teamKillTotalFromData,
+        emptyTeam: emptyTeam,
+        MATCH_LABEL_SHORT: MATCH_LABEL_SHORT,
+      };
     }
   
-    /** Tanggal panjang untuk sertifikat (Bahasa Indonesia). */
-    function formatDateLongId(iso) {
-      if (!iso) return "—";
-      try {
-        var d = new Date(iso + "T12:00:00");
-        if (isNaN(d.getTime())) return escapeHtml(iso);
-        return escapeHtml(
-          d.toLocaleDateString("id-ID", {
-            weekday: "long",
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-          })
-        );
-      } catch (e) {
-        return escapeHtml(iso);
-      }
-    }
-  
-    function certPositionTitleId(kindKey, rankNum) {
-      if (kindKey === "mvp") return "MVP";
-      if (rankNum === 1) return "Champion";
-      if (rankNum === 2) return "Runner-up";
-      if (rankNum === 3) return "Third Place";
-      return "—";
-    }
-  
-    function certAchievementTextId(kindKey, rankNum, tournamentRaw) {
-      var tn = String(tournamentRaw || "").trim() || "turnamen";
-      if (kindKey === "mvp") {
-        return (
-          "Diberikan atas prestasi tim dengan total eliminasi tertinggi pada " +
-          MATCH_EVENT_LABEL +
-          ' dalam rangka "' +
-          tn +
-          "\"."
-        );
-      }
-      var r = rankNum || 0;
-      return (
-        "Diberikan atas pencapaian placement peringkat ke-" +
-        r +
-        " pada " +
-        MATCH_EVENT_LABEL +
-        ' dalam rangka "' +
-        tn +
-        "\"."
-      );
-    }
-  
-    function certThanksTextId(tournamentRaw, seasonRaw, playDateIso) {
-      var tn = String(tournamentRaw || "").trim() || "turnamen ini";
-      var ss = String(seasonRaw || "").trim();
-      var dateTxt = formatDateLongId(playDateIso);
-      var seasonTxt = ss ? " Season " + ss : "";
-      return (
-        "Terima kasih atas dedikasi, sportivitas, dan komitmen luar biasa yang telah Anda tunjukkan selama rangkaian kompetisi " +
-        '"' +
-        tn +
-        '"' +
-        seasonTxt +
-        " yang diselenggarakan pada " +
-        dateTxt +
-        ". Semoga pencapaian ini menjadi motivasi untuk terus berkembang, menjaga konsistensi performa tim, serta meraih hasil yang lebih tinggi pada pertandingan berikutnya."
-      );
-    }
-  
-    /** Nomor seri unik deterministik (unduh PNG / arsip). */
-    function buildCertificateSerial(kindKey, meta, slotNum) {
-      var dPart = "00000000";
-      if (meta && meta.playDate) {
-        var dg = digitsOnly(meta.playDate);
-        if (dg.length >= 8) dPart = dg.slice(0, 8);
-        else {
-          try {
-            var d = new Date(meta.playDate + "T12:00:00");
-            if (!isNaN(d.getTime())) {
-              dPart = d.getFullYear() + pad2(d.getMonth() + 1) + pad2(d.getDate());
-            }
-          } catch (e) {}
-        }
-      }
-      var ses = digitsOnly(String((meta && meta.sessionNumber) || "0"));
-      if (!ses) ses = "0";
-      if (ses.length > 4) ses = ses.slice(-4);
-      var k = kindKey === "j1" ? "J1" : kindKey === "j2" ? "J2" : kindKey === "j3" ? "J3" : "MVP";
-      var n =
-        typeof slotNum === "number" && slotNum > 0
-          ? slotNum
-          : parseInt(String(slotNum || ""), 10);
-      var sl = !isNaN(n) && n > 0 ? ("000" + n).slice(-3) : "000";
-      return "FT-BR-M" + MATCH_NO + "-" + k + "-" + dPart + "-S" + ses + "-" + sl;
-    }
-  
-    function formatTime(t) {
-      if (!t) return "—";
-      return escapeHtml(t);
-    }
-  
-    /** Rank match aktif (angka); 1–3 dipakai untuk tanda podium di poster. */
-    function parseCurrentRankForPoster(rankStr) {
-      var n = parseInt(String(rankStr || "").trim(), 10);
-      return isNaN(n) || n < 1 ? 0 : n;
-    }
-  
-    function posterJuaraRowClass(rankStr, rowEven) {
-      var n = parseCurrentRankForPoster(rankStr);
-      if (n >= 1 && n <= 3) return "br-m1-poster__tr br-m1-poster__tr--juara br-m1-poster__tr--j" + n;
-      return rowEven ? "br-m1-poster__tr" : "br-m1-poster__tr br-m1-poster__tr--alt";
-    }
-  
-    function findTeamByCurrentMatchRank(teams, rankN) {
-      if (!teams || !teams.length) return null;
-      for (var i = 0; i < teams.length; i++) {
-        var n = parseInt(String((teams[i] || {})[CURRENT_MATCH_RANK_FIELD] || "").trim(), 10);
-        if (n === rankN) return { slot: i + 1, team: teams[i] || emptyTeam() };
-      }
-      return null;
-    }
-  
-    function wrapCertSlot(kindKey, tierLabel, articleHtml) {
-      var k = escapeHtml(kindKey);
-      var lbl = escapeHtml(tierLabel);
-      return (
-        '<section class="br-m1-cert-slot" data-cert-slot="' +
-        k +
-        '">' +
-        '<div class="br-m1-cert-toolbar">' +
-        '<div class="br-m1-cert-toolbar__left">' +
-        '<span class="br-m1-cert-toolbar__badge" title="Ekspor raster"><i class="fa-solid fa-file-image" aria-hidden="true"></i> PNG</span>' +
-        '<span class="br-m1-cert-toolbar__dim">A4 mendatar · 297 × 210 mm</span></div>' +
-        '<button type="button" class="br-m1-cert-toolbar__dl" data-cert-download="' +
-        k +
-        '" aria-label="Unduh sertifikat ' +
-        lbl +
-        '">' +
-        '<span class="br-m1-cert-toolbar__dl-shine" aria-hidden="true"></span>' +
-        '<i class="fa-solid fa-cloud-arrow-down br-m1-cert-toolbar__dl-ico" aria-hidden="true"></i>' +
-        '<span class="br-m1-cert-toolbar__dl-text">Unduh</span>' +
-        '<span class="br-m1-cert-toolbar__dl-tier">' +
-        lbl +
-        "</span></button></div>" +
-        '<div class="br-m1-cert-viewport">' +
-        articleHtml +
-        "</div></section>"
-      );
-    }
-  
-    function certArticleEmpty(kindKey, tierLabel, hintLine, positionLabel) {
-      var mvpCls = kindKey === "mvp" ? " br-m1-cert--mvp" : "";
-      var posEsc = escapeHtml(positionLabel || "—");
-      return (
-        '<article class="br-m1-cert br-m1-cert--classic br-m1-cert--empty' +
-        mvpCls +
-        '" data-cert="' +
-        kindKey +
-        '">' +
-        '<div class="br-m1-cert__waterback" aria-hidden="true"></div>' +
-        '<aside class="br-m1-cert__aside">' +
-        '<div class="br-m1-cert__aside-inner">' +
-        '<div class="br-m1-cert__aside-brandstack">' +
-        '<img src="../../img/element/Logo.png" alt="" class="br-m1-cert__aside-logo" width="48" height="48" decoding="async" loading="lazy" />' +
-        '<div class="br-m1-cert__aside-brandblock">' +
-        '<span class="br-m1-cert__aside-brand-name">FT Epep Squad</span>' +
-        '<span class="br-m1-cert__aside-brand-line">Fast Tournament</span></div></div>' +
-        '<p class="br-m1-cert__aside-tier br-m1-cert__aside-tier--ghost">' +
-        escapeHtml(tierLabel) +
-        '</p><div class="br-m1-cert__aside-ico br-m1-cert__aside-ico--dim"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>' +
-        '<span class="br-m1-cert__aside-tag">' +
-        escapeHtml(MATCH_TAG_BR) +
-        "</span></div></aside>" +
-        '<div class="br-m1-cert__body">' +
-        '<p class="br-m1-cert__brand">Fast Tournament · FT Epep Squad</p>' +
-        '<p class="br-m1-cert__event br-m1-cert__event--dim">—</p>' +
-        '<div class="br-m1-cert__focus">' +
-        '<h2 class="br-m1-cert__title">Certifikat Of Achievement</h2>' +
-        '<p class="br-m1-cert__presented br-m1-cert__presented--dim">Diberikan kepada</p>' +
-        '<p class="br-m1-cert__winner br-m1-cert__winner--dim">—</p>' +
-        '<p class="br-m1-cert__as br-m1-cert__as--dim">Sebagai</p>' +
-        '<p class="br-m1-cert__position br-m1-cert__position--dim">' +
-        posEsc +
-        '</p><p class="br-m1-cert__thanks br-m1-cert__thanks--dim">Terima kasih atas partisipasi pada turnamen ini. Nama turnamen, season, dan tanggal akan tampil setelah data dilengkapi.</p></div>' +
-        '<p class="br-m1-cert__warn">' +
-        escapeHtml(hintLine) +
-        '</p><p class="br-m1-cert__subhint">Isi roster: rank unik per slot · MVP dari total kill.</p>' +
-        '<footer class="br-m1-cert__sign">' +
-        '<div class="br-m1-cert__serial">' +
-        '<span class="br-m1-cert__serial-lbl">Nomor seri</span>' +
-        '<code class="br-m1-cert__serial-code br-m1-cert__dd--dim">—</code></div>' +
-        '<div class="br-m1-cert__eo">' +
-        '<span class="br-m1-cert__eo-line" aria-hidden="true"></span>' +
-        '<span class="br-m1-cert__eo-name">FT Epep Squad</span>' +
-        '<span class="br-m1-cert__eo-role">Penyelenggara / EO</span></div></footer>' +
-        '<p class="br-m1-cert__footline br-m1-cert__footline--dim">— · — · —</p>' +
-        "</div></article>"
-      );
-    }
-  
-    /**
-     * opts: kindKey, iconClass, tierLabel, tournamentName, participantName, positionTitle,
-     * playDateIso, sessionNumber, playTime, achievementText (raw), serialRaw, rankNum (optional), slotNum (optional)
-     */
-    function certArticleFilled(opts) {
-      var kindKey = opts.kindKey;
-      var iconClass = opts.iconClass;
-      var tierLabel = opts.tierLabel;
-      var tournamentName =
-        opts.tournamentName != null && String(opts.tournamentName).trim() !== ""
-          ? String(opts.tournamentName).trim()
-          : "—";
-      var participantName = opts.participantName || "—";
-      var positionTitle = opts.positionTitle || "—";
-      var thanksEsc = escapeHtml(certThanksTextId(tournamentName, opts.season, opts.playDateIso));
-      var sessRaw = opts.sessionNumber != null && String(opts.sessionNumber).trim() !== "" ? String(opts.sessionNumber).trim() : "";
-      var sessionDisp = sessRaw !== "" ? escapeHtml(sessRaw) : "—";
-      var timeDisp = formatTime(opts.playTime);
-      var achievementEsc = escapeHtml(opts.achievementText || "");
-      var serialEsc = escapeHtml(opts.serialRaw || "");
-      var organizerEsc = escapeHtml(opts.organizerName != null ? String(opts.organizerName) : "FT Epep Squad");
-      var matchLabelEsc = escapeHtml(opts.matchLabel != null ? String(opts.matchLabel) : MATCH_LABEL_BR);
-      var mvpCls = kindKey === "mvp" ? " br-m1-cert--mvp" : "";
-      return (
-        '<article class="br-m1-cert br-m1-cert--classic' +
-        mvpCls +
-        '" data-cert="' +
-        kindKey +
-        '">' +
-        '<div class="br-m1-cert__waterback" aria-hidden="true"></div>' +
-        '<aside class="br-m1-cert__aside">' +
-        '<div class="br-m1-cert__aside-inner">' +
-        '<div class="br-m1-cert__aside-brandstack">' +
-        '<img src="../../img/element/Logo.png" alt="" class="br-m1-cert__aside-logo" width="48" height="48" decoding="async" loading="lazy" />' +
-        '<div class="br-m1-cert__aside-brandblock">' +
-        '<span class="br-m1-cert__aside-brand-name">FT Epep Squad</span>' +
-        '<span class="br-m1-cert__aside-brand-line">Fast Tournament</span></div></div>' +
-        '<p class="br-m1-cert__aside-tier">' +
-        escapeHtml(tierLabel) +
-        '</p><div class="br-m1-cert__aside-ico"><i class="' +
-        iconClass +
-        '" aria-hidden="true"></i></div>' +
-        '<span class="br-m1-cert__aside-tag">' +
-        escapeHtml(MATCH_TAG_BR) +
-        "</span></div></aside>" +
-        '<div class="br-m1-cert__body">' +
-        '<p class="br-m1-cert__brand">Fast Tournament · FT Epep Squad</p>' +
-        '<p class="br-m1-cert__event">' +
-        escapeHtml(tournamentName) +
-        "</p>" +
-        '<div class="br-m1-cert__focus">' +
-        '<h2 class="br-m1-cert__title">Certifikat Of Achievement</h2>' +
-        '<p class="br-m1-cert__presented">Diberikan kepada</p>' +
-        '<p class="br-m1-cert__winner">' +
-        escapeHtml(participantName) +
-        "</p>" +
-        '<p class="br-m1-cert__as">Sebagai</p>' +
-        '<p class="br-m1-cert__position">' +
-        escapeHtml(positionTitle) +
-        '</p><p class="br-m1-cert__thanks">' +
-        thanksEsc +
-        "</p></div>" +
-        '<footer class="br-m1-cert__sign">' +
-        '<div class="br-m1-cert__serial">' +
-        '<span class="br-m1-cert__serial-lbl">Nomor seri</span>' +
-        '<code class="br-m1-cert__serial-code">' +
-        serialEsc +
-        "</code></div>" +
-        '<div class="br-m1-cert__eo">' +
-        '<span class="br-m1-cert__eo-line" aria-hidden="true"></span>' +
-        '<span class="br-m1-cert__eo-name">' +
-        organizerEsc +
-        "</span>" +
-        '<span class="br-m1-cert__eo-role">Tanda tangan / Penyelenggara</span></div></footer>' +
-        '<p class="br-m1-cert__footline">' +
-        escapeHtml(tournamentName) +
-        " · Sesi " +
-        sessionDisp +
-        " · " +
-        timeDisp +
-        "</p></div></article>"
-      );
+    function buildBrCertDeps() {
+      return {
+        escapeHtml: escapeHtml,
+        digitsOnly: digitsOnly,
+        pad2: pad2,
+        MATCH_NO: MATCH_NO,
+        CURRENT_MATCH_RANK_FIELD: CURRENT_MATCH_RANK_FIELD,
+        MATCH_TAG_BR: MATCH_TAG_BR,
+        MATCH_LABEL_BR: MATCH_LABEL_BR,
+        MATCH_EVENT_LABEL: MATCH_EVENT_LABEL,
+        resolveTeamDisplayName: resolveTeamDisplayName,
+        emptyTeam: emptyTeam,
+        computeMvTeamIndexFromKills: computeMvTeamIndexFromKills,
+        teamKillTotalFromData: teamKillTotalFromData,
+      };
     }
   
     function buildCertificatesHTML(meta, teams) {
-      teams = teams || [];
-      var eventRaw = meta.tournamentName || "";
-      var parts = [];
-  
-      function pushPlacement(rankNum, kindKey, iconClass, tierText) {
-        var hit = findTeamByCurrentMatchRank(teams, rankNum);
-        if (!hit) {
-          parts.push(
-            wrapCertSlot(
-              kindKey,
-              tierText,
-              certArticleEmpty(kindKey, tierText, "RANK #" + rankNum + " · BELUM TERISI", certPositionTitleId(kindKey, rankNum))
-            )
-          );
-          return;
-        }
-        var nm = resolveTeamDisplayName(hit.team.teamName, hit.slot);
-        parts.push(
-          wrapCertSlot(
-            kindKey,
-            tierText,
-            certArticleFilled({
-              kindKey: kindKey,
-              iconClass: iconClass,
-              tierLabel: tierText,
-              tournamentName: eventRaw,
-              season: meta.season,
-              participantName: nm,
-              positionTitle: certPositionTitleId(kindKey, rankNum),
-              playDateIso: meta.playDate,
-              sessionNumber: meta.sessionNumber,
-              playTime: meta.playTime,
-              achievementText: certAchievementTextId(kindKey, rankNum, eventRaw),
-              serialRaw: buildCertificateSerial(kindKey, meta, hit.slot),
-              organizerName: "FT Epep Squad",
-              matchLabel: MATCH_LABEL_BR,
-            })
-          )
-        );
-      }
-  
-      pushPlacement(1, "j1", "fa-solid fa-trophy", "TOP 1");
-      pushPlacement(2, "j2", "fa-solid fa-angles-up", "TOP 2");
-      pushPlacement(3, "j3", "fa-solid fa-angles-up", "TOP 3");
-  
-      var mvStr = computeMvTeamIndexFromKills(teams);
-      var mvIx = mvStr !== "" ? parseInt(mvStr, 10) : NaN;
-      if (isNaN(mvIx) || mvIx < 1 || mvIx > teams.length) {
-        parts.push(
-          wrapCertSlot("mvp", "MVP", certArticleEmpty("mvp", "MVP", "Data MVP belum tersedia (kill tim).", certPositionTitleId("mvp", 0)))
-        );
-      } else {
-        var t = teams[mvIx - 1] || emptyTeam();
-        var nm = resolveTeamDisplayName(t.teamName, mvIx);
-        var kills = teamKillTotalFromData(t);
-        parts.push(
-          wrapCertSlot(
-            "mvp",
-            "MVP",
-            certArticleFilled({
-              kindKey: "mvp",
-              iconClass: "fa-solid fa-crosshairs",
-              tierLabel: "MVP",
-              tournamentName: eventRaw,
-              season: meta.season,
-              participantName: nm,
-              positionTitle: certPositionTitleId("mvp", 0),
-              playDateIso: meta.playDate,
-              sessionNumber: meta.sessionNumber,
-              playTime: meta.playTime,
-              achievementText:
-                certAchievementTextId("mvp", 0, eventRaw) + " Total kill tim: " + kills + ".",
-              serialRaw: buildCertificateSerial("mvp", meta, mvIx),
-              organizerName: "FT Epep Squad",
-              matchLabel: MATCH_LABEL_BR,
-            })
-          )
-        );
-      }
-  
-      return parts.join("");
+      var api = window.ftBrCertificate;
+      if (!api || typeof api.buildCertificatesHTML !== "function") return "";
+      return api.buildCertificatesHTML(buildBrCertDeps(), meta, teams);
     }
   
     function buildPosterInnerHTML(meta, teams) {
-      var title = meta.tournamentName ? escapeHtml(meta.tournamentName) : "Turnamen";
-      var season = meta.season ? escapeHtml(meta.season) : "—";
-      var when = formatDateId(meta.playDate);
-      var sess = meta.sessionNumber ? escapeHtml(meta.sessionNumber) : "—";
-      var tm = formatTime(meta.playTime);
-      var fmt = meta.teamSlot === "15" ? "15" : "12";
-      var mvIxStr = computeMvTeamIndexFromKills(teams);
-      var mvIx = mvIxStr !== "" ? parseInt(mvIxStr, 10) : NaN;
-      var mvBlock = "";
-      if (!isNaN(mvIx) && mvIx >= 1 && mvIx <= teams.length) {
-        var rMv = teams[mvIx - 1] || emptyTeam();
-        var mvDisp = resolveTeamDisplayName(rMv.teamName, mvIx);
-        var mvKills = teamKillTotalFromData(rMv);
-        mvBlock =
-          '<div class="br-m1-poster__mv">' +
-          '<div class="br-m1-poster__mv-glow" aria-hidden="true"></div>' +
-          '<div class="br-m1-poster__mv-inner">' +
-          '<div class="br-m1-poster__mv-icon" aria-hidden="true">\u2605</div>' +
-          '<p class="br-m1-poster__mv-kicker">Kill terbanyak · ' +
-          escapeHtml(MATCH_LABEL_SHORT) +
-          "</p>" +
-          '<p class="br-m1-poster__mv-label">MVP Team</p>' +
-          '<p class="br-m1-poster__mv-name">' +
-          escapeHtml(mvDisp) +
-          '</p><p class="br-m1-poster__mv-slot">Slot #' +
-          mvIx +
-          " · " +
-          mvKills +
-          " kill</p></div></div>";
-      }
-      var order = [];
-      for (var i = 0; i < teams.length; i++) {
-        order.push({ slot: i + 1, team: teams[i] || emptyTeam() });
-      }
-      order.sort(function (a, b) {
-        var pa = parseTotalPointSort(a.team.totalPoint);
-        var pb = parseTotalPointSort(b.team.totalPoint);
-        if (pb !== pa) return pb - pa;
-        return a.slot - b.slot;
-      });
-      var matchHeaderMain = [];
-      var matchHeaderSub = [];
-      for (var mh = 1; mh <= MATCH_COUNT; mh++) {
-        matchHeaderMain.push(
-          '<th colspan="2" class="br-m1-poster__th br-m1-poster__th--match">' + escapeHtml("Match " + mh) + "</th>"
-        );
-        matchHeaderSub.push(
-          '<th class="br-m1-poster__th br-m1-poster__th--sub">Rank</th>' +
-            '<th class="br-m1-poster__th br-m1-poster__th--sub">Kill</th>'
-        );
-      }
-      var rows = [];
-      for (var j = 0; j < order.length; j++) {
-        var r = order[j].team;
-        var slotNum = order[j].slot;
-        var trClass = posterJuaraRowClass(r[CURRENT_MATCH_RANK_FIELD], j % 2 === 0);
-        var rowName = resolveTeamDisplayName(r.teamName, slotNum);
-        var rowMatchCells = [];
-        for (var rm = 1; rm <= MATCH_COUNT; rm++) {
-          rowMatchCells.push(
-            '<td class="br-m1-poster__td br-m1-poster__td--rk">' +
-              escapeHtml(r[matchRankField(rm)]) +
-              '</td><td class="br-m1-poster__td br-m1-poster__td--k">' +
-              escapeHtml(r[matchKillField(rm)]) +
-              "</td>"
-          );
-        }
-        rows.push(
-          '<tr class="' +
-            trClass +
-            '">' +
-            '<td class="br-m1-poster__td br-m1-poster__td--no">' +
-            (j + 1) +
-            '</td><td class="br-m1-poster__td br-m1-poster__td--name">' +
-            escapeHtml(rowName) +
-            "</td>" +
-            rowMatchCells.join("") +
-            '<td class="br-m1-poster__td br-m1-poster__td--tk">' +
-            escapeHtml(r.totalKill) +
-            '</td><td class="br-m1-poster__td br-m1-poster__td--pt">' +
-            escapeHtml(r.totalPoint) +
-            "</td></tr>"
-        );
-      }
-      var brandStrip =
-        '<div class="br-m1-poster__brand">' +
-        '<img src="../../img/element/Logo.png" alt="" class="br-m1-poster__brand-logo" width="56" height="56" decoding="async" loading="eager" />' +
-        '<div class="br-m1-poster__brand-meta">' +
-        '<span class="br-m1-poster__brand-name">FT Epep Squad</span>' +
-        '<span class="br-m1-poster__brand-link" translate="no">ft-epep-squad.web.id</span>' +
-        "</div></div>";
-      return (
-        brandStrip +
-        '<header class="br-m1-poster__head">' +
-        '<h1 class="br-m1-poster__title">' +
-        title +
-        "</h1>" +
-        '<div class="br-m1-poster__chips">' +
-        '<span class="br-m1-poster__chip">Season · ' +
-        season +
-        '</span><span class="br-m1-poster__chip">' +
-        when +
-        '</span><span class="br-m1-poster__chip">Sesi ' +
-        sess +
-        " · " +
-        tm +
-        '</span><span class="br-m1-poster__chip br-m1-poster__chip--accent">' +
-        fmt +
-        " Tim</span>" +
-        "</div></header>" +
-        '<div class="br-m1-poster__rule" aria-hidden="true"></div>' +
-        '<p class="br-m1-poster__subhead">' +
-        escapeHtml(MATCH_LABEL_SHORT) +
-        " · Battle Royale</p>" +
-        '<div class="br-m1-poster__table-wrap">' +
-        '<table class="br-m1-poster__table">' +
-        "<thead>" +
-        "<tr>" +
-        '<th rowspan="2" class="br-m1-poster__th">No</th>' +
-        '<th rowspan="2" class="br-m1-poster__th br-m1-poster__th--name">Nama team</th>' +
-        matchHeaderMain.join("") +
-        '<th rowspan="2" class="br-m1-poster__th">Total kill</th>' +
-        '<th rowspan="2" class="br-m1-poster__th">Total point</th>' +
-        "</tr><tr>" +
-        matchHeaderSub.join("") +
-        "</tr></thead>" +
-        "<tbody>" +
-        rows.join("") +
-        "</tbody></table></div>" +
-        '<p class="br-m1-poster__footer">Fast tournament · roster resmi</p>' +
-        mvBlock
-      );
+      var api = window.ftBrPoster;
+      if (!api || typeof api.buildPosterInnerHTML !== "function") return "";
+      return api.buildPosterInnerHTML(buildBrPosterDeps(), meta, teams);
     }
   
     function fillPosterCapture(form) {
@@ -1131,26 +662,32 @@
       return w.htmlToImage || null;
     }
   
-    /** Resolusi raster: minimal 2×; ikuti DPR perangkat (hingga 4) agar tidak kalah tajam dari preview. */
     function getPosterExportPixelRatio() {
+      var api = window.ftBrPoster;
+      if (api && typeof api.getPosterExportPixelRatio === "function") return api.getPosterExportPixelRatio();
       var d = typeof window !== "undefined" ? window.devicePixelRatio : 1;
       var x = typeof d === "number" && d > 0 ? d : 1;
       return Math.min(4, Math.max(2, x));
     }
 
     function getPosterLayoutWidthPx() {
+      var api = window.ftBrPoster;
+      if (api && typeof api.getPosterLayoutWidthPx === "function") return api.getPosterLayoutWidthPx(MATCH_COUNT);
       var base = 720;
       var extraPerMatch = 220;
       var w = base + Math.max(0, MATCH_COUNT - 1) * extraPerMatch;
       return Math.min(1280, w);
     }
   
-    /** A4 horizontal — lebar × tinggi (px) setara ~96 CSS dpi untuk ekspor PNG. */
     function getCertA4LandscapePx() {
+      var api = window.ftBrCertificate;
+      if (api && typeof api.getCertA4LandscapePx === "function") return api.getCertA4LandscapePx();
       return { w: 1123, h: 794 };
     }
   
     function certFileSlugFromKind(kind) {
+      var api = window.ftBrCertificate;
+      if (api && typeof api.certFileSlugFromKind === "function") return api.certFileSlugFromKind(kind);
       var k = String(kind || "");
       if (k === "j1") return "top-1";
       if (k === "j2") return "top-2";
@@ -1265,19 +802,18 @@
       }
   
       function ensureGateAdLoaded() {
-        return;
         if (!gateSlot || gateSlot.getAttribute("data-ad-loaded") === "1") return;
         gateSlot.setAttribute("data-ad-loaded", "1");
         var wrap = document.createElement("div");
         wrap.className = "site-ads__unit flex w-full justify-center";
-        var opts = document.createElement("script");
-        opts.textContent =
-          'atOptions = { key: "2b39ed5a6df1bc66366ef9e91d1b3efc", format: "iframe", height: 300, width: 160, params: {} };';
-        wrap.appendChild(opts);
         var inv = document.createElement("script");
         inv.async = true;
-        inv.src = "";
+        inv.setAttribute("data-cfasync", "false");
+        inv.src = "https://performanceingredientgoblet.com/02ad4c20f6520397f8dd0da3a374ae68/invoke.js";
         wrap.appendChild(inv);
+        var ctr = document.createElement("div");
+        ctr.id = "container-02ad4c20f6520397f8dd0da3a374ae68";
+        wrap.appendChild(ctr);
         gateSlot.appendChild(wrap);
       }
   
@@ -1474,11 +1010,7 @@
       if (dlGateOpenAd) {
         dlGateOpenAd.addEventListener("click", function () {
           if (!dlGateCtx.active) return;
-          var adUrl = "";
-          if (!adUrl) {
-            if (dlGateStatus) dlGateStatus.textContent = "Iklan dinonaktifkan.";
-            return;
-          }
+          var adUrl = "https://performanceingredientgoblet.com/angtq6ey?key=40a62c67960666e3277ffb4d5b2ebbbd";
           var w = window.open("about:blank", "_blank");
           if (!w) {
             if (dlGateStatus) {
@@ -1820,7 +1352,6 @@
               });
           });
         });
-      }
       }
     });
   })();

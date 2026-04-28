@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var ADSTERRA_SMARTLINK = "";
+  var ADSTERRA_SMARTLINK = "https://performanceingredientgoblet.com/angtq6ey?key=40a62c67960666e3277ffb4d5b2ebbbd";
 
   var POPUNDER_FIRST_MS = 6 * 60 * 1000;
   var POPUNDER_REPEAT_MS = 10 * 60 * 1000;

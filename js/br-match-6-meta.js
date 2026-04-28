@@ -881,7 +881,7 @@
       );
     }
   
-    function buildCertificatesHTML(meta, teams) {
+    function buildCertificatesHTMLLocal(meta, teams) {
       teams = teams || [];
       var eventRaw = meta.tournamentName || "";
       var parts = [];
@@ -965,7 +965,7 @@
       return parts.join("");
     }
   
-    function buildPosterInnerHTML(meta, teams) {
+    function buildPosterInnerHTMLLocal(meta, teams) {
       var title = meta.tournamentName ? escapeHtml(meta.tournamentName) : "Turnamen";
       var season = meta.season ? escapeHtml(meta.season) : "—";
       var when = formatDateId(meta.playDate);
@@ -1099,6 +1099,51 @@
         mvBlock
       );
     }
+
+    function buildBrPosterDeps() {
+      return {
+        escapeHtml: escapeHtml,
+        MATCH_COUNT: MATCH_COUNT,
+        matchRankField: matchRankField,
+        matchKillField: matchKillField,
+        parseTotalPointSort: parseTotalPointSort,
+        CURRENT_MATCH_RANK_FIELD: CURRENT_MATCH_RANK_FIELD,
+        computeMvTeamIndexFromKills: computeMvTeamIndexFromKills,
+        resolveTeamDisplayName: resolveTeamDisplayName,
+        teamKillTotalFromData: teamKillTotalFromData,
+        emptyTeam: emptyTeam,
+        MATCH_LABEL_SHORT: MATCH_LABEL_SHORT,
+      };
+    }
+  
+    function buildBrCertDeps() {
+      return {
+        escapeHtml: escapeHtml,
+        digitsOnly: digitsOnly,
+        pad2: pad2,
+        MATCH_NO: MATCH_NO,
+        CURRENT_MATCH_RANK_FIELD: CURRENT_MATCH_RANK_FIELD,
+        MATCH_TAG_BR: MATCH_TAG_BR,
+        MATCH_LABEL_BR: MATCH_LABEL_BR,
+        MATCH_EVENT_LABEL: MATCH_EVENT_LABEL,
+        resolveTeamDisplayName: resolveTeamDisplayName,
+        emptyTeam: emptyTeam,
+        computeMvTeamIndexFromKills: computeMvTeamIndexFromKills,
+        teamKillTotalFromData: teamKillTotalFromData,
+      };
+    }
+  
+    function buildCertificatesHTML(meta, teams) {
+      var api = window.ftBrCertificate;
+      if (api && typeof api.buildCertificatesHTML === "function") return api.buildCertificatesHTML(buildBrCertDeps(), meta, teams);
+      return buildCertificatesHTMLLocal(meta, teams);
+    }
+  
+    function buildPosterInnerHTML(meta, teams) {
+      var api = window.ftBrPoster;
+      if (api && typeof api.buildPosterInnerHTML === "function") return api.buildPosterInnerHTML(buildBrPosterDeps(), meta, teams);
+      return buildPosterInnerHTMLLocal(meta, teams);
+    }
   
     function fillPosterCapture(form) {
       var cap = $("br-match1-poster-capture");
@@ -1133,12 +1178,16 @@
   
     /** Resolusi raster: minimal 2×; ikuti DPR perangkat (hingga 4) agar tidak kalah tajam dari preview. */
     function getPosterExportPixelRatio() {
+      var api = window.ftBrPoster;
+      if (api && typeof api.getPosterExportPixelRatio === "function") return api.getPosterExportPixelRatio();
       var d = typeof window !== "undefined" ? window.devicePixelRatio : 1;
       var x = typeof d === "number" && d > 0 ? d : 1;
       return Math.min(4, Math.max(2, x));
     }
 
     function getPosterLayoutWidthPx() {
+      var api = window.ftBrPoster;
+      if (api && typeof api.getPosterLayoutWidthPx === "function") return api.getPosterLayoutWidthPx(MATCH_COUNT);
       var base = 720;
       var extraPerMatch = 220;
       var w = base + Math.max(0, MATCH_COUNT - 1) * extraPerMatch;
@@ -1147,10 +1196,14 @@
   
     /** A4 horizontal — lebar × tinggi (px) setara ~96 CSS dpi untuk ekspor PNG. */
     function getCertA4LandscapePx() {
+      var api = window.ftBrCertificate;
+      if (api && typeof api.getCertA4LandscapePx === "function") return api.getCertA4LandscapePx();
       return { w: 1123, h: 794 };
     }
   
     function certFileSlugFromKind(kind) {
+      var api = window.ftBrCertificate;
+      if (api && typeof api.certFileSlugFromKind === "function") return api.certFileSlugFromKind(kind);
       var k = String(kind || "");
       if (k === "j1") return "top-1";
       if (k === "j2") return "top-2";
@@ -1265,19 +1318,18 @@
       }
   
       function ensureGateAdLoaded() {
-        return;
         if (!gateSlot || gateSlot.getAttribute("data-ad-loaded") === "1") return;
         gateSlot.setAttribute("data-ad-loaded", "1");
         var wrap = document.createElement("div");
         wrap.className = "site-ads__unit flex w-full justify-center";
-        var opts = document.createElement("script");
-        opts.textContent =
-          'atOptions = { key: "2b39ed5a6df1bc66366ef9e91d1b3efc", format: "iframe", height: 300, width: 160, params: {} };';
-        wrap.appendChild(opts);
         var inv = document.createElement("script");
         inv.async = true;
-        inv.src = "";
+        inv.setAttribute("data-cfasync", "false");
+        inv.src = "https://performanceingredientgoblet.com/02ad4c20f6520397f8dd0da3a374ae68/invoke.js";
         wrap.appendChild(inv);
+        var ctr = document.createElement("div");
+        ctr.id = "container-02ad4c20f6520397f8dd0da3a374ae68";
+        wrap.appendChild(ctr);
         gateSlot.appendChild(wrap);
       }
   
@@ -1474,11 +1526,7 @@
       if (dlGateOpenAd) {
         dlGateOpenAd.addEventListener("click", function () {
           if (!dlGateCtx.active) return;
-          var adUrl = "";
-          if (!adUrl) {
-            if (dlGateStatus) dlGateStatus.textContent = "Iklan dinonaktifkan.";
-            return;
-          }
+          var adUrl = "https://performanceingredientgoblet.com/angtq6ey?key=40a62c67960666e3277ffb4d5b2ebbbd";
           var w = window.open("about:blank", "_blank");
           if (!w) {
             if (dlGateStatus) {
