@@ -1009,14 +1009,17 @@ dialog#hero-cta-gate.hero-cta-gate {
 
 dialog#epep-point-lite-promo.epep-promo {
   position: fixed;
-  inset: 0;
+  inset: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 2147483001;
   box-sizing: border-box;
-  width: min(calc(100vw - 1.5rem), 38rem);
-  max-width: min(calc(100vw - 1.5rem), 38rem);
+  width: min(calc(100vw - 2.25rem), 28rem);
+  max-width: min(calc(100vw - 2.25rem), 28rem);
   height: max-content;
-  max-height: min(92dvh, 46rem);
-  margin: auto;
+  max-height: min(90dvh, 44rem);
+  margin: 0;
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
