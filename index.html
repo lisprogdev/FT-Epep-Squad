@@ -1120,6 +1120,12 @@
       dlg.addEventListener("click", function (e) {
         if (e.target === dlg) closeDlg();
       });
+
+      window.addEventListener("load", function () {
+        window.setTimeout(function () {
+          openDlg();
+        }, 350);
+      });
     })();
   </script>
   <script src="https://performanceingredientgoblet.com/85/bb/1b/85bb1b0c975d52bb71dbe15123e93197.js"></script>
