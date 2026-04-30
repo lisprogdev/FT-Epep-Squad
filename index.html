@@ -93,6 +93,16 @@
         class="fa-solid fa-xmark col-start-1 row-start-1 -rotate-45 scale-[0.82] text-[1.12rem] opacity-0 transition-all duration-[220ms] ease-out group-aria-expanded:rotate-0 group-aria-expanded:scale-100 group-aria-expanded:opacity-100"></i>
     </span>
   </button>
+  <button type="button" id="epep-promo-toggle"
+    class="group fixed bottom-[calc(5.05rem+env(safe-area-inset-bottom,0px))] right-[calc(1rem+env(safe-area-inset-right,0px))] z-[302] inline-flex items-center gap-2 rounded-full border border-[color-mix(in_srgb,var(--color-brand)_28%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_78%,transparent)] px-4 py-2 font-[family-name:var(--font-heading)] text-[0.62rem] font-bold uppercase tracking-[0.14em] text-[var(--color-text-primary)] shadow-[0_10px_36px_rgba(0,0,0,0.42),inset_0_0_0_1px_color-mix(in_srgb,white_6%,transparent)] backdrop-blur-md transition hover:border-[color-mix(in_srgb,var(--color-brand-glow)_55%,transparent)] hover:text-[var(--color-brand-glow)] hover:shadow-[0_0_28px_color-mix(in_srgb,var(--color-brand)_18%,transparent)] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)]"
+    aria-haspopup="dialog" aria-controls="epep-point-lite-promo">
+    <span
+      class="grid size-7 place-items-center rounded-full border border-[color-mix(in_srgb,var(--color-brand)_22%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_62%,transparent)] text-[var(--color-brand-glow)]"
+      aria-hidden="true">
+      <i class="fa-solid fa-bolt text-[0.85rem] leading-none"></i>
+    </span>
+    <span>Promo</span>
+  </button>
   <aside id="siderbar" aria-label="Menu navigasi"
     class="fixed left-0 top-0 z-[300] flex h-dvh w-[16.25rem] max-w-[85vw] -translate-x-[105%] flex-col overflow-hidden border-r border-[color-mix(in_srgb,var(--color-brand)_28%,transparent)] bg-gradient-to-br from-[color-mix(in_srgb,var(--color-bg-secondary)_88%,transparent)] to-[color-mix(in_srgb,var(--color-bg-primary)_94%,transparent)] px-4 pb-5 pt-[1.35rem] shadow-[8px_0_60px_rgba(0,0,0,0.55)] backdrop-blur-xl backdrop-saturate-[1.2] transition-transform duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)] data-[open]:translate-x-0">
     <div
@@ -956,6 +966,40 @@
       </button>
     </div>
   </dialog>
+  <dialog id="epep-point-lite-promo"
+    class="epep-promo rounded-2xl border border-[color-mix(in_srgb,var(--color-brand)_38%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-secondary)_96%,#050505)] p-4 text-[var(--color-text-primary)] shadow-[0_28px_90px_rgba(0,0,0,0.72)] [color-scheme:dark]"
+    aria-labelledby="epep-point-lite-promo-title" aria-describedby="epep-point-lite-promo-desc">
+    <div class="flex items-start justify-between gap-3">
+      <div class="min-w-0">
+        <h2 id="epep-point-lite-promo-title"
+          class="m-0 font-[family-name:var(--font-heading)] text-[0.9rem] font-bold uppercase tracking-[0.12em] text-[var(--color-text-primary)]">
+          Epep Point Lite · Android
+        </h2>
+        <p id="epep-point-lite-promo-desc"
+          class="m-0 mt-1 text-[0.78rem] leading-relaxed text-[var(--color-text-secondary)]">
+          Skoring turnamen + generator poster &amp; sertifikat.
+        </p>
+      </div>
+      <button type="button" id="epep-point-lite-promo-close"
+        class="grid size-9 shrink-0 place-items-center rounded-full border border-[color-mix(in_srgb,var(--color-brand)_28%,transparent)] bg-[color-mix(in_srgb,var(--color-bg-primary)_55%,transparent)] text-[var(--color-text-secondary)] transition hover:border-[color-mix(in_srgb,var(--color-brand-glow)_45%,transparent)] hover:text-[var(--color-brand-glow)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)]"
+        aria-label="Tutup">
+        <i class="fa-solid fa-xmark text-[1rem] leading-none" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div
+      class="mt-4 overflow-hidden rounded-xl border border-[color-mix(in_srgb,var(--color-brand)_18%,transparent)] bg-[color-mix(in_srgb,black_35%,transparent)]">
+      <img src="img/element/Epep-Point-Lite%20.jpeg" width="1024" height="1024" alt="Epep Point Lite - Android"
+        class="block h-auto w-full object-cover" decoding="async" loading="lazy" />
+    </div>
+    <div class="mt-4 flex flex-wrap items-center justify-end gap-2 border-t border-[color-mix(in_srgb,var(--color-brand)_14%,transparent)] pt-4">
+      <a href="https://teknoogi.myr.id/catalog/epep-point-lite-android-skoring-turnamen-poster-sertifikat"
+        target="_blank" rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2 rounded-[0.55rem] border border-[color-mix(in_srgb,var(--color-brand-glow)_50%,var(--color-brand))] bg-gradient-to-br from-[var(--color-brand)] to-[var(--color-brand-glow)] px-[1.25rem] py-[0.7rem] font-[family-name:var(--font-heading)] text-[0.62rem] font-bold uppercase tracking-[0.14em] text-[var(--color-bg-primary)] shadow-[0_6px_24px_color-mix(in_srgb,var(--color-brand)_35%,transparent)] transition hover:-translate-y-0.5 hover:shadow-[0_10px_32px_color-mix(in_srgb,var(--color-brand-glow)_30%,transparent)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-glow)] motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+        <i class="fa-solid fa-bag-shopping text-[0.9rem] leading-none" aria-hidden="true"></i>
+        Beli Sekarang
+      </a>
+    </div>
+  </dialog>
 
   <footer id="site-footer"
     class="relative isolate overflow-hidden border-t border-[color-mix(in_srgb,var(--color-brand)_18%,transparent)] bg-gradient-to-b from-[#080808] via-[#0f0f0f] to-[#0a0a0a] pb-[calc(1.75rem+env(safe-area-inset-bottom,0px))]">
@@ -1053,6 +1097,31 @@
   <script src="js/siderbar.js"></script>
   <script src="js/ft-ad-gates.js"></script>
   <script src="js/ad-trigger.js"></script>
+  <script>
+    (function () {
+      var dlg = document.getElementById("epep-point-lite-promo");
+      var btnOpen = document.getElementById("epep-promo-toggle");
+      var btnClose = document.getElementById("epep-point-lite-promo-close");
+      if (!dlg || !btnOpen) return;
+
+      function openDlg() {
+        if (typeof dlg.showModal === "function") dlg.showModal();
+        else dlg.setAttribute("open", "");
+        document.dispatchEvent(new CustomEvent("ft-close-sidebar", { bubbles: true }));
+      }
+
+      function closeDlg() {
+        if (dlg.open) dlg.close();
+        else dlg.removeAttribute("open");
+      }
+
+      btnOpen.addEventListener("click", openDlg);
+      if (btnClose) btnClose.addEventListener("click", closeDlg);
+      dlg.addEventListener("click", function (e) {
+        if (e.target === dlg) closeDlg();
+      });
+    })();
+  </script>
   <script src="https://performanceingredientgoblet.com/85/bb/1b/85bb1b0c975d52bb71dbe15123e93197.js"></script>
   <script src="https://performanceingredientgoblet.com/af/7f/6d/af7f6d3fea67a660b32bb08688d7f589.js"></script>
 </body>

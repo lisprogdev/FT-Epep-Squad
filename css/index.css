@@ -1007,6 +1007,26 @@ dialog#hero-cta-gate.hero-cta-gate {
   background: color-mix(in srgb, black 78%, transparent);
 }
 
+dialog#epep-point-lite-promo.epep-promo {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483001;
+  box-sizing: border-box;
+  width: min(calc(100vw - 1.5rem), 38rem);
+  max-width: min(calc(100vw - 1.5rem), 38rem);
+  height: max-content;
+  max-height: min(92dvh, 46rem);
+  margin: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+#epep-point-lite-promo::backdrop {
+  background: color-mix(in srgb, black 78%, transparent);
+  backdrop-filter: blur(8px);
+}
+
 /* Hero — slot iklan di bawah grid; batasi lebar iframe agar tidak meluber ke kolom visual */
 #beranda .hero-ad-slot iframe {
   display: block;
