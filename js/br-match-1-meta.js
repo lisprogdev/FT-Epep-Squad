@@ -1319,17 +1319,31 @@
           btnDl.disabled = true;
           fillPosterCapture(form);
           cap.classList.add("br-m1-poster-capture--hires-export");
+          var restoreCapSize = {
+            width: cap.style.width,
+            maxWidth: cap.style.maxWidth,
+            minWidth: cap.style.minWidth,
+          };
+          var layoutW = getPosterLayoutWidthPx();
+          if (typeof layoutW === "number" && layoutW > 0) {
+            cap.style.width = layoutW + "px";
+            cap.style.maxWidth = layoutW + "px";
+            cap.style.minWidth = layoutW + "px";
+          }
           var pr = getPosterExportPixelRatio();
           whenFontsReady()
             .then(function () {
               return nextFrame();
             })
             .then(function () {
-              /* Jangan set width/height manual — bisa tidak sama dengan layout klon SVG dan memperparah geser isi */
+              var w = Math.ceil(cap.scrollWidth || cap.getBoundingClientRect().width || 0);
+              var h = Math.ceil(cap.scrollHeight || cap.getBoundingClientRect().height || 0);
               return h2i.toPng(cap, {
                 pixelRatio: pr,
                 cacheBust: true,
                 backgroundColor: "#0f0f0f",
+                width: w || undefined,
+                height: h || undefined,
               });
             })
             .then(function (dataUrl) {
@@ -1351,6 +1365,9 @@
             })
             .finally(function () {
               cap.classList.remove("br-m1-poster-capture--hires-export");
+              cap.style.width = restoreCapSize.width;
+              cap.style.maxWidth = restoreCapSize.maxWidth;
+              cap.style.minWidth = restoreCapSize.minWidth;
               btnDl.disabled = false;
             });
         });

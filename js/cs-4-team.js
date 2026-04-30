@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
   "use strict";
 
   var STORAGE_KEY = "ft-epep-squad:cs-4-team";
@@ -897,8 +897,29 @@
           var tourney = safeFilenamePart(textById("br-match1-tournament") || "FT_Epep_Squad");
           var date = safeFilenamePart(textById("br-match1-playdate") || "");
           var file = "CS4_Bracket_" + (tourney ? tourney : "Poster") + (date ? "_" + date : "") + ".png";
-          window.htmlToImage
-            .toPng(poster, { pixelRatio: 2, cacheBust: true, backgroundColor: "#050507" })
+          var restorePosterSize = {
+            width: poster.style.width,
+            maxWidth: poster.style.maxWidth,
+            minWidth: poster.style.minWidth,
+          };
+          poster.style.maxWidth = "none";
+
+          new Promise(function (resolve) {
+            window.requestAnimationFrame(function () {
+              window.requestAnimationFrame(resolve);
+            });
+          })
+            .then(function () {
+              var w = Math.ceil(poster.scrollWidth || poster.getBoundingClientRect().width || 0);
+              var h = Math.ceil(poster.scrollHeight || poster.getBoundingClientRect().height || 0);
+              return window.htmlToImage.toPng(poster, {
+                pixelRatio: 2,
+                cacheBust: true,
+                backgroundColor: "#050507",
+                width: w || undefined,
+                height: h || undefined,
+              });
+            })
             .then(function (dataUrl) {
               var a = document.createElement("a");
               a.download = file;
@@ -909,6 +930,9 @@
             })
             .catch(function () {})
             .finally(function () {
+              poster.style.width = restorePosterSize.width;
+              poster.style.maxWidth = restorePosterSize.maxWidth;
+              poster.style.minWidth = restorePosterSize.minWidth;
               bracketDownload.disabled = false;
             });
         };
